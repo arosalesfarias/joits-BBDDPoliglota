@@ -1,5 +1,7 @@
 package domain
 
-class Usuario {
+import org.uqbar.commons.model.Entity
+
+class Usuario extends Entity{
 	String nombre
 }
