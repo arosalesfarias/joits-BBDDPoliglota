@@ -3,10 +3,11 @@ package domain
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Observable
+import org.uqbar.commons.model.Entity
 
 @Observable
 @Accessors
-class Usuario {
+class Usuario extends Entity{
 	String nombre
 	String apellido
 	Integer edad
