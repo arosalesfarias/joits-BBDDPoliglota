@@ -3,10 +3,9 @@ package domain
 import org.eclipse.xtend.lib.annotations.Accessors
 
 @Accessors
-class Pelicula implements Cartelera {
+class Pelicula extends Proyeccion {
 	String titulo
 	int anioRodaje
-	float puntaje
 	String genero
 	
 	override precioBase() {

@@ -5,13 +5,13 @@ import java.util.List
 import java.util.ArrayList
 
 @Accessors
-class Saga implements Cartelera {
-	int puntaje
+class Saga extends Proyeccion {
 	int anioRecopilacion
 	List<Pelicula> peliculas = new ArrayList<Pelicula>
+	int nivelClasico
 	
 	override precioBase() {
-		peliculas.size * 10
+		(peliculas.size * 10) + nivelClasico
 	}
 	
 }
