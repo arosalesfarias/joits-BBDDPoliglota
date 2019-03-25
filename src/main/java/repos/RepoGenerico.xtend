@@ -1,6 +1,5 @@
 package repos
 
-//import ar.edu.eventos.exceptions.Validar
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
@@ -38,7 +37,7 @@ abstract class RepoGenerico<T extends Entidad> {
 		elementos.findFirst[elem|elem.id == id]
 	}
 
-	def boolean existeElid(T object) {
+	def boolean existeId(T object) {
 		elementos.exists[elemento|elemento.id == object.id]
 	}
 }

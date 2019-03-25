@@ -3,6 +3,7 @@ package domain
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Observable
+import exceptions.BusinessException
 
 @Observable
 @Accessors
@@ -34,7 +35,9 @@ class Usuario extends Entidad {
 	}
 
 	override validateCreate() {
-		this.tengoUsuario && this.tengoLogin
+		if (!this.tengoUsuario || !this.tengoLogin){
+			throw new BusinessException("no tiene usuario y/o login")
+		}
 	}
 
 	def Boolean tengoUsuario() {
