@@ -1,15 +1,15 @@
 package ui
 
 import org.uqbar.arena.windows.SimpleWindow
-import repos.RepoUsuario
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.Label
+import repos.RepoUsuarios
 
-class LoginWindow extends SimpleWindow<RepoUsuario>{
+class LoginWindow extends SimpleWindow<RepoUsuarios>{
 	
 	new(WindowOwner parent) {
-		super(parent, RepoUsuario.instance)
+		super(parent, RepoUsuarios.instance)
 	}
 	
 	override protected addActions(Panel actionsPanel) {

@@ -5,13 +5,13 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import domain.Usuario
 
 @Accessors
-class RepoUsuario extends RepoGenerico<Usuario> {
+class RepoUsuarios extends RepoGenerico<Usuario> {
 
-	static RepoUsuario repoUsuarios
+	static RepoUsuarios repoUsuarios
 
-	def static RepoUsuario getInstance() {
+	def static RepoUsuarios getInstance() {
 		if (repoUsuarios === null) {
-			repoUsuarios = new RepoUsuario
+			repoUsuarios = new RepoUsuarios
 		}
 		repoUsuarios
 	}

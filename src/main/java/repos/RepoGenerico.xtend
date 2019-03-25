@@ -4,11 +4,11 @@ package repos
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
-import org.uqbar.commons.model.Entity
+import domain.Entidad
 
 @Accessors
 @TransactionalAndObservable
-abstract class RepoGenerico<T extends Entity> {
+abstract class RepoGenerico<T extends Entidad> {
 	
 	List<T> elementos = newArrayList()
 	
