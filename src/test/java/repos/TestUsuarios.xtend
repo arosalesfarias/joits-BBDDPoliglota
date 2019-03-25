@@ -65,14 +65,16 @@ class TestUsuarios {
 		repo.create(arosales)
 		Assert.assertEquals(arosales.id, 3)
 	}
+
 	@Test
-	def void agregoUsuarioYElRepoTiene2Elementos(){
+	def void agregoUsuarioYElRepoTiene2Elementos() {
 		repo.create(dsalamida)
-		Assert.assertEquals(repo.elementos.length,2)
+		Assert.assertEquals(repo.elementos.length, 2)
 	}
-	@Test(expected = typeof(BusinessException))
-	def void agregoUnUsuarioNoValidoParaElRepo(){
-	var nulo = new Usuario() => [
+
+	@Test(expected=typeof(BusinessException))
+	def void agregoUnUsuarioNoValidoParaElRepo() {
+		var nulo = new Usuario() => [
 			nombre = "Nulo"
 			apellido = "Null"
 			edad = 8
@@ -80,16 +82,18 @@ class TestUsuarios {
 			usuario = ""
 			login = "3333"
 		]
-	repo.create(nulo)
+		repo.create(nulo)
 	}
+
 	@Test
-	def void eliminoUnicoUsuarioDelRepoPeroNoReiniciaContador(){
+	def void eliminoUnicoUsuarioDelRepoPeroNoReiniciaContador() {
 		repo.delete(alezcano)
-		Assert.assertEquals(repo.elementos.length,0)
+		Assert.assertEquals(repo.elementos.length, 0)
 		Assert.assertFalse(repo.proximoId == 0)
 	}
+
 	@Test
-	def void actualizoNombreDeUsuario(){
+	def void actualizoNombreDeUsuario() {
 		var alezcano2 = new Usuario() => [
 			nombre = "Alberto Reload"
 			apellido = "Lezcano"
@@ -98,15 +102,30 @@ class TestUsuarios {
 			usuario = "alezcano"
 			login = "1234"
 		]
-		repo.update(alezcano,alezcano2)
+		repo.update(alezcano, alezcano2)
 		Assert.assertEquals(repo.searchById(1).nombre, "Alberto Reload")
 	}
+
 	@Test
-	def void noExisteIdEnRepoParaUnUsuarioQueNoFueAgregado(){
+	def void noExisteIdEnRepoParaUnUsuarioQueNoFueAgregado() {
 		Assert.assertFalse(repo.existeId(dsalamida))
 	}
+
 	@Test
-	def void buscoPorIdUnUsuario(){
+	def void buscoPorIdUnUsuario() {
 		Assert.assertTrue(repo.searchById(1) === alezcano)
+	}
+
+	@Test(expected=typeof(BusinessException))
+	def void ingresoUnUsuarioIncorrectoEnLogin() {
+		repo.login("elverG", "123456")
+	}
+	@Test(expected=typeof(BusinessException))
+	def void ingresoUnPasswordIncorrectoEnLogin() {
+		repo.login("alezcano", "clavefalsa")
+	}
+	@Test
+	def void logueoExitosoMeDevuelveUsuario() {
+		Assert.assertTrue(repo.login("alezcano", "1234").nombre === "Alberto")
 	}
 }
