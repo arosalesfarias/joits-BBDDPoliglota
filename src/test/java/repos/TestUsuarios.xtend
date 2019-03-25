@@ -116,16 +116,4 @@ class TestUsuarios {
 		Assert.assertTrue(repo.searchById(1) === alezcano)
 	}
 
-	@Test(expected=typeof(BusinessException))
-	def void ingresoUnUsuarioIncorrectoEnLogin() {
-		repo.login("elverG", "123456")
-	}
-	@Test(expected=typeof(BusinessException))
-	def void ingresoUnPasswordIncorrectoEnLogin() {
-		repo.login("alezcano", "clavefalsa")
-	}
-	@Test
-	def void logueoExitosoMeDevuelveUsuario() {
-		Assert.assertTrue(repo.login("alezcano", "1234").nombre === "Alberto")
-	}
 }

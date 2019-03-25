@@ -4,13 +4,13 @@ import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.Label
-import repos.RepoUsuarios
 import org.uqbar.arena.widgets.TextBox
+import applicationModel.Login
 
-class LoginWindow extends SimpleWindow<RepoUsuarios>{
+class LoginWindow extends SimpleWindow<Login>{
 	
 	new(WindowOwner parent) {
-		super(parent, RepoUsuarios.instance)
+		super(parent, new Login)
 	}
 	
 	override protected addActions(Panel actionsPanel) {

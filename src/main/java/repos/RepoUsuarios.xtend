@@ -3,7 +3,6 @@ package repos
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import domain.Usuario
-import exceptions.BusinessException
 
 @Accessors
 class RepoUsuarios extends RepoGenerico<Usuario> {
@@ -49,19 +48,11 @@ class RepoUsuarios extends RepoGenerico<Usuario> {
 		]
 	}
 
-	def Usuario login(String usu, String login) {
-		if (!existeUsuario(usu)) {
-			throw new BusinessException("usuario NO existe")
-		}
-		if (searchByUser(usu).login !== login){
-			throw new BusinessException("password incorrecta")
-		}else return searchByUser(usu)
+	def Boolean existeUsuario(String usu) {
+		this.elementos.exists[u|u.usuario == usu]
 	}
 
-	def Boolean existeUsuario(String usu) {
-		elementos.exists[u|u.usuario == usu]
-	}
-	def Usuario searchByUser(String usu){
-		elementos.findFirst[elem|elem.usuario === usu]
+	def Usuario searchByUser(String usu) {
+		this.elementos.findFirst[elem|elem.usuario === usu]
 	}
 }
