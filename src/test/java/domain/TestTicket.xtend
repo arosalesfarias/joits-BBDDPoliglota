@@ -1,4 +1,4 @@
-package test
+package domain
 
 import domain.Tiket
 import domain.Pelicula
