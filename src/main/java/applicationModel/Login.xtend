@@ -24,4 +24,7 @@ class Login {
 		} //else
 			//return repo.searchByUser(this.usuario)
 	}
+	def autenticar(){
+		
+	}
 }

@@ -18,9 +18,6 @@ class LoginWindow extends SimpleWindow<Login> {
 		taskDescription = "Ingrese Usuario y Contraseña"
 	}
 
-	override protected addActions(Panel actionsPanel) {
-	}
-
 	override protected createFormPanel(Panel mainPanel) {
 		new Label(mainPanel).text = "Usuario"
 		new TextBox(mainPanel) => [
@@ -35,5 +32,22 @@ class LoginWindow extends SimpleWindow<Login> {
 			onClick([|modelObject.validaLogin()])
 		// bindEnabled()
 		]
+	}
+	override protected addActions(Panel actionsPanel) {
+		new Button(actionsPanel) => [
+			caption = "Aceptar"
+			onClick[|this.abrirBusqueda]
+			setAsDefault
+		]
+		new Button(actionsPanel) => [
+			caption = "Cancelar"
+			onClick[|this.close]
+		]
+	}
+	
+	def abrirBusqueda() {
+		modelObject.autenticar()
+		this.close()
+		//(new BusquedaWindow(this, modelObject.getUser)).open
 	}
 }
