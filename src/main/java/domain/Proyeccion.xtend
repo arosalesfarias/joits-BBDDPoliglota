@@ -7,5 +7,5 @@ abstract class Proyeccion {
 	
 	float puntaje
 	
-	def int precioBase ()
+	def float precioBase ()
 }

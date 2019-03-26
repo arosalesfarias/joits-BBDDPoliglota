@@ -8,7 +8,7 @@ import java.util.ArrayList
 class Saga extends Proyeccion {
 	int anioRecopilacion
 	List<Pelicula> peliculas = new ArrayList<Pelicula>
-	int nivelClasico
+	float nivelClasico
 	
 	override precioBase() {
 		(peliculas.size * 10) + nivelClasico
