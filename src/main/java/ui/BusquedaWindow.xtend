@@ -32,6 +32,10 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 		super.createMainTemplate(mainPanel)
 		createResultados(mainPanel)
 		createAccionesResultado(mainPanel)
+		new Button(mainPanel) => [
+			caption = "Panel de Control"
+			onClick [|abrirPanel]
+		]
 	}
 
 	override protected createFormPanel(Panel mainPanel) {
@@ -111,14 +115,17 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 		// Deshabilitar los botones si no hay ningún elemento seleccionado en la grilla.
 		val seleccionado = new NotNullObservable("proyeccionSeleccionada")
 
-		val actionsPanel = new Panel(mainPanel).layout = new HorizontalLayout
+		val actionsPanel = new Panel(mainPanel).layout = new ColumnLayout(2)
 
 		new Button(actionsPanel) => [
 			caption = "Mostrar Datos"
 			// onClick [|abrirPeli]
 			bindEnabled(seleccionado)
 		]
-
+	}
+	
+	def abrirPanel() {
+		(new ControlPanelWindow(this,modelObject.usuario).open)
 	}
 
 	def void cerrarSesion() {
@@ -133,7 +140,6 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 	}
 
 	override protected addActions(Panel actionsPanel) {
-		// throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
 
 }
