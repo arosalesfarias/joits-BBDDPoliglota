@@ -32,10 +32,9 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 		super.createMainTemplate(mainPanel)
 		createResultados(mainPanel)
 		createAccionesResultado(mainPanel)
-		new Button(mainPanel) => [
-			caption = "Panel de Control"
-			onClick [|abrirPanel]
-		]
+		createAgregarCarrito(mainPanel)
+		createPanelControl(mainPanel)
+		createFinalizarCompra(mainPanel)
 	}
 
 	override protected createFormPanel(Panel mainPanel) {
@@ -55,7 +54,7 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 		val columnas = new Panel(panelContenedor).layout = new HorizontalLayout
 		new Label(columnas) => [
 			text = "Buscar pelicula"
-			foreground = Color.CYAN
+			foreground = Color.BLACK
 		]
 		new TextBox(columnas) => [
 			width = 250
@@ -74,7 +73,7 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 		val LabelPanel = new Panel(resultadoPanel).layout = new HorizontalLayout
 		new Label(LabelPanel) => [
 			text = "Resultados: "
-			foreground = Color.CYAN
+			foreground = Color.BLACK
 		]
 		/*new Label(LabelPanel) => [
 		 * 	value <=> "resultados.length"
@@ -123,9 +122,43 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 			bindEnabled(seleccionado)
 		]
 	}
-	
+
+	def void createPanelControl(Panel mainPanel) {
+		val actionsPanel = new Panel(mainPanel).layout = new ColumnLayout(2)
+
+		new Button(actionsPanel) => [
+			caption = "Panel de Control"
+			onClick [|abrirPanel]
+		]
+	}
+
+	def createFinalizarCompra(Panel mainPanel) {
+		val carrito = new NotNullObservable("carrito")
+		val actionsPanel = new Panel(mainPanel).layout = new ColumnLayout(2)
+
+		new Button(actionsPanel) => [
+			caption = "Finalizar compra"
+			onClick [|finalizarCompra]
+			bindEnabled(carrito)
+		]
+	}
+
+	def createAgregarCarrito(Panel mainPanel) {
+		val peli = new NotNullObservable("proyeccionSeleccionada")
+		val actionsPanel = new Panel(mainPanel).layout = new ColumnLayout(2)
+
+		new Button(actionsPanel) => [
+			caption = "Agregar al carrito"
+			onClick [modelObject.agregarAlCarrito]
+			bindEnabled(peli)
+		]
+	}
+
+	def finalizarCompra() {
+	}
+
 	def abrirPanel() {
-		(new ControlPanelWindow(this,modelObject.usuario).open)
+		(new ControlPanelWindow(this, modelObject.usuario).open)
 	}
 
 	def void cerrarSesion() {

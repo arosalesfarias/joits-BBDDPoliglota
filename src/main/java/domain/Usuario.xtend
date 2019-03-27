@@ -17,7 +17,7 @@ class Usuario extends Entidad {
 	String usuario
 	String login
 
-	List<Pelicula> peliculas = new ArrayList<Pelicula>
+	List<Proyeccion> peliculas = new ArrayList<Proyeccion>
 
 	override String toString() {
 		usuario
@@ -53,5 +53,9 @@ class Usuario extends Entidad {
 
 	def buscar(String pelicula) {
 		peliculas
+	}
+
+	def void comprarPelicula(List<Proyeccion> peliculas) {
+		peliculas.addAll(peliculas)
 	}
 }

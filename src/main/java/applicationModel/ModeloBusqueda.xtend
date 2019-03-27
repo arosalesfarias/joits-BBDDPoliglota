@@ -14,6 +14,7 @@ class ModeloBusqueda {
 	List<Proyeccion> resultados
 	Proyeccion proyeccionSeleccionada
 	Usuario usuario
+	List<Proyeccion> carrito
 
 	new(Usuario _usuario) {
 		usuario = _usuario
@@ -31,4 +32,19 @@ class ModeloBusqueda {
 		valorBusqueda = ""
 	}
 
+	def agregarAlCarrito() {
+		carrito.add(proyeccionSeleccionada)
+	}
+
+	def sacarDelCarrito() {
+		carrito.remove(proyeccionSeleccionada)
+	}
+
+	def limpiarCarrito() {
+		carrito.removeAll
+	}
+
+	def finalizarCompra() {
+		usuario.comprarPelicula(carrito)
+	}
 }
