@@ -5,7 +5,6 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Observable
 import exceptions.BusinessException
 import java.util.ArrayList
-import org.uqbar.commons.model.annotations.Dependencies
 
 @Observable
 @Accessors

@@ -13,6 +13,8 @@ import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.NumericField
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.bindings.NotNullObservable
+import org.uqbar.arena.widgets.tables.Table
+import org.uqbar.arena.widgets.tables.Column
 
 class ControlPanelWindow extends SimpleWindow<Usuario> {
 
@@ -49,6 +51,25 @@ class ControlPanelWindow extends SimpleWindow<Usuario> {
 			caption = "Cargar"
 			onClick[|modelObject.agregarSaldo()]
 			bindEnabled(new NotNullObservable("cantidad"))
+		]
+		this.tablaAmigos(PanelIzquierdo)
+	}
+
+	def tablaAmigos(Panel panel) {
+		new Label(panel).text = "Amigos"
+		val table = new Table<Usuario>(panel, typeof(Usuario)) => [
+			items <=> "amigos"
+			numberVisibleRows = 4
+		]
+		new Column<Usuario>(table) => [
+			title = "Nombre"
+			fixedSize = 100
+			bindContentsToProperty("nombre")
+		]
+		new Column<Usuario>(table) => [
+			title = "Apellido"
+			fixedSize = 150
+			bindContentsToProperty("apellido")
 		]
 	}
 
