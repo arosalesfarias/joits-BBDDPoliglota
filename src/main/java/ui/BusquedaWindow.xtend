@@ -18,6 +18,8 @@ import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.windows.Dialog
 
+import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+
 class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 	new(WindowOwner parent, Usuario usuario) {
 		super(parent, new ModeloBusqueda(usuario))
@@ -121,7 +123,7 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 
 		new Button(actionsPanel) => [
 			caption = "Mostrar Datos"
-			//onClick [|abrirPeli]
+			// onClick [|abrirPeli]
 			bindEnabled(seleccionado)
 		]
 
@@ -137,9 +139,9 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 		dialog.onAccept[|modelObject.search]
 		dialog.open
 	}
-	
+
 	override protected addActions(Panel actionsPanel) {
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
-	
+
 }

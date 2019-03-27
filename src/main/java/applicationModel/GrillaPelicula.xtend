@@ -6,24 +6,25 @@ import domain.Usuario
 class GrillaPelicula {
 	Pelicula pelicula
 	Usuario usuario
-		
+
 	new(Pelicula _peli, Usuario _usuario) {
 		pelicula = _peli
 		usuario = _usuario
 	}
-	def nombre(){
+
+	def nombre() {
 		pelicula.titulo
 	}
-	
-	def anioRodaje(){
+
+	def anioRodaje() {
 		pelicula.anioRodaje
 	}
-	
-	def raiting(){
+
+	def raiting() {
 		pelicula.puntaje
 	}
-	
-	def genero(){
+
+	def genero() {
 		pelicula.genero
 	}
 }
