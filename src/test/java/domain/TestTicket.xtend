@@ -5,7 +5,6 @@ import domain.Pelicula
 import domain.Saga
 import domain.Funcion
 import java.time.LocalDateTime
-import java.time.DayOfWeek
 import org.junit.Before
 import org.junit.Test
 import org.junit.Assert
@@ -31,27 +30,27 @@ class TestTicket {
 		volverAlFururo1 = new Pelicula => [
 			puntaje = 7
 			titulo = "Volver al futuro 1"
-			anioRodaje = 1985
+			añoRodaje = 1985
 			genero = "aventura"
 		]
 
 		volverAlFururo2 = new Pelicula => [
 			puntaje = 9
 			titulo = "Volver al futuro 2"
-			anioRodaje = 1987
+			añoRodaje = 1987
 			genero = "aventura"
 		]
 
 		volverAlFururo3 = new Pelicula => [
 			puntaje = 10
 			titulo = "Volver al futuro 3"
-			anioRodaje = 1989
+			añoRodaje = 1989
 			genero = "aventura"
 		]
 
 		sagaVolverAlFuturo = new Saga => [
 			puntaje = 10
-			anioRecopilacion = 1990
+			añoRodaje = 1990
 			nivelClasico = 20
 			peliculas.add(volverAlFururo1)
 			peliculas.add(volverAlFururo2)

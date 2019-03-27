@@ -19,7 +19,7 @@ class GrillaPelicula {
 	}
 
 	def anioRodaje() {
-		pelicula.anioRodaje
+		pelicula.añoRodaje
 	}
 
 	def raiting() {

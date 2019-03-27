@@ -8,16 +8,16 @@ import domain.Entidad
 @Accessors
 @TransactionalAndObservable
 abstract class RepoGenerico<T extends Entidad> {
-	
+
 	List<T> elementos = newArrayList()
-	
+
 	int proximoId = 0
 
 	abstract def List<T> search(String value)
 
 	abstract def void actualizarDatos(T t, T t2)
 
-	def void update(T objectViejo,T objectNuevo) {
+	def void update(T objectViejo, T objectNuevo) {
 		objectNuevo.validateCreate
 		this.actualizarDatos(objectViejo, objectNuevo)
 	}
@@ -40,5 +40,19 @@ abstract class RepoGenerico<T extends Entidad> {
 	def boolean existeId(T object) {
 		elementos.exists[elemento|elemento.id == object.id]
 	}
-}
 
+	def limpiar() {
+		elementos.clear
+		proximoId = 0
+	}
+
+	def match(Object expectedValue, Object realValue) {
+		if (expectedValue === null) {
+			return true
+		}
+		if (realValue === null) {
+			return false
+		}
+		realValue.toString().toLowerCase().contains(expectedValue.toString().toLowerCase())
+	}
+}

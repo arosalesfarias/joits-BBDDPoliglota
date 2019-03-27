@@ -49,10 +49,6 @@ class RepoUsuarios extends RepoGenerico<Usuario> {
 		]
 	}
 
-	def Boolean existeUsuario(String usu) {
-		this.elementos.exists[u|u.usuario == usu]
-	}
-
 	def devolverUsuario(String usr) {
 		elementos.findFirst[u|u.usuario.equals(usr)]
 	}
