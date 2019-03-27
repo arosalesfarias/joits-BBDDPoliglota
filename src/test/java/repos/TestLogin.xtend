@@ -2,11 +2,10 @@ package repos
 
 import org.junit.Before
 import org.junit.Test
-import org.junit.Assert
 import domain.Usuario
 import org.junit.After
-import exceptions.BusinessException
 import applicationModel.Login
+import org.uqbar.commons.model.exceptions.UserException
 
 class TestLogin {
 	RepoUsuarios repo = RepoUsuarios.instance
@@ -53,24 +52,24 @@ class TestLogin {
 		repo.proximoId = 0
 	}
 
-	@Test(expected=typeof(BusinessException))
+	@Test(expected=typeof(UserException))
 	def void ingresoUnUsuarioIncorrectoEnLogin() {
-		login.usuario = "SoyFalso"
+		login.usuarioIngresado = "SoyFalso"
 		login.contraseña = "fake"
-		login.validaLogin()
+		login.autenticar()
 	}
 
-	@Test(expected=typeof(BusinessException))
+	@Test(expected=typeof(UserException))
 	def void ingresoUnPasswordIncorrectoEnLogin() {
-		login.usuario = "alezcano"
+		login.usuarioIngresado = "alezcano"
 		login.contraseña = "clavefalsa"
-		login.validaLogin()
+		login.autenticar()
 	}
 
 	@Test
 	def void logueoExitosoMeDevuelveUsuario() {
-		login.usuario = "alezcano"
+		login.usuarioIngresado = "alezcano"
 		login.contraseña = "1234"
-	//	Assert.assertTrue(login.validaLogin().nombre === "Alberto")
+		login.autenticar()
 	}
 }

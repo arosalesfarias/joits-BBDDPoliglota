@@ -3,6 +3,7 @@ package repos
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import domain.Usuario
+import org.uqbar.commons.model.exceptions.UserException
 
 @Accessors
 class RepoUsuarios extends RepoGenerico<Usuario> {
@@ -52,7 +53,14 @@ class RepoUsuarios extends RepoGenerico<Usuario> {
 		this.elementos.exists[u|u.usuario == usu]
 	}
 
-	def Usuario searchByUser(String usu) {
-		this.elementos.findFirst[elem|elem.usuario === usu]
+	def devolverUsuario(String usr) {
+		elementos.findFirst[u|u.usuario.equals(usr)]
 	}
+
+	def coincide(String usr, String pass) {
+		val usuario = devolverUsuario(usr)
+		if (usuario === null || !usuario.login.equals(pass))
+			throw new UserException("Usuario o contraseña incorrectos.")
+	}
+
 }
