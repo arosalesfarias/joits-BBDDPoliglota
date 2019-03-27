@@ -78,6 +78,9 @@ class JoitsBootstrap implements Bootstrap {
 			nivelClasico = 50
 			peliculas.addAll(volverAlFuturo1, volverAlFuturo2, volverAlFuturo3)
 		]
+		//pelis vistas
+		arosales.peliculas.add(batman)
+		arosales.peliculas.add(volverAlFuturo)
 		repoProy.create(batman)
 		println("pelicula batman creado")
 		repoProy.create(volverAlFuturo1)
