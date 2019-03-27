@@ -12,6 +12,7 @@ import domain.Usuario
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.NumericField
 import org.uqbar.arena.layout.ColumnLayout
+import org.uqbar.arena.bindings.NotNullObservable
 
 class ControlPanelWindow extends SimpleWindow<Usuario> {
 
@@ -41,10 +42,13 @@ class ControlPanelWindow extends SimpleWindow<Usuario> {
 			value <=> "edad"
 		]
 		new Label(PanelCarga).text = "Cargar Saldo: "
-		new NumericField(PanelCarga) => []
+		new NumericField(PanelCarga) => [
+			value <=> "cantidad"
+		]
 		new Button(PanelCarga) => [
 			caption = "Cargar"
-			onClick[|modelObject.agregarSaldo(1.0)]
+			onClick[|modelObject.agregarSaldo()]
+			bindEnabled(new NotNullObservable("cantidad"))
 		]
 	}
 
