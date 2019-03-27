@@ -48,6 +48,6 @@ class LoginWindow extends SimpleWindow<Login> {
 	def abrirBusqueda() {
 		modelObject.autenticar()
 		this.close()
-		//(new BusquedaWindow(this, modelObject.getUser)).open
+	//	(new BusquedaWindow(this, modelObject.getUser)).open
 	}
 }

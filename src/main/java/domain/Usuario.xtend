@@ -4,6 +4,7 @@ import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Observable
 import exceptions.BusinessException
+import java.util.ArrayList
 
 @Observable
 @Accessors
@@ -15,6 +16,8 @@ class Usuario extends Entidad {
 	Double saldo
 	String usuario
 	String login
+
+	List<Pelicula> peliculas = new ArrayList<Pelicula>
 
 	override String toString() {
 		usuario
@@ -35,7 +38,7 @@ class Usuario extends Entidad {
 	}
 
 	override validateCreate() {
-		if (!this.tengoUsuario || !this.tengoLogin){
+		if (!this.tengoUsuario || !this.tengoLogin) {
 			throw new BusinessException("no tiene usuario y/o login")
 		}
 	}
@@ -46,5 +49,9 @@ class Usuario extends Entidad {
 
 	def Boolean tengoLogin() {
 		!login.isNullOrEmpty
+	}
+
+	def buscar(String pelicula) {
+		peliculas
 	}
 }
