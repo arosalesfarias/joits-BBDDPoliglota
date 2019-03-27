@@ -33,7 +33,6 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 		createResultados(mainPanel)
 		createAccionesResultado(mainPanel)
 		createAgregarCarrito(mainPanel)
-		createPanelControl(mainPanel)
 		createFinalizarCompra(mainPanel)
 	}
 
@@ -111,19 +110,6 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 	}
 
 	def void createAccionesResultado(Panel mainPanel) {
-		// Deshabilitar los botones si no hay ningún elemento seleccionado en la grilla.
-		val seleccionado = new NotNullObservable("proyeccionSeleccionada")
-
-		val actionsPanel = new Panel(mainPanel).layout = new ColumnLayout(2)
-
-		new Button(actionsPanel) => [
-			caption = "Mostrar Datos"
-			// onClick [|abrirPeli]
-			bindEnabled(seleccionado)
-		]
-	}
-
-	def void createPanelControl(Panel mainPanel) {
 		val actionsPanel = new Panel(mainPanel).layout = new ColumnLayout(2)
 
 		new Button(actionsPanel) => [
