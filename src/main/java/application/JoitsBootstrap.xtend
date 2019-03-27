@@ -34,6 +34,11 @@ class JoitsBootstrap implements Bootstrap {
 			usuario = "arosales"
 			login = "3333"
 		]
+		// amigos
+		alezcano.amigos.addAll(dsalamida, arosales)
+		dsalamida.amigos.addAll(alezcano, arosales)
+		arosales.amigos.addAll(alezcano, dsalamida)
+		// RepoUsuarios
 		repoUsr.create(alezcano)
 		println("usuario alezcano creado")
 		repoUsr.create(dsalamida)

@@ -14,6 +14,7 @@ class Usuario extends Entidad {
 	Integer edad
 
 	Double saldo
+	Double cantidad
 	String usuario
 	String login
 
@@ -29,8 +30,9 @@ class Usuario extends Entidad {
 	new() {
 	}
 
-	def void agregarSaldo(Double cantidad) {
+	def void agregarSaldo() {
 		saldo = saldo + cantidad
+		cantidad = 0.0
 	}
 
 	def buscarAmigo(String usuarioAmigo) {
