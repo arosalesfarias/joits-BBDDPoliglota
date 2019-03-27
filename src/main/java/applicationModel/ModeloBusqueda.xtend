@@ -4,13 +4,15 @@ import java.util.List
 import domain.Usuario
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Observable
+import repos.RepoProyecciones
+import domain.Proyeccion
 
 @Accessors
 @Observable
 class ModeloBusqueda {
-	String valorBusqueda = ""
-	List<GrillaPelicula> resultados = newArrayList
-	GrillaPelicula peliculaSeleccionada
+	String valorBusqueda
+	List<Proyeccion> resultados
+	Proyeccion proyeccionSeleccionada
 	Usuario usuario
 
 	new(Usuario _usuario) {
@@ -18,9 +20,7 @@ class ModeloBusqueda {
 	}
 
 	def void search() {
-		resultados.clear
-		val temp = usuario.buscar(valorBusqueda)
-		temp.forEach[p|resultados.add(new GrillaPelicula(p, usuario))]
+		resultados = RepoProyecciones.instance.search(valorBusqueda)
 	}
 
 	def void clearUsuario() {
@@ -30,4 +30,5 @@ class ModeloBusqueda {
 	def clearBusqueda() {
 		valorBusqueda = ""
 	}
+
 }

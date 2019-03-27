@@ -12,13 +12,13 @@ import org.uqbar.arena.widgets.Link
 import java.awt.Color
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.widgets.Button
-import applicationModel.GrillaPelicula
 import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.windows.Dialog
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import domain.Proyeccion
 
 class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 	new(WindowOwner parent, Usuario usuario) {
@@ -38,7 +38,6 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 
 		val columnaUser = new Panel(mainPanel).layout = new ColumnLayout(4)
 		new Label(columnaUser)
-
 		val panelUser = new Panel(columnaUser).layout = new HorizontalLayout
 		new Label(panelUser).text = "Usuario:"
 		new Label(panelUser).value <=> "usuario.nombre"
@@ -47,11 +46,8 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 			caption = "Cerrar Sesión"
 			onClick[|this.cerrarSesion]
 		]
-
 		val panelContenedor = new Panel(mainPanel)
-
 		new Label(panelContenedor).text = ""
-
 		val columnas = new Panel(panelContenedor).layout = new HorizontalLayout
 		new Label(columnas) => [
 			text = "Buscar pelicula"
@@ -61,14 +57,12 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 			width = 250
 			value <=> "valorBusqueda"
 		]
-
 		new Button(columnas) => [
-
 			caption = "Buscar"
 			onClick [|this.modelObject.search]
 			setAsDefault
+			disableOnError
 		]
-
 	}
 
 	def protected createResultados(Panel mainPanel) {
@@ -79,35 +73,34 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 			foreground = Color.CYAN
 		]
 		/*new Label(LabelPanel) => [
-		 * 	value <=> "cantidadPeliculas"
+		 * 	value <=> "resultados.length"
 		 * 	foreground = Color.RED
 		 ]*/
-		val table = new Table<GrillaPelicula>(mainPanel, typeof(GrillaPelicula)) => [
+		val table = new Table<Proyeccion>(mainPanel, typeof(Proyeccion)) => [
 			items <=> "resultados"
-			value <=> "peliculaSeleccionada"
+			value <=> "proyeccionSeleccionada"
 			numberVisibleRows = 8
 		]
-		columnasResultado(table)
-
+		this.columnasResultado(table)
 	}
 
-	def void columnasResultado(Table<GrillaPelicula> table) {
-		new Column<GrillaPelicula>(table) => [
+	def void columnasResultado(Table<Proyeccion> table) {
+		new Column<Proyeccion>(table) => [
 			title = "Nombre"
 			fixedSize = 200
-			bindContentsToProperty("nombre")
+			bindContentsToProperty("titulo")
 		]
-		new Column<GrillaPelicula>(table) => [
+		new Column<Proyeccion>(table) => [
 			title = "Fecha"
 			fixedSize = 150
-			bindContentsToProperty("anioRodaje")
+			bindContentsToProperty("añoRodaje")
 		]
-		new Column<GrillaPelicula>(table) => [
+		new Column<Proyeccion>(table) => [
 			title = "Raiting"
 			fixedSize = 60
-			bindContentsToProperty("raiting")
+			bindContentsToProperty("puntaje")
 		]
-		new Column<GrillaPelicula>(table) => [
+		new Column<Proyeccion>(table) => [
 			title = "Genero"
 			fixedSize = 50
 			bindContentsToProperty("genero")
@@ -116,7 +109,7 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 
 	def void createAccionesResultado(Panel mainPanel) {
 		// Deshabilitar los botones si no hay ningún elemento seleccionado en la grilla.
-		val seleccionado = new NotNullObservable("peliculaSeleccionada")
+		val seleccionado = new NotNullObservable("proyeccionSeleccionada")
 
 		val actionsPanel = new Panel(mainPanel).layout = new HorizontalLayout
 

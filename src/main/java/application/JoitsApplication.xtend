@@ -8,7 +8,7 @@ class JoitsApplication extends Application {
 	new(JoitsBootstrap bootstrap) {
 		super(bootstrap)
 	}
-	
+
 	override protected createMainWindow() {
 		new LoginWindow(this)
 	}

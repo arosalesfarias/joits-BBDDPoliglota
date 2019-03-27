@@ -9,6 +9,7 @@ import applicationModel.Login
 import org.uqbar.arena.widgets.Button
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import org.uqbar.arena.widgets.PasswordField
 
 class LoginWindow extends SimpleWindow<Login> {
 
@@ -24,7 +25,7 @@ class LoginWindow extends SimpleWindow<Login> {
 			value <=> "usuarioIngresado"
 		]
 		new Label(mainPanel).text = "Contraseña"
-		new TextBox(mainPanel) => [
+		new PasswordField(mainPanel) => [
 			value <=> "contraseña"
 		]
 	}

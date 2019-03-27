@@ -1,15 +1,15 @@
 package applicationModel
 
-import domain.Pelicula
 import domain.Usuario
 import org.uqbar.commons.model.annotations.Observable
+import domain.Proyeccion
 
 @Observable
 class GrillaPelicula {
-	Pelicula pelicula
+	Proyeccion pelicula
 	Usuario usuario
 
-	new(Pelicula _peli, Usuario _usuario) {
+	new(Proyeccion _peli, Usuario _usuario) {
 		pelicula = _peli
 		usuario = _usuario
 	}

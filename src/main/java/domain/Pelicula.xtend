@@ -5,7 +5,6 @@ import exceptions.BusinessException
 
 @Accessors
 class Pelicula extends Proyeccion {
-	String genero
 
 	override precioBase() {
 		30
