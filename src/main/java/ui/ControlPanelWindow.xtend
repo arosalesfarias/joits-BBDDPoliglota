@@ -1,6 +1,5 @@
 package ui
 
-import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.Label
@@ -10,15 +9,14 @@ import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 
 import domain.Usuario
 import org.uqbar.arena.layout.HorizontalLayout
-import org.uqbar.arena.widgets.NumericField
-import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.List
 import org.uqbar.arena.widgets.Spinner
+import org.uqbar.arena.aop.windows.TransactionalDialog
 
-class ControlPanelWindow extends SimpleWindow<Usuario> {
+class ControlPanelWindow extends TransactionalDialog<Usuario> {
 
 	new(WindowOwner parent, Usuario usu) {
 		super(parent, usu)
@@ -90,6 +88,7 @@ class ControlPanelWindow extends SimpleWindow<Usuario> {
 	override protected addActions(Panel actionsPanel) {
 		new Button(actionsPanel) => [
 			caption = "Aceptar"
+			onClick[|this.accept]
 			setAsDefault
 		]
 		new Button(actionsPanel) => [
