@@ -17,7 +17,7 @@ class Login {
 		repoUsr = RepoUsuarios.instance
 	}
 
-	def getUser() {
+	def getUsuario() {
 		repoUsr.devolverUsuario(usuarioIngresado)
 	}
 

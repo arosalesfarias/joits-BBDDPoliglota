@@ -4,7 +4,7 @@ import org.uqbar.arena.bootstrap.Bootstrap
 import domain.Usuario
 import repos.RepoUsuarios
 
-class JoitsBootstrap implements Bootstrap{
+class JoitsBootstrap implements Bootstrap {
 	override run() {
 		val RepoUsuarios repo = RepoUsuarios.instance
 		var alezcano = new Usuario() => [

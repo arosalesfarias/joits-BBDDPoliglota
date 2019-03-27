@@ -78,11 +78,10 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 			text = "Resultados: "
 			foreground = Color.CYAN
 		]
-		new Label(LabelPanel) => [
-			value <=> "cantidadPeliculas"
-			foreground = Color.RED
-		]
-
+		/*new Label(LabelPanel) => [
+		 * 	value <=> "cantidadPeliculas"
+		 * 	foreground = Color.RED
+		 ]*/
 		val table = new Table<GrillaPelicula>(mainPanel, typeof(GrillaPelicula)) => [
 			items <=> "resultados"
 			value <=> "peliculaSeleccionada"
@@ -141,7 +140,7 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 	}
 
 	override protected addActions(Panel actionsPanel) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		// throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
 
 }
