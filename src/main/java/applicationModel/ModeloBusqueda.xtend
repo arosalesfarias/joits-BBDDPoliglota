@@ -20,6 +20,7 @@ class ModeloBusqueda {
 	Tiket tiketSeleccionado
 	Usuario usuario
 	List<Tiket> carrito = new ArrayList<Tiket>
+	float totalCarrito = 0
 
 	new(Usuario _usuario) {
 		usuario = _usuario
@@ -52,15 +53,16 @@ class ModeloBusqueda {
 
 	def sacarDelCarrito() {
 		carrito.remove(tiketSeleccionado)
+		calcularTotal()
 	}
 
 	def void limpiarCarrito() {
 		carrito.clear
-		
+
 	}
 
-	def totalCarrito() {
-		carrito.fold(0.0, [total, pelicula|total + pelicula.precio])
+	def calcularTotal() {
+		totalCarrito = carrito.fold(0.0, [total, pelicula|total + pelicula.precio]).floatValue
 	}
 
 	def finalizarCompra() {
