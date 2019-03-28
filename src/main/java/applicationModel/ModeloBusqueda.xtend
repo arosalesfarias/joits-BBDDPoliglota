@@ -42,7 +42,7 @@ class ModeloBusqueda {
 	}
 
 	def void limpiarCarrito() {
-		carrito.removeAll
+		carrito.clear
 	}
 
 	def finalizarCompra() {

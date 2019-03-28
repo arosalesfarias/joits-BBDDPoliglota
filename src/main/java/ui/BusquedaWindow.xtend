@@ -81,7 +81,7 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 		val table = new Table<Proyeccion>(mainPanel, typeof(Proyeccion)) => [
 			items <=> "resultados"
 			value <=> "proyeccionSeleccionada"
-			numberVisibleRows = 8
+			numberVisibleRows = 9
 		]
 		this.columnasResultado(table)
 	}

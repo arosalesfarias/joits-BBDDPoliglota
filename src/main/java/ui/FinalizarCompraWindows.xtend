@@ -43,7 +43,7 @@ class FinalizarCompraWindows extends SimpleWindow<ModeloBusqueda> {
 	def tablaPeliculas(Panel mainPanel) {
 		new Label(mainPanel).text = "Pelis en el carrito"
 		val table = new Table<Proyeccion>(mainPanel, typeof(Proyeccion)) => [
-			items <=> "modelObject.carrito"
+			items <=> "carrito"
 			numberVisibleRows = 6
 		]
 		new Column<Proyeccion>(table) => [

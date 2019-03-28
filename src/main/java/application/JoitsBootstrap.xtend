@@ -73,6 +73,30 @@ class JoitsBootstrap implements Bootstrap {
 			puntaje = 5
 			genero = "Accion"
 		]
+		val superman = new Pelicula() => [
+			titulo = "Superman"
+			añoRodaje = 2012
+			puntaje = 3
+			genero = "Accion"
+		]
+		val avengers1 = new Pelicula() => [
+			titulo = "Avengers"
+			añoRodaje = 2010
+			puntaje = 5
+			genero = "Accion"
+		]
+		val avengers2 = new Pelicula() => [
+			titulo = "Avengers 2"
+			añoRodaje = 2012
+			puntaje = 4
+			genero = "Accion"
+		]
+		val avengers3 = new Pelicula() => [
+			titulo = "Avengers 3"
+			añoRodaje = 2014
+			puntaje = 5
+			genero = "Accion"
+		]
 		val volverAlFuturo1 = new Pelicula() => [
 			titulo = "Volver al futuro"
 			añoRodaje = 1989
@@ -111,6 +135,14 @@ class JoitsBootstrap implements Bootstrap {
 		println("pelicula volver al futuro 3 creada")
 		repoProy.create(volverAlFuturo)
 		println("saga volver al futuro creada")
+		repoProy.create(superman)
+		println("pelicula superman creado")
+		repoProy.create(avengers1)
+		println("pelicula Avengers creada")
+		repoProy.create(avengers2)
+		println("pelicula Avengers 2 creada")
+		repoProy.create(avengers3)
+		println("pelicula Avengers 3 creada")
 	}
 
 	override isPending() {
