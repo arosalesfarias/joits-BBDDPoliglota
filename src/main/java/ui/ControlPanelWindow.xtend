@@ -87,6 +87,11 @@ class ControlPanelWindow extends TransactionalDialog<Usuario> {
 
 	override protected addActions(Panel actionsPanel) {
 		new Button(actionsPanel) => [
+			caption = "Buscar Amigos"
+			onClick[|(new BusquedaAmigosWindow(this, modelObject)).open]
+			setAsDefault
+		]
+		new Button(actionsPanel) => [
 			caption = "Aceptar"
 			onClick[|this.accept]
 			setAsDefault

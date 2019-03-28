@@ -21,10 +21,7 @@ class RepoUsuarios extends RepoGenerico<Usuario> {
 	}
 
 	override List<Usuario> search(String buscar) {
-		elementos.filter [ usuario |
-			usuario.nombre == usuario.nombre.indexOf(buscar) || usuario.apellido == usuario.apellido.indexOf(buscar) ||
-				usuario.usuario.equals(buscar)
-		].toList
+		elementos.filter[usu|this.match(buscar, usu.nombre)|| this.match(buscar, usu.apellido) || this.match(buscar, usu.usuario)].toList
 	}
 
 	def void loadUser(Usuario usuario) {
