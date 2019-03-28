@@ -6,6 +6,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Observable
 import repos.RepoProyecciones
 import domain.Proyeccion
+import java.util.ArrayList
 
 @Accessors
 @Observable
@@ -14,7 +15,7 @@ class ModeloBusqueda {
 	List<Proyeccion> resultados
 	Proyeccion proyeccionSeleccionada
 	Usuario usuario
-	List<Proyeccion> carrito
+	List<Proyeccion> carrito = new ArrayList<Proyeccion>
 
 	new(Usuario _usuario) {
 		usuario = _usuario
@@ -40,7 +41,7 @@ class ModeloBusqueda {
 		carrito.remove(proyeccionSeleccionada)
 	}
 
-	def limpiarCarrito() {
+	def void limpiarCarrito() {
 		carrito.removeAll
 	}
 

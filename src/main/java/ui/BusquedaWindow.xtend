@@ -117,8 +117,8 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 		val actionsPanel = new Panel(mainPanel).layout = new ColumnLayout(2)
 
 		new Button(actionsPanel) => [
-			caption = "Mostrar Datos"
-			// onClick [|abrirPeli]
+			caption = "Buscar amigos"
+			// onClick [|buscarAmigos]
 			bindEnabled(seleccionado)
 		]
 	}
@@ -133,13 +133,11 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 	}
 
 	def createFinalizarCompra(Panel mainPanel) {
-		val carrito = new NotNullObservable("carrito")
 		val actionsPanel = new Panel(mainPanel).layout = new ColumnLayout(2)
-
+		
 		new Button(actionsPanel) => [
 			caption = "Finalizar compra"
 			onClick [|finalizarCompra]
-			bindEnabled(carrito)
 		]
 	}
 
@@ -155,6 +153,7 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 	}
 
 	def finalizarCompra() {
+		(new FinalizarCompraWindows(this, modelObject).open)
 	}
 
 	def abrirPanel() {
