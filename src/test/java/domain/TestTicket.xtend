@@ -58,22 +58,22 @@ class TestTicket {
 		]
 
 		funcionPelicula1 = new Funcion => [
-			hora = LocalDateTime.of(2019, 3, 24, 18, 30)
+			hora = LocalDateTime.of(2019, 03, 24, 18, 30)
 			sala = "Rivadavia"
 		]
 
 		funcionPelicula2 = new Funcion => [
-			hora = LocalDateTime.of(2019, 3, 11, 27, 30)
+			hora = LocalDateTime.of(2019, 03, 13, 17, 30)
 			sala = "Rivadavia"
 		]
 
 		funcionPelicula3 = new Funcion => [
-			hora = LocalDateTime.of(2019, 3, 25, 18, 30)
+			hora = LocalDateTime.of(2019, 03, 25, 18, 30)
 			sala = "Rivadavia"
 		]
 
 		funcionSaga = new Funcion => [
-			hora = LocalDateTime.of(2019, 3, 24, 18, 30)
+			hora = LocalDateTime.of(2019, 03, 24, 18, 30)
 			sala = "Rivadavia"
 		]
 
@@ -115,6 +115,6 @@ class TestTicket {
 
 	@Test
 	def void comprobarPrecioFuncionSaga() {
-		Assert.assertEquals(entradaSaga.precio, (80 + 30 + 20), 0.1)
+		Assert.assertEquals(entradaSaga.precio, (120 + 30 + 20), 0.1)
 	}
 }

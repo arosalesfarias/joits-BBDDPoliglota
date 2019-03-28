@@ -42,6 +42,12 @@ class ModeloBusqueda {
 			funcion = funcionSeleccionada
 			pelicula = proyeccionSeleccionada
 		])
+		clearSeleccionados()
+	}
+
+	def clearSeleccionados() {
+		proyeccionSeleccionada = null
+		funcionSeleccionada = null
 	}
 
 	def sacarDelCarrito() {
@@ -50,10 +56,11 @@ class ModeloBusqueda {
 
 	def void limpiarCarrito() {
 		carrito.clear
+		carrito = null
 	}
-	
-	def totalCarrito(){
-		carrito.fold(0.0, [total, pelicula | total + pelicula.precio ])
+
+	def totalCarrito() {
+		carrito.fold(0.0, [total, pelicula|total + pelicula.precio])
 	}
 
 	def finalizarCompra() {

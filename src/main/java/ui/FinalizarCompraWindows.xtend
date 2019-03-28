@@ -10,6 +10,7 @@ import applicationModel.ModeloBusqueda
 import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.widgets.tables.Column
 import domain.Tiket
+import org.uqbar.arena.bindings.NotNullObservable
 
 class FinalizarCompraWindows extends SimpleWindow<ModeloBusqueda> {
 
@@ -28,7 +29,9 @@ class FinalizarCompraWindows extends SimpleWindow<ModeloBusqueda> {
 	override protected addActions(Panel mainPanel) {
 
 		this.tablaPeliculas(mainPanel)
-
+		new Label(mainPanel) => [
+			value <=> "totalCarrito"
+		]
 		new Button(mainPanel) => [
 			caption = "EliminarItem"
 			onClick[|(modelObject.sacarDelCarrito())]
@@ -40,6 +43,7 @@ class FinalizarCompraWindows extends SimpleWindow<ModeloBusqueda> {
 		new Button(mainPanel) => [
 			caption = "Finalizar compra"
 			onClick[|modelObject.finalizarCompra]
+			bindEnabled(new NotNullObservable("carrito"))
 		]
 	}
 

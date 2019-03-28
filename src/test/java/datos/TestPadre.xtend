@@ -22,10 +22,11 @@ class TestPadre {
 	Pelicula volverAlFuturo2
 	Pelicula volverAlFuturo3
 	Saga volverAlFuturo
-	
-	new(){
+
+	new() {
 		inicioVariables()
 	}
+
 	@Before
 	def void init() {
 		inicioRepoUsuarios()
@@ -37,9 +38,9 @@ class TestPadre {
 		repoUsr.limpiar
 		repoProy.limpiar
 	}
-	
+
 	def inicioVariables() {
-		//Usuarios
+		// Usuarios
 		alezcano = new Usuario() => [
 			nombre = "Alberto"
 			apellido = "Lezcano"
@@ -64,7 +65,7 @@ class TestPadre {
 			usuario = "arosales"
 			login = "3333"
 		]
-		//Pelis y sagas
+		// Pelis y sagas
 		batman = new Pelicula() => [
 			titulo = "Batman asciende"
 			añoRodaje = 2010
@@ -97,7 +98,7 @@ class TestPadre {
 			peliculas.addAll(volverAlFuturo1, volverAlFuturo2, volverAlFuturo3)
 		]
 	}
-	
+
 	def inicioRepoUsuarios() {
 		repoUsr.create(alezcano)
 	}
