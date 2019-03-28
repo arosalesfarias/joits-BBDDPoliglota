@@ -51,6 +51,10 @@ class ModeloBusqueda {
 	def void limpiarCarrito() {
 		carrito.clear
 	}
+	
+	def totalCarrito(){
+		carrito.fold(0.0, [total, pelicula | total + pelicula.precio ])
+	}
 
 	def finalizarCompra() {
 		carrito.forEach[x|usuario.comprarPelicula(x.pelicula)]
