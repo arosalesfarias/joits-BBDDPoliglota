@@ -7,6 +7,8 @@ import org.uqbar.commons.model.annotations.Observable
 import repos.RepoProyecciones
 import domain.Proyeccion
 import java.util.ArrayList
+import domain.Funcion
+import domain.Tiket
 
 @Accessors
 @Observable
@@ -14,8 +16,10 @@ class ModeloBusqueda {
 	String valorBusqueda
 	List<Proyeccion> resultados
 	Proyeccion proyeccionSeleccionada
+	Funcion funcionSeleccionada
+	Tiket tiketSeleccionado
 	Usuario usuario
-	List<Proyeccion> carrito = new ArrayList<Proyeccion>
+	List<Tiket> carrito = new ArrayList<Tiket>
 
 	new(Usuario _usuario) {
 		usuario = _usuario
@@ -34,11 +38,14 @@ class ModeloBusqueda {
 	}
 
 	def agregarAlCarrito() {
-		carrito.add(proyeccionSeleccionada)
+		carrito.add(new Tiket => [
+			funcion = funcionSeleccionada
+			pelicula = proyeccionSeleccionada
+		])
 	}
 
 	def sacarDelCarrito() {
-		carrito.remove(proyeccionSeleccionada)
+		carrito.remove(tiketSeleccionado)
 	}
 
 	def void limpiarCarrito() {
@@ -46,6 +53,7 @@ class ModeloBusqueda {
 	}
 
 	def finalizarCompra() {
-		usuario.comprarPelicula(carrito)
+		carrito.forEach[x|usuario.comprarPelicula(x.pelicula)]
+		limpiarCarrito()
 	}
 }

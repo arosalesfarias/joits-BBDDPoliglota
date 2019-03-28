@@ -46,6 +46,7 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 		]
 		new Table<Funcion>(panel, typeof(Funcion)) => [
 			items <=> "proyeccionSeleccionada.funciones"
+			value <=> "funcionSeleccionada"
 			numberVisibleRows = 9
 			bindEnabled(new NotNullObservable("proyeccionSeleccionada"))
 			new Column<Funcion>(it) => [
@@ -154,13 +155,13 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 	}
 
 	def createAgregarCarrito(Panel mainPanel) {
-		val peli = new NotNullObservable("proyeccionSeleccionada")
+		val funcion = new NotNullObservable("funcionSeleccionada")
 		val actionsPanel = new Panel(mainPanel).layout = new ColumnLayout(2)
 
 		new Button(actionsPanel) => [
 			caption = "Agregar al carrito"
 			onClick [modelObject.agregarAlCarrito]
-			bindEnabled(peli)
+			bindEnabled(funcion)
 		]
 	}
 

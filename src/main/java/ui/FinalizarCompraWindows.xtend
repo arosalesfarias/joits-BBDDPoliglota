@@ -8,8 +8,8 @@ import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.uqbar.arena.widgets.Button
 import applicationModel.ModeloBusqueda
 import org.uqbar.arena.widgets.tables.Table
-import domain.Proyeccion
 import org.uqbar.arena.widgets.tables.Column
+import domain.Tiket
 
 class FinalizarCompraWindows extends SimpleWindow<ModeloBusqueda> {
 
@@ -33,23 +33,26 @@ class FinalizarCompraWindows extends SimpleWindow<ModeloBusqueda> {
 			caption = "EliminarItem"
 			onClick[|(modelObject.sacarDelCarrito())]
 		]
-
 		new Button(mainPanel) => [
 			caption = "Limpiar carrito"
 			onClick[|modelObject.limpiarCarrito]
+		]
+		new Button(mainPanel) => [
+			caption = "Finalizar compra"
+			onClick[|modelObject.finalizarCompra]
 		]
 	}
 
 	def tablaPeliculas(Panel mainPanel) {
 		new Label(mainPanel).text = "Pelis en el carrito"
-		val table = new Table<Proyeccion>(mainPanel, typeof(Proyeccion)) => [
+		val table = new Table<Tiket>(mainPanel, typeof(Tiket)) => [
 			items <=> "carrito"
 			numberVisibleRows = 6
 		]
-		new Column<Proyeccion>(table) => [
-			title = "Nombre"
+		new Column<Tiket>(table) => [
+			title = "pelicula"
 			fixedSize = 100
-			bindContentsToProperty("titulo")
+			bindContentsToProperty("pelicula.titulo")
 		]
 
 	}

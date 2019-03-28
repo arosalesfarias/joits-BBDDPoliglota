@@ -62,7 +62,7 @@ class Usuario extends Entidad {
 		peliculas
 	}
 
-	def void comprarPelicula(List<Proyeccion> peliculas) {
-		peliculas.addAll(peliculas)
+	def void comprarPelicula(Proyeccion pelicula) {
+		peliculas.add(pelicula)
 	}
 }
