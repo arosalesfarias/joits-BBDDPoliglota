@@ -5,6 +5,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import exceptions.BusinessException
 import java.util.ArrayList
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
+import repos.RepoUsuarios
 
 @TransactionalAndObservable
 @Accessors
@@ -26,8 +27,8 @@ class Usuario extends Entidad {
 
 	List<Usuario> amigos = newArrayList
 
-	// List<Cartelera> peliculasVistas = newArrayList
-	new() {
+	def void agregarAmigo(Usuario amigo) {
+		amigos.add(amigo)
 	}
 
 	def void agregarSaldo() {
@@ -37,6 +38,10 @@ class Usuario extends Entidad {
 
 	def buscarAmigo(String usuarioAmigo) {
 		amigos.filter[it.usuario == usuarioAmigo]
+	}
+
+	def buscarPersonas(String buscar) {
+		RepoUsuarios.instance.buscarPersonas(this,buscar)
 	}
 
 	override validateCreate() {

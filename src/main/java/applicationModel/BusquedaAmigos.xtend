@@ -4,7 +4,6 @@ import java.util.List
 import domain.Usuario
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Observable
-import repos.RepoUsuarios
 
 @Accessors
 @Observable
@@ -19,7 +18,7 @@ class BusquedaAmigos {
 	}
 
 	def void search() {
-		resultados = RepoUsuarios.instance.search(valorBusqueda)
+		resultados = usuario.buscarPersonas(valorBusqueda)
 	}
 
 	def void clearUsuario() {

@@ -34,6 +34,22 @@ class JoitsBootstrap implements Bootstrap {
 			usuario = "arosales"
 			login = "3333"
 		]
+		var chinwenwencha = new Usuario() => [
+			nombre = "El"
+			apellido = "Chinwenwencha"
+			edad = 26
+			saldo = 5.0
+			usuario = "chinwenwencha"
+			login = "1234"
+		]
+		var elgato = new Usuario() => [
+			nombre = "Mauiricio"
+			apellido = "Macri"
+			edad = 50
+			saldo = 9999999999.0
+			usuario = "elgato"
+			login = "1234"
+		]
 		// amigos
 		alezcano.amigos.addAll(dsalamida, arosales)
 		dsalamida.amigos.addAll(alezcano, arosales)
@@ -45,6 +61,10 @@ class JoitsBootstrap implements Bootstrap {
 		println("usuario dsalamida creado")
 		repoUsr.create(arosales)
 		println("usuario arosales creado")
+		repoUsr.create(chinwenwencha)
+		println("usuario chinwenwencha creado")
+		repoUsr.create(elgato)
+		println("usuario elgato creado")
 		// Pelis y Sagas
 		val RepoProyecciones repoProy = RepoProyecciones.instance
 		val batman = new Pelicula() => [
