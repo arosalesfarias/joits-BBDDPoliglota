@@ -10,7 +10,6 @@ import applicationModel.ModeloBusqueda
 import org.uqbar.arena.widgets.tables.Table
 import domain.Proyeccion
 import org.uqbar.arena.widgets.tables.Column
-import org.uqbar.arena.layout.ColumnLayout
 
 class FinalizarCompraWindows extends SimpleWindow<ModeloBusqueda> {
 
@@ -27,20 +26,20 @@ class FinalizarCompraWindows extends SimpleWindow<ModeloBusqueda> {
 	}
 
 	override protected addActions(Panel mainPanel) {
-		
+
 		this.tablaPeliculas(mainPanel)
-		
+
 		new Button(mainPanel) => [
 			caption = "EliminarItem"
 			onClick[|(modelObject.sacarDelCarrito())]
 		]
-		
+
 		new Button(mainPanel) => [
 			caption = "Limpiar carrito"
 			onClick[|modelObject.limpiarCarrito]
 		]
 	}
-	
+
 	def tablaPeliculas(Panel mainPanel) {
 		new Label(mainPanel).text = "Pelis en el carrito"
 		val table = new Table<Proyeccion>(mainPanel, typeof(Proyeccion)) => [
@@ -52,7 +51,7 @@ class FinalizarCompraWindows extends SimpleWindow<ModeloBusqueda> {
 			fixedSize = 100
 			bindContentsToProperty("titulo")
 		]
-	
+
 	}
 
 }
