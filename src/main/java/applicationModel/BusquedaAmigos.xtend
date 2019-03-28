@@ -28,5 +28,10 @@ class BusquedaAmigos {
 	def clearBusqueda() {
 		valorBusqueda = ""
 	}
+	def void agregarAmigo(){
+		usuario.agregarAmigo(usuarioSeleccionado)
+		search()
+		usuarioSeleccionado = null
+	}
 
 }

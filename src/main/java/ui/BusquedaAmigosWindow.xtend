@@ -15,6 +15,7 @@ import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import org.uqbar.arena.bindings.NotNullObservable
 
 class BusquedaAmigosWindow extends SimpleWindow<BusquedaAmigos> {
 	new(WindowOwner parent, Usuario usuario) {
@@ -25,7 +26,6 @@ class BusquedaAmigosWindow extends SimpleWindow<BusquedaAmigos> {
 	override createMainTemplate(Panel mainPanel) {
 		title = "Busqueda de amigos"
 		super.createMainTemplate(mainPanel)
-		createResultados(mainPanel)
 	}
 
 	override protected createFormPanel(Panel mainPanel) {
@@ -46,6 +46,7 @@ class BusquedaAmigosWindow extends SimpleWindow<BusquedaAmigos> {
 			setAsDefault
 			disableOnError
 		]
+		createResultados(mainPanel)
 	}
 
 	def protected createResultados(Panel mainPanel) {
@@ -83,6 +84,16 @@ class BusquedaAmigosWindow extends SimpleWindow<BusquedaAmigos> {
 	}
 
 	override protected addActions(Panel actionsPanel) {
+		new Button(actionsPanel) => [
+			caption = "Agregar Amigo"
+			onClick[|modelObject.agregarAmigo()]
+			setAsDefault
+			bindEnabled(new NotNullObservable("usuarioSeleccionado"))
+		]
+		new Button(actionsPanel) => [
+			caption = "Volver"
+			onClick[|this.close]
+		]
 	}
 
 }
