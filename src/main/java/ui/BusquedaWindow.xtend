@@ -19,6 +19,7 @@ import org.uqbar.arena.windows.Dialog
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import domain.Proyeccion
+import domain.Funcion
 
 class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 	new(WindowOwner parent, Usuario usuario) {
@@ -30,10 +31,35 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 		title = "Joits - Compra de tikets"
 
 		super.createMainTemplate(mainPanel)
-		createResultados(mainPanel)
+		val Panel main = new Panel(mainPanel).layout = new HorizontalLayout()
+		createResultados(main)
+		createFunciones(main)
 		createAccionesResultado(mainPanel)
 		createAgregarCarrito(mainPanel)
 		createFinalizarCompra(mainPanel)
+	}
+
+	def createFunciones(Panel panel) {
+		new Label(panel) => [
+			text = "Funciones: "
+			foreground = Color.BLACK
+		]
+		new Table<Funcion>(panel, typeof(Funcion)) => [
+			items <=> "proyeccionSeleccionada.funciones"
+			numberVisibleRows = 9
+			bindEnabled(new NotNullObservable("proyeccionSeleccionada"))
+			new Column<Funcion>(it) => [
+				title = "Fecha"
+				fixedSize = 200
+				bindContentsToProperty("hora")
+			]
+			new Column<Funcion>(it) => [
+				title = "Sala"
+				fixedSize = 60
+				bindContentsToProperty("sala")
+			]
+		]
+
 	}
 
 	override protected createFormPanel(Panel mainPanel) {
@@ -120,7 +146,7 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 
 	def createFinalizarCompra(Panel mainPanel) {
 		val actionsPanel = new Panel(mainPanel).layout = new ColumnLayout(2)
-		
+
 		new Button(actionsPanel) => [
 			caption = "Finalizar compra"
 			onClick [|finalizarCompra]
