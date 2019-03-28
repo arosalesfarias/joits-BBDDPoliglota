@@ -34,9 +34,7 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 		val Panel main = new Panel(mainPanel).layout = new HorizontalLayout()
 		createResultados(main)
 		createFunciones(main)
-		createAccionesResultado(mainPanel)
 		createAgregarCarrito(mainPanel)
-		createFinalizarCompra(mainPanel)
 	}
 
 	def createFunciones(Panel panel) {
@@ -101,10 +99,6 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 			text = "Resultados: "
 			foreground = Color.BLACK
 		]
-		/*new Label(LabelPanel) => [
-		 * 	value <=> "resultados.length"
-		 * 	foreground = Color.RED
-		 ]*/
 		val table = new Table<Proyeccion>(mainPanel, typeof(Proyeccion)) => [
 			items <=> "resultados"
 			value <=> "proyeccionSeleccionada"
@@ -136,32 +130,21 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 		]
 	}
 
-	def void createAccionesResultado(Panel mainPanel) {
-		val actionsPanel = new Panel(mainPanel).layout = new ColumnLayout(2)
-
+	def createAgregarCarrito(Panel mainPanel) {
+		val funcion = new NotNullObservable("funcionSeleccionada")
+		val actionsPanel = new Panel(mainPanel).layout = new ColumnLayout(3)
 		new Button(actionsPanel) => [
 			caption = "Panel de Control"
 			onClick [|abrirPanel]
 		]
-	}
-
-	def createFinalizarCompra(Panel mainPanel) {
-		val actionsPanel = new Panel(mainPanel).layout = new ColumnLayout(2)
-
-		new Button(actionsPanel) => [
-			caption = "Finalizar compra"
-			onClick [|finalizarCompra]
-		]
-	}
-
-	def createAgregarCarrito(Panel mainPanel) {
-		val funcion = new NotNullObservable("funcionSeleccionada")
-		val actionsPanel = new Panel(mainPanel).layout = new ColumnLayout(2)
-
 		new Button(actionsPanel) => [
 			caption = "Agregar al carrito"
 			onClick [modelObject.agregarAlCarrito]
 			bindEnabled(funcion)
+		]
+		new Button(actionsPanel) => [
+			caption = "Finalizar compra"
+			onClick [|finalizarCompra]
 		]
 	}
 

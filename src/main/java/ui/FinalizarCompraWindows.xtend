@@ -35,6 +35,7 @@ class FinalizarCompraWindows extends SimpleWindow<ModeloBusqueda> {
 		new Button(mainPanel) => [
 			caption = "EliminarItem"
 			onClick[|(modelObject.sacarDelCarrito())]
+			bindEnabled(new NotNullObservable("tiketSeleccionado"))
 		]
 		new Button(mainPanel) => [
 			caption = "Limpiar carrito"
@@ -51,6 +52,7 @@ class FinalizarCompraWindows extends SimpleWindow<ModeloBusqueda> {
 		new Label(mainPanel).text = "Pelis en el carrito"
 		val table = new Table<Tiket>(mainPanel, typeof(Tiket)) => [
 			items <=> "carrito"
+			value <=> "tiketSeleccionado"
 			numberVisibleRows = 6
 		]
 		new Column<Tiket>(table) => [

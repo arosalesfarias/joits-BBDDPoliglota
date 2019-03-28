@@ -56,7 +56,7 @@ class ModeloBusqueda {
 
 	def void limpiarCarrito() {
 		carrito.clear
-		carrito = null
+		
 	}
 
 	def totalCarrito() {
