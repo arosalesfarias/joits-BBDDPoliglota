@@ -4,6 +4,7 @@ import java.util.List
 import domain.Usuario
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Observable
+import repos.RepoUsuarios
 
 @Accessors
 @Observable
@@ -12,6 +13,7 @@ class BusquedaAmigos {
 	List<Usuario> resultados
 	Usuario usuarioSeleccionado
 	Usuario usuario
+	List<Usuario> sugeridos
 
 	new(Usuario _usuario) {
 		usuario = _usuario
@@ -19,19 +21,21 @@ class BusquedaAmigos {
 
 	def void search() {
 		resultados = usuario.buscarPersonas(valorBusqueda)
+		sugeridos = RepoUsuarios.instance.elementos
+	}
+
+	def void agregarAmigo() {
+		usuario.agregarAmigo(usuarioSeleccionado)
+		clearBusqueda()
+		search()
+		clearUsuario()
 	}
 
 	def void clearUsuario() {
-		usuario = null
+		usuarioSeleccionado = null
 	}
 
 	def clearBusqueda() {
 		valorBusqueda = ""
 	}
-	def void agregarAmigo(){
-		usuario.agregarAmigo(usuarioSeleccionado)
-		search()
-		usuarioSeleccionado = null
-	}
-
 }

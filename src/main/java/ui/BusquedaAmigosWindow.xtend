@@ -29,8 +29,7 @@ class BusquedaAmigosWindow extends SimpleWindow<BusquedaAmigos> {
 	}
 
 	override protected createFormPanel(Panel mainPanel) {
-
-		new Label(mainPanel).text = ""
+		espacio(mainPanel)
 		val columnas = new Panel(mainPanel).layout = new HorizontalLayout
 		new Label(columnas) => [
 			text = "Buscar Personas"
@@ -50,32 +49,36 @@ class BusquedaAmigosWindow extends SimpleWindow<BusquedaAmigos> {
 	}
 
 	def protected createResultados(Panel mainPanel) {
-		val resultadoPanel = new Panel(mainPanel)
-		val LabelPanel = new Panel(resultadoPanel).layout = new HorizontalLayout
-		new Label(LabelPanel) => [
-			text = "Resultados: "
-			foreground = Color.BLACK
-		]
-		val table = new Table<Usuario>(mainPanel, typeof(Usuario)) => [
-			items <=> "resultados"
-			value <=> "usuarioSeleccionado"
-			numberVisibleRows = 4
-			width = 100
-		]
-		this.columnasResultado(table)
+		this.crearTabla(mainPanel, "Resultados", "resultados")
+		this.crearTabla(mainPanel, "Sugeridos", "sugeridos")
 	}
 
-	def void columnasResultado(Table<Usuario> table) {
-		new Column<Usuario>(table) => [
-			title = "Nombre"
-			fixedSize = 200
-			bindContentsToProperty("nombre")
+	def void crearTabla(Panel panel, String titulo, String lista) {
+		espacio(panel)
+		new Label(panel) => [
+			text = titulo
+			foreground = Color.BLACK
 		]
-		new Column<Usuario>(table) => [
-			title = "Apellido"
-			fixedSize = 150
-			bindContentsToProperty("apellido")
+		new Table<Usuario>(panel, typeof(Usuario)) => [
+			items <=> lista
+			value <=> "usuarioSeleccionado"
+			numberVisibleRows = 4
+			width = 300
+			new Column<Usuario>(it) => [
+				title = "Nombre"
+				fixedSize = 200
+				bindContentsToProperty("nombre")
+			]
+			new Column<Usuario>(it) => [
+				title = "Apellido"
+				fixedSize = 150
+				bindContentsToProperty("apellido")
+			]
 		]
+	}
+
+	def espacio(Panel panel) {
+		new Label(panel).text = ""
 	}
 
 	def openDialog(Dialog<?> dialog) {
