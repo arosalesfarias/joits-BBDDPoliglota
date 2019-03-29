@@ -12,14 +12,14 @@ public abstract class Proyeccion extends Entidad {
 	float puntaje
 	String genero
 	List<Funcion> funciones
-	
-	new(){
+
+	new() {
 		funciones = newArrayList
 	}
 
 	def float precioBase()
-	
-	override toString(){
+
+	override toString() {
 		titulo
 	}
 }

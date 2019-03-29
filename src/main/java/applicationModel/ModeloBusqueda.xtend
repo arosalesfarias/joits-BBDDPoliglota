@@ -9,6 +9,7 @@ import domain.Proyeccion
 import java.util.ArrayList
 import domain.Funcion
 import domain.Tiket
+import org.uqbar.commons.model.annotations.Dependencies
 
 @Accessors
 @Observable
@@ -36,6 +37,16 @@ class ModeloBusqueda {
 
 	def clearBusqueda() {
 		valorBusqueda = ""
+	}
+
+	@Dependencies("carrito")
+	def getCarritoNoEstaVacio() {
+		!carrito.isEmpty
+	}
+
+	@Dependencies("carrito")
+	def getCantidadPeliculasAComprar() {
+		carrito.size
 	}
 
 	def agregarAlCarrito() {
@@ -66,7 +77,7 @@ class ModeloBusqueda {
 	}
 
 	def finalizarCompra() {
-		carrito.forEach[x|usuario.comprarPelicula(x.pelicula)]
+		carrito.forEach[ticket|usuario.comprarPelicula(ticket.pelicula)]
 		limpiarCarrito()
 	}
 }

@@ -19,13 +19,12 @@ class Usuario extends Entidad {
 	String usuario
 	String login
 
+	List<Usuario> amigos = newArrayList()
 	List<Proyeccion> peliculas = new ArrayList<Proyeccion>
 
 	override String toString() {
 		usuario
 	}
-
-	List<Usuario> amigos = newArrayList
 
 	def void agregarAmigo(Usuario amigo) {
 		amigos.add(amigo)
@@ -41,7 +40,7 @@ class Usuario extends Entidad {
 	}
 
 	def buscarPersonas(String buscar) {
-		RepoUsuarios.instance.buscarPersonas(this,buscar)
+		RepoUsuarios.instance.buscarPersonas(this, buscar)
 	}
 
 	override validateCreate() {
@@ -64,5 +63,6 @@ class Usuario extends Entidad {
 
 	def void comprarPelicula(Proyeccion pelicula) {
 		peliculas.add(pelicula)
+
 	}
 }

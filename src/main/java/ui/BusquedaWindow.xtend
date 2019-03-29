@@ -1,25 +1,25 @@
 package ui
 
 import applicationModel.ModeloBusqueda
+import domain.Funcion
+import domain.Proyeccion
 import domain.Usuario
-import org.uqbar.arena.windows.SimpleWindow
-import org.uqbar.arena.windows.WindowOwner
-import org.uqbar.arena.widgets.Panel
+import java.awt.Color
+import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.layout.HorizontalLayout
+import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Link
-import java.awt.Color
+import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.TextBox
-import org.uqbar.arena.widgets.Button
-import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.widgets.tables.Column
-import org.uqbar.arena.bindings.NotNullObservable
+import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.Dialog
+import org.uqbar.arena.windows.SimpleWindow
+import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import domain.Proyeccion
-import domain.Funcion
 
 class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 	new(WindowOwner parent, Usuario usuario) {
@@ -89,6 +89,7 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 			onClick [|this.modelObject.search]
 			setAsDefault
 			disableOnError
+
 		]
 	}
 
@@ -132,7 +133,7 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 
 	def createAgregarCarrito(Panel mainPanel) {
 		val funcion = new NotNullObservable("funcionSeleccionada")
-		val actionsPanel = new Panel(mainPanel).layout = new ColumnLayout(3)
+		val actionsPanel = new Panel(mainPanel).layout = new ColumnLayout(4)
 		new Button(actionsPanel) => [
 			caption = "Panel de Control"
 			onClick [|abrirPanel]
@@ -142,9 +143,13 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 			onClick [modelObject.agregarAlCarrito]
 			bindEnabled(funcion)
 		]
+		new Label(actionsPanel) => [
+			value <=> "cantidadPeliculasAComprar"
+		]
 		new Button(actionsPanel) => [
 			caption = "Finalizar compra"
 			onClick [|finalizarCompra]
+			enabled <=> "carritoNoEstaVacio"
 		]
 	}
 
