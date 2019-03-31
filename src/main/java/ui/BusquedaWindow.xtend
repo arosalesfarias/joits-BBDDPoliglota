@@ -20,6 +20,8 @@ import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 	new(WindowOwner parent, Usuario usuario) {
@@ -50,7 +52,9 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 			new Column<Funcion>(it) => [
 				title = "Fecha"
 				fixedSize = 200
-				bindContentsToProperty("hora")
+				bindContentsToProperty("hora").transformer = [ LocalDateTime fecha |
+					DateTimeFormatter.ofPattern("hh:MM dd/mm/yyyy").format(fecha)
+				]
 			]
 			new Column<Funcion>(it) => [
 				title = "Sala"
