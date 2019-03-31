@@ -17,7 +17,6 @@ class FinalizarCompraWindows extends SimpleWindow<ModeloBusqueda> {
 	new(WindowOwner parent, ModeloBusqueda busqueda) {
 		super(parent, busqueda)
 		title = "Jpits - Finalizar compra"
-		modelObject.calcularTotal()
 	}
 
 	override protected createFormPanel(Panel mainPanel) {

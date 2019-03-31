@@ -21,7 +21,6 @@ class ModeloBusqueda {
 	Tiket tiketSeleccionado
 	Usuario usuario
 	List<Tiket> carrito = new ArrayList<Tiket>
-	float totalCarrito = 0
 
 	new(Usuario _usuario) {
 		usuario = _usuario
@@ -49,6 +48,11 @@ class ModeloBusqueda {
 		carrito.size
 	}
 
+	@Dependencies("carrito")
+	def getTotalCarrito() {
+		carrito.fold(0.0, [total, pelicula|total + pelicula.precio]).floatValue
+	}
+
 	def agregarAlCarrito() {
 		carrito.add(new Tiket => [
 			funcion = funcionSeleccionada
@@ -64,16 +68,10 @@ class ModeloBusqueda {
 
 	def sacarDelCarrito() {
 		carrito.remove(tiketSeleccionado)
-		calcularTotal()
 	}
 
 	def void limpiarCarrito() {
 		carrito.clear
-
-	}
-
-	def calcularTotal() {
-		totalCarrito = carrito.fold(0.0, [total, pelicula|total + pelicula.precio]).floatValue
 	}
 
 	def finalizarCompra() {
