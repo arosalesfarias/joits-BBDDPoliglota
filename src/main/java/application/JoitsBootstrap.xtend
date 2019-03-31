@@ -17,7 +17,7 @@ class JoitsBootstrap implements Bootstrap {
 			nombre = "Alberto"
 			apellido = "Lezcano"
 			edad = 26
-			saldo = 1000.0
+			saldo = 1000
 			usuario = "alezcano"
 			login = "1234"
 		]
@@ -25,7 +25,7 @@ class JoitsBootstrap implements Bootstrap {
 			nombre = "Diego"
 			apellido = "Salamida"
 			edad = 32
-			saldo = 2500.0
+			saldo = 2500
 			usuario = "dsalamida"
 			login = "dsalamida"
 		]
@@ -33,7 +33,7 @@ class JoitsBootstrap implements Bootstrap {
 			nombre = "Ariel"
 			apellido = "Rosales"
 			edad = 8
-			saldo = 12.0
+			saldo = 12
 			usuario = "arosales"
 			login = "3333"
 		]
@@ -41,7 +41,7 @@ class JoitsBootstrap implements Bootstrap {
 			nombre = "El"
 			apellido = "Chinwenwencha"
 			edad = 26
-			saldo = 5.0
+			saldo = 5
 			usuario = "chinwenwencha"
 			login = "1234"
 		]
@@ -49,7 +49,7 @@ class JoitsBootstrap implements Bootstrap {
 			nombre = "Mauiricio"
 			apellido = "Macri"
 			edad = 50
-			saldo = 9999999999.0
+			saldo = 999999999
 			usuario = "elgato"
 			login = "1234"
 		]

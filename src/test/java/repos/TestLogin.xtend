@@ -20,7 +20,7 @@ class TestLogin {
 			nombre = "Alberto"
 			apellido = "Lezcano"
 			edad = 26
-			saldo = 1000.0
+			saldo = 1000
 			usuario = "alezcano"
 			login = "1234"
 		]
@@ -28,7 +28,7 @@ class TestLogin {
 			nombre = "Diego"
 			apellido = "Salamida"
 			edad = 32
-			saldo = 2500.0
+			saldo = 2500
 			usuario = "dsalamida"
 			login = "dsalamida"
 		]
@@ -36,7 +36,7 @@ class TestLogin {
 			nombre = "Ariel"
 			apellido = "Rosales"
 			edad = 8
-			saldo = 12.0
+			saldo = 12
 			usuario = "arosales"
 			login = "3333"
 		]

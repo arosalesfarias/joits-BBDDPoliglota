@@ -10,6 +10,7 @@ import java.util.ArrayList
 import domain.Funcion
 import org.uqbar.commons.model.annotations.Dependencies
 import domain.Ticket
+import org.uqbar.commons.model.exceptions.UserException
 
 @Accessors
 @Observable
@@ -75,6 +76,7 @@ class ModeloBusqueda {
 	}
 
 	def finalizarCompra() {
+		if (totalCarrito > usuario.saldo) throw new UserException("No posee saldo suficiente")
 		carrito.forEach[ticket|usuario.comprarTicket(ticket)]
 		limpiarCarrito()
 	}

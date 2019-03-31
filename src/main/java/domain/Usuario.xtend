@@ -14,8 +14,8 @@ class Usuario extends Entidad {
 	String apellido
 	Integer edad
 
-	Double saldo
-	Double cantidad
+	float saldo
+	float cantidad
 	String usuario
 	String login
 
@@ -32,7 +32,7 @@ class Usuario extends Entidad {
 
 	def void agregarSaldo() {
 		saldo = saldo + cantidad
-		cantidad = 0.0
+		cantidad = 0
 	}
 
 	def buscarAmigo(String usuarioAmigo) {
@@ -58,6 +58,12 @@ class Usuario extends Entidad {
 	}
 
 	def void comprarTicket(Ticket ticket) {
+		pagarTicket(ticket)
 		tickets.add(ticket)
+	}
+
+	def void pagarTicket(Ticket ticket) {
+		if(ticket.precio > saldo) throw new BusinessException("el usuario no tiene saldo suficiente")
+		saldo = saldo - ticket.precio
 	}
 }

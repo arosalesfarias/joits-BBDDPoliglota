@@ -38,7 +38,7 @@ class TestRepos extends TestPadre {
 			nombre = "Nulo"
 			apellido = "Null"
 			edad = 8
-			saldo = 12.0
+			saldo = 12
 			usuario = ""
 			login = "3333"
 		]
@@ -58,7 +58,7 @@ class TestRepos extends TestPadre {
 			nombre = "Alberto Reload"
 			apellido = "Lezcano"
 			edad = 26
-			saldo = 1000.0
+			saldo = 1000
 			usuario = "alezcano"
 			login = "1234"
 		]
