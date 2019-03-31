@@ -8,6 +8,7 @@ import domain.Saga
 import repos.RepoProyecciones
 import domain.Funcion
 import java.time.LocalDateTime
+import domain.Ticket
 
 class JoitsBootstrap implements Bootstrap {
 	override run() {
@@ -149,8 +150,8 @@ class JoitsBootstrap implements Bootstrap {
 
 		println("funcion miercoles agregado a Avengers 1")
 		// pelis vistas
-		arosales.peliculas.add(batman)
-		arosales.peliculas.add(volverAlFuturo)
+		arosales.tickets.add(new Ticket() => [pelicula = batman])
+		arosales.tickets.add(new Ticket() => [pelicula = volverAlFuturo])
 		repoProy.create(batman)
 		println("pelicula batman creado")
 		repoProy.create(volverAlFuturo1)

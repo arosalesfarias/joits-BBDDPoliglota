@@ -9,8 +9,8 @@ import org.uqbar.arena.widgets.Button
 import applicationModel.ModeloBusqueda
 import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.widgets.tables.Column
-import domain.Tiket
 import org.uqbar.arena.bindings.NotNullObservable
+import domain.Ticket
 
 class FinalizarCompraWindows extends SimpleWindow<ModeloBusqueda> {
 
@@ -50,12 +50,12 @@ class FinalizarCompraWindows extends SimpleWindow<ModeloBusqueda> {
 
 	def tablaPeliculas(Panel mainPanel) {
 		new Label(mainPanel).text = "Pelis en el carrito"
-		val table = new Table<Tiket>(mainPanel, typeof(Tiket)) => [
+		val table = new Table<Ticket>(mainPanel, typeof(Ticket)) => [
 			items <=> "carrito"
 			value <=> "tiketSeleccionado"
 			numberVisibleRows = 6
 		]
-		new Column<Tiket>(table) => [
+		new Column<Ticket>(table) => [
 			title = "pelicula"
 			fixedSize = 100
 			bindContentsToProperty("pelicula.titulo")

@@ -1,6 +1,5 @@
 package domain
 
-import domain.Tiket
 import domain.Pelicula
 import domain.Saga
 import domain.Funcion
@@ -19,10 +18,10 @@ class TestTicket {
 	Funcion funcionMiercoles
 	Funcion funcionLunes
 	Funcion funcionSagaDomingo
-	Tiket entradaDomingo
-	Tiket entradaMiercoles
-	Tiket entradaLunes
-	Tiket entradaSagaDomingo
+	Ticket entradaDomingo
+	Ticket entradaMiercoles
+	Ticket entradaLunes
+	Ticket entradaSagaDomingo
 
 	@Before
 	def void init() {
@@ -77,22 +76,22 @@ class TestTicket {
 			sala = "Rivadavia"
 		]
 
-		entradaDomingo = new Tiket => [
+		entradaDomingo = new Ticket => [
 			pelicula = volverAlFuturo1
 			funcion = funcionDomingo
 		]
 
-		entradaMiercoles = new Tiket => [
+		entradaMiercoles = new Ticket => [
 			pelicula = volverAlFuturo2
 			funcion = funcionMiercoles
 		]
 
-		entradaLunes = new Tiket => [
+		entradaLunes = new Ticket => [
 			pelicula = volverAlFuturo3
 			funcion = funcionLunes
 		]
 
-		entradaSagaDomingo = new Tiket => [
+		entradaSagaDomingo = new Ticket => [
 			pelicula = sagaVolverAlFuturo
 			funcion = funcionSagaDomingo
 		]

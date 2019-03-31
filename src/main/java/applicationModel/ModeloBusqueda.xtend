@@ -8,8 +8,8 @@ import repos.RepoProyecciones
 import domain.Proyeccion
 import java.util.ArrayList
 import domain.Funcion
-import domain.Tiket
 import org.uqbar.commons.model.annotations.Dependencies
+import domain.Ticket
 
 @Accessors
 @Observable
@@ -18,9 +18,9 @@ class ModeloBusqueda {
 	List<Proyeccion> resultados
 	Proyeccion proyeccionSeleccionada
 	Funcion funcionSeleccionada
-	Tiket tiketSeleccionado
+	Ticket tiketSeleccionado
 	Usuario usuario
-	List<Tiket> carrito = new ArrayList<Tiket>
+	List<Ticket> carrito = new ArrayList<Ticket>
 
 	new(Usuario _usuario) {
 		usuario = _usuario
@@ -54,7 +54,7 @@ class ModeloBusqueda {
 	}
 
 	def agregarAlCarrito() {
-		carrito.add(new Tiket => [
+		carrito.add(new Ticket => [
 			funcion = funcionSeleccionada
 			pelicula = proyeccionSeleccionada
 		])
@@ -75,7 +75,7 @@ class ModeloBusqueda {
 	}
 
 	def finalizarCompra() {
-		carrito.forEach[ticket|usuario.comprarPelicula(ticket.pelicula)]
+		carrito.forEach[ticket|usuario.comprarTicket(ticket)]
 		limpiarCarrito()
 	}
 }

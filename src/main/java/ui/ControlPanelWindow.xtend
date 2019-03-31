@@ -61,7 +61,7 @@ class ControlPanelWindow extends TransactionalDialog<Usuario> {
 	def listaPeliculas(Panel panel) {
 		new Label(panel).text = "Pelis Vistas"
 		new List(panel) => [
-			items <=> "peliculas"
+			items <=> "tickets"
 			width = 220
 			height = 80
 		]
