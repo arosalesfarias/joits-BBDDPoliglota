@@ -11,37 +11,37 @@ import org.junit.Assert
 
 class TestTicket {
 
-	Pelicula volverAlFururo1
-	Pelicula volverAlFururo2
-	Pelicula volverAlFururo3
+	Pelicula volverAlFuturo1
+	Pelicula volverAlFuturo2
+	Pelicula volverAlFuturo3
 	Saga sagaVolverAlFuturo
-	Funcion funcionPelicula1
-	Funcion funcionPelicula2
-	Funcion funcionPelicula3
-	Funcion funcionSaga
-	Tiket entrada1
-	Tiket entrada2
-	Tiket entrada3
-	Tiket entradaSaga
+	Funcion funcionDomingo
+	Funcion funcionMiercoles
+	Funcion funcionLunes
+	Funcion funcionSagaDomingo
+	Tiket entradaDomingo
+	Tiket entradaMiercoles
+	Tiket entradaLunes
+	Tiket entradaSagaDomingo
 
 	@Before
 	def void init() {
 
-		volverAlFururo1 = new Pelicula => [
+		volverAlFuturo1 = new Pelicula => [
 			puntaje = 7
 			titulo = "Volver al futuro 1"
 			añoRodaje = 1985
 			genero = "aventura"
 		]
 
-		volverAlFururo2 = new Pelicula => [
+		volverAlFuturo2 = new Pelicula => [
 			puntaje = 9
 			titulo = "Volver al futuro 2"
 			añoRodaje = 1987
 			genero = "aventura"
 		]
 
-		volverAlFururo3 = new Pelicula => [
+		volverAlFuturo3 = new Pelicula => [
 			puntaje = 10
 			titulo = "Volver al futuro 3"
 			añoRodaje = 1989
@@ -52,69 +52,99 @@ class TestTicket {
 			puntaje = 10
 			añoRodaje = 1990
 			nivelClasico = 20
-			peliculas.add(volverAlFururo1)
-			peliculas.add(volverAlFururo2)
-			peliculas.add(volverAlFururo3)
+			peliculas.add(volverAlFuturo1)
+			peliculas.add(volverAlFuturo2)
+			peliculas.add(volverAlFuturo3)
 		]
 
-		funcionPelicula1 = new Funcion => [
+		funcionDomingo = new Funcion => [
 			hora = LocalDateTime.of(2019, 03, 24, 18, 30)
 			sala = "Rivadavia"
 		]
 
-		funcionPelicula2 = new Funcion => [
+		funcionMiercoles = new Funcion => [
 			hora = LocalDateTime.of(2019, 03, 13, 17, 30)
 			sala = "Rivadavia"
 		]
 
-		funcionPelicula3 = new Funcion => [
+		funcionLunes = new Funcion => [
 			hora = LocalDateTime.of(2019, 03, 25, 18, 30)
 			sala = "Rivadavia"
 		]
 
-		funcionSaga = new Funcion => [
+		funcionSagaDomingo = new Funcion => [
 			hora = LocalDateTime.of(2019, 03, 24, 18, 30)
 			sala = "Rivadavia"
 		]
 
-		entrada1 = new Tiket => [
-			pelicula = volverAlFururo1
-			funcion = funcionPelicula1
+		entradaDomingo = new Tiket => [
+			pelicula = volverAlFuturo1
+			funcion = funcionDomingo
 		]
 
-		entrada2 = new Tiket => [
-			pelicula = volverAlFururo2
-			funcion = funcionPelicula2
+		entradaMiercoles = new Tiket => [
+			pelicula = volverAlFuturo2
+			funcion = funcionMiercoles
 		]
 
-		entrada3 = new Tiket => [
-			pelicula = volverAlFururo3
-			funcion = funcionPelicula3
+		entradaLunes = new Tiket => [
+			pelicula = volverAlFuturo3
+			funcion = funcionLunes
 		]
 
-		entradaSaga = new Tiket => [
+		entradaSagaDomingo = new Tiket => [
 			pelicula = sagaVolverAlFuturo
-			funcion = funcionSaga
+			funcion = funcionSagaDomingo
 		]
 	}
 
 	@Test
-	def void comprobarPrecioFuncion1() {
-		Assert.assertEquals(entrada1.precio, (120 + 30), 0.1)
+	def void comprueboQueElPrecioDeUnPelicula() {
+		Assert.assertEquals(volverAlFuturo1.precioBase, 30, 0.1)
 	}
 
 	@Test
-	def void comprobarPrecioFuncion2() {
-		Assert.assertEquals(entrada2.precio, (50 + 30), 0.1)
+	def void comprueboQueElPrecioDeUnaSagaCon3PeliculasYNivelDeClasico20() {
+		Assert.assertEquals(sagaVolverAlFuturo.precioBase, 3 * 10 + 20, 0.1)
 	}
 
 	@Test
-	def void comprobarPrecioFuncion3() {
-		Assert.assertEquals(entrada3.precio, (80 + 30), 0.1)
+	def void comprueboQueLaFuncionEnFinDeSemanaSale120() {
+		Assert.assertEquals(funcionDomingo.precioSegunDia, 120, 0.1)
 	}
 
 	@Test
-	def void comprobarPrecioFuncionSaga() {
-		Assert.assertEquals(entradaSaga.precio, (120 + 30 + 20), 0.1)
+	def void comprueboQueLaFuncionEnMiercolesSale50() {
+		Assert.assertEquals(funcionMiercoles.precioSegunDia, 50, 0.1)
+	}
+
+	@Test
+	def void comprueboQueLaFuncionEnLunesSale80() {
+		Assert.assertEquals(funcionLunes.precioSegunDia, 80, 0.1)
+	}
+
+	@Test
+	def void comprueboQueElPrecioDeUnaFuncion() {
+		Assert.assertEquals(volverAlFuturo1.precioBase, 30, 0.1)
+	}
+
+	@Test
+	def void comprueboQueElPrecioDeUnTicketParaElDomingo() {
+		Assert.assertEquals(entradaDomingo.precio, (120 + 30), 0.1)
+	}
+
+	@Test
+	def void comprueboQueElPrecioDeUnTicketParaElMiercoles() {
+		Assert.assertEquals(entradaMiercoles.precio, (50 + 30), 0.1)
+	}
+
+	@Test
+	def void comprueboQueElPrecioDeUnTicketParaElLunes() {
+		Assert.assertEquals(entradaLunes.precio, (80 + 30), 0.1)
+	}
+
+	@Test
+	def void comprueboQueElPrecioDeUnTicketParaElDomingoDeUnaSaga() {
+		Assert.assertEquals(entradaSagaDomingo.precio, (120 + 30 + 20), 0.1)
 	}
 }
