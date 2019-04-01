@@ -15,7 +15,6 @@ import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import org.uqbar.arena.bindings.NotNullObservable
 
 class BusquedaAmigosWindow extends SimpleWindow<BusquedaAmigos> {
 	new(WindowOwner parent, Usuario usuario) {
@@ -46,10 +45,11 @@ class BusquedaAmigosWindow extends SimpleWindow<BusquedaAmigos> {
 			disableOnError
 		]
 		createResultados(mainPanel)
+		botonera(mainPanel)
 	}
 
 	def protected createResultados(Panel mainPanel) {
-		this.crearTabla(mainPanel, "Resultados", "resultados")
+		this.crearTabla(mainPanel, "Resultados", "lista")
 		this.crearTabla(mainPanel, "Sugeridos", "sugeridos")
 	}
 
@@ -61,7 +61,7 @@ class BusquedaAmigosWindow extends SimpleWindow<BusquedaAmigos> {
 		]
 		new Table<Usuario>(panel, typeof(Usuario)) => [
 			items <=> lista
-			value <=> "usuarioSeleccionado"
+			value <=> "entidadSeleccionada"
 			numberVisibleRows = 4
 			width = 300
 			new Column<Usuario>(it) => [
@@ -86,17 +86,21 @@ class BusquedaAmigosWindow extends SimpleWindow<BusquedaAmigos> {
 		dialog.open
 	}
 
-	override protected addActions(Panel actionsPanel) {
+	def botonera(Panel actionsPanel) {
 		new Button(actionsPanel) => [
 			caption = "Agregar Amigo"
 			onClick[|modelObject.agregarAmigo()]
 			setAsDefault
-			bindEnabled(new NotNullObservable("usuarioSeleccionado"))
+			enabled <=> "hayUnoSeleccionado"
 		]
+
 		new Button(actionsPanel) => [
 			caption = "Volver"
 			onClick[|this.close]
 		]
+	}
+
+	override protected addActions(Panel actionsPanel) {
 	}
 
 }
