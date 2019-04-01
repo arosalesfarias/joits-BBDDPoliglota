@@ -30,17 +30,6 @@ class RepoUsuarios extends RepoGenerico<Usuario> {
 		search(buscar).filter[persona|!usuario.amigos.exists[amigo|amigo === persona] && persona !== usuario].toList
 	}
 
-	def void loadUser(Usuario usuario) {
-		if (elementos.map(elem|elem.apellido + elem.nombre).contains(usuario.apellido + usuario.nombre)) {
-			var Usuario usuarioViejo = elementos.filter [ elem |
-				(elem.apellido == usuario.apellido && elem.nombre == usuario.nombre)
-			].get(0)
-			update(usuarioViejo, usuario) // si existe el nombre de la persona
-		} else {
-			create(usuario) // si no existe el nombre de la persona
-		}
-	}
-
 	override void actualizarDatos(Usuario usuarioViejo, Usuario usuarioNuevo) {
 		usuarioViejo => [
 			usuarioViejo.nombre = usuarioNuevo.nombre
