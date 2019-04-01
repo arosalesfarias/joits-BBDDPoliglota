@@ -40,11 +40,12 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 	}
 
 	def createFunciones(Panel panel) {
-		new Label(panel) => [
+		val Panel main = new Panel(panel)
+		new Label(main) => [
 			text = "Funciones: "
 			foreground = Color.BLACK
 		]
-		new Table<Funcion>(panel, typeof(Funcion)) => [
+		new Table<Funcion>(main, typeof(Funcion)) => [
 			items <=> "proyeccionSeleccionada.funciones"
 			value <=> "funcionSeleccionada"
 			numberVisibleRows = 9
@@ -97,14 +98,13 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 		]
 	}
 
-	def protected createResultados(Panel mainPanel) {
-		val resultadoPanel = new Panel(mainPanel)
-		val LabelPanel = new Panel(resultadoPanel).layout = new HorizontalLayout
-		new Label(LabelPanel) => [
+	def protected createResultados(Panel panel) {
+		val Panel main = new Panel(panel)
+		new Label(main) => [
 			text = "Resultados: "
 			foreground = Color.BLACK
 		]
-		val table = new Table<Proyeccion>(mainPanel, typeof(Proyeccion)) => [
+		val table = new Table<Proyeccion>(main, typeof(Proyeccion)) => [
 			items <=> "resultados"
 			value <=> "proyeccionSeleccionada"
 			numberVisibleRows = 9

@@ -40,11 +40,11 @@ class FinalizarCompraWindows extends SimpleWindow<ModeloBusqueda> {
 		new Button(mainPanel) => [
 			caption = "Limpiar carrito"
 			onClick[|modelObject.limpiarCarrito]
+			enabled <=> "carritoNoEstaVacio"
 		]
 		new Button(mainPanel) => [
 			caption = "Finalizar compra"
 			onClick[|finalizarCompra]
-			bindEnabled(new NotNullObservable("carrito"))
 		]
 	}
 
