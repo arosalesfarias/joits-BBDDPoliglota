@@ -15,6 +15,7 @@ import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.List
 import org.uqbar.arena.widgets.Spinner
 import org.uqbar.arena.aop.windows.TransactionalDialog
+import applicationModel.BusquedaAmigos
 
 class ControlPanelWindow extends TransactionalDialog<Usuario> {
 
@@ -88,7 +89,7 @@ class ControlPanelWindow extends TransactionalDialog<Usuario> {
 	override protected addActions(Panel actionsPanel) {
 		new Button(actionsPanel) => [
 			caption = "Buscar Amigos"
-			onClick[|(new BusquedaAmigosWindow(this, modelObject)).open]
+			onClick[|(new BusquedaAmigosWindow(this, new BusquedaAmigos(modelObject)).open)]
 			setAsDefault
 		]
 		new Button(actionsPanel) => [
@@ -101,5 +102,4 @@ class ControlPanelWindow extends TransactionalDialog<Usuario> {
 			onClick[|this.close]
 		]
 	}
-
 }

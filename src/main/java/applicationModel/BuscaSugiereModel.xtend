@@ -9,7 +9,7 @@ import org.uqbar.commons.model.annotations.Dependencies
 
 @Accessors
 @Observable
-abstract class BuscaSugiereModel<T extends Entidad> {
+class BuscaSugiereModel<T extends Entidad> {
 	String valorBusqueda
 	T entidadSeleccionada
 	List<T> lista
@@ -20,7 +20,7 @@ abstract class BuscaSugiereModel<T extends Entidad> {
 		usuario = _usuario
 	}
 
-	def void search()
+	def void search(){}
 
 	def void clearEntity() {
 		entidadSeleccionada = null
@@ -34,4 +34,6 @@ abstract class BuscaSugiereModel<T extends Entidad> {
 	def getHayUnoSeleccionado() {
 		entidadSeleccionada !== null
 	}
+	
+	def void agregar(){}
 }

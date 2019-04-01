@@ -8,13 +8,17 @@ import repos.RepoUsuarios
 @Accessors
 @Observable
 class BusquedaAmigos extends BuscaSugiereModel<Usuario> {
+	
+	new(Usuario _usuario){
+		super(_usuario)
+	}
 
 	override search() {
 		lista = usuario.buscarPersonas(valorBusqueda)
 		sugeridos = RepoUsuarios.instance.elementos
 	}
 
-	def void agregarAmigo() {
+	override agregar() {
 		usuario.agregarAmigo(entidadSeleccionada)
 		clearBusqueda()
 		search()
