@@ -43,7 +43,7 @@ class FinalizarCompraWindows extends SimpleWindow<ModeloBusqueda> {
 		]
 		new Button(mainPanel) => [
 			caption = "Finalizar compra"
-			onClick[|modelObject.finalizarCompra]
+			onClick[|finalizarCompra]
 			bindEnabled(new NotNullObservable("carrito"))
 		]
 	}
@@ -61,6 +61,11 @@ class FinalizarCompraWindows extends SimpleWindow<ModeloBusqueda> {
 			bindContentsToProperty("pelicula.titulo")
 		]
 
+	}
+
+	def void finalizarCompra() {
+		modelObject.finalizarCompra
+		this.close
 	}
 
 }
