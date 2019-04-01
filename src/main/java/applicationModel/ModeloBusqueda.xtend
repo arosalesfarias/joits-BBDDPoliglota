@@ -1,7 +1,6 @@
 package applicationModel
 
 import java.util.List
-import domain.Usuario
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Observable
 import repos.RepoProyecciones
@@ -14,29 +13,18 @@ import org.uqbar.commons.model.exceptions.UserException
 
 @Accessors
 @Observable
-class ModeloBusqueda {
-	String valorBusqueda
-	List<Proyeccion> resultados
-	Proyeccion proyeccionSeleccionada
+class ModeloBusqueda extends BuscaSugiereModel<Proyeccion>{
 	Funcion funcionSeleccionada
 	Ticket tiketSeleccionado
-	Usuario usuario
 	List<Ticket> carrito = new ArrayList<Ticket>
 
-	new(Usuario _usuario) {
-		usuario = _usuario
-	}
-
-	def void search() {
-		resultados = RepoProyecciones.instance.search(valorBusqueda)
+	override void search() {
+		lista = RepoProyecciones.instance.search(valorBusqueda)
+		sugeridos = RepoProyecciones.instance.elementos
 	}
 
 	def void clearUsuario() {
 		usuario = null
-	}
-
-	def clearBusqueda() {
-		valorBusqueda = ""
 	}
 
 	@Dependencies("carrito")
@@ -57,13 +45,13 @@ class ModeloBusqueda {
 	def agregarAlCarrito() {
 		carrito.add(new Ticket => [
 			funcion = funcionSeleccionada
-			pelicula = proyeccionSeleccionada
+			pelicula = entidadSeleccionada
 		])
 		clearSeleccionados()
 	}
 
 	def clearSeleccionados() {
-		proyeccionSeleccionada = null
+		clearEntity
 		funcionSeleccionada = null
 	}
 

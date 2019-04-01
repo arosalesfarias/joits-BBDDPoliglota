@@ -46,10 +46,10 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 			foreground = Color.BLACK
 		]
 		new Table<Funcion>(main, typeof(Funcion)) => [
-			items <=> "proyeccionSeleccionada.funciones"
+			items <=> "entidadSeleccionada.funciones"
 			value <=> "funcionSeleccionada"
 			numberVisibleRows = 9
-			bindEnabled(new NotNullObservable("proyeccionSeleccionada"))
+			enabled <=> "hayUnoSeleccionado"
 			new Column<Funcion>(it) => [
 				title = "Fecha"
 				fixedSize = 200
@@ -105,8 +105,8 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 			foreground = Color.BLACK
 		]
 		val table = new Table<Proyeccion>(main, typeof(Proyeccion)) => [
-			items <=> "resultados"
-			value <=> "proyeccionSeleccionada"
+			items <=> "lista"
+			value <=> "entidadSeleccionada"
 			numberVisibleRows = 9
 		]
 		this.columnasResultado(table)

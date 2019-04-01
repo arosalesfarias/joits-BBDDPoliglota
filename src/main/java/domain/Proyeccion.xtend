@@ -6,7 +6,7 @@ import java.util.List
 
 @Observable
 @Accessors
-public abstract class Proyeccion extends Entidad {
+abstract class Proyeccion extends Entidad {
 	String titulo
 	int añoRodaje
 	float puntaje
