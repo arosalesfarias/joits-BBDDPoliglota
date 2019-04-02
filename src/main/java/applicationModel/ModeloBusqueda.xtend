@@ -13,7 +13,7 @@ import org.uqbar.commons.model.exceptions.UserException
 
 @Accessors
 @Observable
-class ModeloBusqueda extends BuscaSugiereModel<Proyeccion>{
+class ModeloBusqueda extends BuscaSugiereModel<Proyeccion> {
 	Funcion funcionSeleccionada
 	Ticket tiketSeleccionado
 	List<Ticket> carrito = new ArrayList<Ticket>
@@ -33,7 +33,7 @@ class ModeloBusqueda extends BuscaSugiereModel<Proyeccion>{
 	}
 
 	@Dependencies("carrito")
-	def getCantidadPeliculasAComprar() {
+	def getCantidadTicketsAComprar() {
 		carrito.size
 	}
 
@@ -62,13 +62,9 @@ class ModeloBusqueda extends BuscaSugiereModel<Proyeccion>{
 	def void limpiarCarrito() {
 		carrito.clear
 	}
-	
-	def totalEntradas(){
-		carrito.size
-	}
 
 	def finalizarCompra() {
-		if (totalCarrito > usuario.saldo) throw new UserException("No posee saldo suficiente")
+		if(totalCarrito > usuario.saldo) throw new UserException("No posee saldo suficiente")
 		carrito.forEach[ticket|usuario.comprarTicket(ticket)]
 		limpiarCarrito()
 	}

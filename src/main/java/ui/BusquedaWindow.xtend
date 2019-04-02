@@ -148,7 +148,7 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 			bindEnabled(funcion)
 		]
 		new Label(actionsPanel) => [
-			value <=> "cantidadPeliculasAComprar"
+			value <=> "cantidadTicketsAComprar"
 		]
 		new Button(actionsPanel) => [
 			caption = "Finalizar compra"
