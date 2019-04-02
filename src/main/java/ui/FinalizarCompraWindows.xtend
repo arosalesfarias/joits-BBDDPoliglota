@@ -13,6 +13,7 @@ import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import org.uqbar.arena.layout.VerticalLayout
 
 class FinalizarCompraWindows extends SimpleWindow<ModeloBusqueda> {
 
@@ -32,32 +33,47 @@ class FinalizarCompraWindows extends SimpleWindow<ModeloBusqueda> {
 		]
 
 		val Panel panelPelis = new Panel(main)
-		
+
 		new Label(panelPelis).text = "Pelis en el carrito"
-		
+
 		val table = new Table<Ticket>(panelPelis, typeof(Ticket)) => [
 			items <=> "carrito"
 			value <=> "tiketSeleccionado"
 			numberVisibleRows = 6
 		]
-		
+
 		new Column<Ticket>(table) => [
 			title = "pelicula"
 			fixedSize = 300
 			bindContentsToProperty("pelicula.titulo")
 		]
 
-
 	}
 
 	override protected addActions(Panel mainPanel) {
-		val Panel panelDerecho = new Panel(mainPanel).layout = new HorizontalLayout()
-		val Panel panelIzquierdo = new Panel(mainPanel).layout = new HorizontalLayout()
-		val Panel panelFinaliar = new Panel(panelDerecho).layout = new HorizontalLayout()
-		val Panel panelLimpiar = new Panel(panelIzquierdo)
-		val Panel panelEliminar = new Panel(panelIzquierdo).layout = new HorizontalLayout()
-		val Panel panelTotal = new Panel(panelDerecho).layout = new HorizontalLayout()
 
+		val Panel main = new Panel(mainPanel).layout = new HorizontalLayout()
+		val Panel panelIzquierdo = new Panel(main)
+		val Panel panelDerecho = new Panel(main)
+
+		val Panel panelTotalEntradas = new Panel(panelIzquierdo).layout = new HorizontalLayout()
+		val Panel panelLimpiar = new Panel(panelIzquierdo).layout = new HorizontalLayout()
+
+		val Panel panelTotal = new Panel(panelDerecho).layout = new HorizontalLayout()
+		val Panel panelEliminar = new Panel(panelDerecho).layout = new HorizontalLayout()
+		val Panel panelFinalizar = new Panel(panelDerecho).layout = new HorizontalLayout()
+
+		new Label(panelTotalEntradas) => [
+			value <=> "totalEntradas"
+		]
+		new Label(panelTotalEntradas).text = "entradas"
+
+		new Button(panelLimpiar) => [
+			caption = "Limpiar carrito"
+			onClick[|modelObject.limpiarCarrito]
+			enabled <=> "carritoNoEstaVacio"
+		]
+		
 		new Label(panelTotal).text = "Total: "
 		new Label(panelTotal) => [
 			value <=> "totalCarrito"
@@ -68,19 +84,17 @@ class FinalizarCompraWindows extends SimpleWindow<ModeloBusqueda> {
 			onClick[|(modelObject.sacarDelCarrito())]
 			bindEnabled(new NotNullObservable("tiketSeleccionado"))
 		]
-		new Button(panelLimpiar) => [
-			caption = "Limpiar carrito"
-			onClick[|modelObject.limpiarCarrito]
-			enabled <=> "carritoNoEstaVacio"
-		]
-		new Button(panelFinaliar) => [
-			caption = "Finalizar compra"
-			onClick[|finalizarCompra]
-		]
-	}
 
-	def void finalizarCompra() {
-		modelObject.finalizarCompra
-		this.close
+		new Button(panelFinalizar) => [
+			caption = "Finalizar compra"
+			onClick[|modelObject.finalizarCompra]
+			enabled <=> "carritoNoEstaVacio"
+			this.close
+		]
+		
+		new Button(panelFinalizar) => [
+			caption = "Volver atras"
+			onClick[|this.close]
+		]
 	}
 }

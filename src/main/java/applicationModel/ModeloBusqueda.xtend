@@ -62,6 +62,10 @@ class ModeloBusqueda extends BuscaSugiereModel<Proyeccion>{
 	def void limpiarCarrito() {
 		carrito.clear
 	}
+	
+	def totalEntradas(){
+		carrito.size
+	}
 
 	def finalizarCompra() {
 		if (totalCarrito > usuario.saldo) throw new UserException("No posee saldo suficiente")
