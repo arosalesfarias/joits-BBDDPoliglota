@@ -9,7 +9,8 @@ import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 
 class BusquedaAmigosWindow extends BusquedaMainWindow {
 	new(WindowOwner parent, BusquedaAmigos model) {
-		super(parent, model)
+		super(parent, model, newArrayList("nombre","apellido"))
+		title = "Busqueda de Personas"
 	}
 
 	override extra(Panel panel) {

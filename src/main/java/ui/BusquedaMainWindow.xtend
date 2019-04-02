@@ -15,19 +15,22 @@ import org.uqbar.arena.windows.WindowOwner
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import applicationModel.BuscaSugiereModel
 import org.uqbar.arena.windows.Window
+import java.util.List
 
 abstract class BusquedaMainWindow extends Window<BuscaSugiereModel<?>> {
-	new(WindowOwner parent, BuscaSugiereModel<?> model) {
+	List<String> lista
+
+	new(WindowOwner parent, BuscaSugiereModel<?> model, List<String> _lista) {
 		super(parent, model)
+		lista = _lista
 		modelObject.search
-		title = "Busqueda de x"
 	}
 
 	override createContents(Panel mainPanel) {
 		espacio(mainPanel)
 		val columnas = new Panel(mainPanel).layout = new HorizontalLayout
 		new Label(columnas) => [
-			text = "Buscar Personas"
+			text = "Ingrese busqueda"
 			foreground = Color.BLACK
 		]
 		new TextBox(columnas) => [
@@ -43,7 +46,7 @@ abstract class BusquedaMainWindow extends Window<BuscaSugiereModel<?>> {
 		createResultados(mainPanel)
 		extra(mainPanel)
 	}
-	
+
 	def void extra(Panel panel)
 
 	def protected createResultados(Panel mainPanel) {
@@ -57,20 +60,17 @@ abstract class BusquedaMainWindow extends Window<BuscaSugiereModel<?>> {
 			text = titulo
 			foreground = Color.BLACK
 		]
-		new Table<Usuario>(panel, typeof(Usuario)) => [
+		val table = new Table<Usuario>(panel, typeof(Usuario)) => [
 			items <=> lista
 			value <=> "entidadSeleccionada"
 			numberVisibleRows = 4
 			width = 300
-			new Column<Usuario>(it) => [
-				title = "Nombre"
+		]
+		this.lista.forEach [ columna |
+			new Column<Usuario>(table) => [
+				title = columna.toFirstUpper
 				fixedSize = 200
-				bindContentsToProperty("nombre")
-			]
-			new Column<Usuario>(it) => [
-				title = "Apellido"
-				fixedSize = 150
-				bindContentsToProperty("apellido")
+				bindContentsToProperty(columna)
 			]
 		]
 	}
