@@ -1,8 +1,8 @@
 package ui
 
-import applicationModel.ModeloBusqueda
 import domain.Ticket
 import org.uqbar.arena.bindings.NotNullObservable
+import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Label
@@ -11,14 +11,14 @@ import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
-import org.uqbar.arena.layout.ColumnLayout
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import applicationModel.FinalizarCompraModel
 
-class FinalizarCompraWindows extends SimpleWindow<ModeloBusqueda> {
+class FinalizarCompraWindows extends SimpleWindow<FinalizarCompraModel> {
 
-	new(WindowOwner parent, ModeloBusqueda busqueda) {
-		super(parent, busqueda)
+	new(WindowOwner parent, FinalizarCompraModel model) {
+		super(parent, model)
 		title = "Jpits - Finalizar compra"
 	}
 

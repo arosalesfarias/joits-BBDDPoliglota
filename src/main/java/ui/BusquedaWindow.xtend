@@ -5,6 +5,8 @@ import domain.Funcion
 import domain.Proyeccion
 import domain.Usuario
 import java.awt.Color
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.layout.HorizontalLayout
@@ -20,8 +22,7 @@ import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import applicationModel.FinalizarCompraModel
 
 class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 	new(WindowOwner parent, Usuario usuario) {
@@ -158,7 +159,8 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 	}
 
 	def finalizarCompra() {
-		(new FinalizarCompraWindows(this, modelObject).open)
+		(new FinalizarCompraWindows(this,
+			new FinalizarCompraModel(modelObject.usuario, modelObject.carrito, modelObject.tiketSeleccionado)).open)
 	}
 
 	def abrirPanel() {
