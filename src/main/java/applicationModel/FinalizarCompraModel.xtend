@@ -8,6 +8,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.exceptions.UserException
 import org.uqbar.commons.model.annotations.Observable
 import org.uqbar.commons.model.annotations.Dependencies
+import org.uqbar.commons.model.utils.ObservableUtils
 
 @Observable
 @Accessors
@@ -16,10 +17,9 @@ class FinalizarCompraModel {
 	Usuario usuario
 	Ticket tiketSeleccionado
 
-	new(Usuario usu, List<Ticket> carri, Ticket ticket) {
+	new(Usuario usu, List<Ticket> carri) {
 		usuario = usu
 		carrito = carri
-		tiketSeleccionado = ticket
 	}
 
 	@Dependencies("carrito")
@@ -39,10 +39,12 @@ class FinalizarCompraModel {
 
 	def sacarDelCarrito() {
 		carrito.remove(tiketSeleccionado)
+		this.actualizarLsitas
 	}
 
 	def void limpiarCarrito() {
 		carrito.clear
+		this.actualizarLsitas
 	}
 
 	def finalizarCompra() {
@@ -50,4 +52,9 @@ class FinalizarCompraModel {
 		carrito.forEach[ticket|usuario.comprarTicket(ticket)]
 		limpiarCarrito()
 	}
+	
+		def actualizarLsitas() {
+		ObservableUtils.firePropertyChanged(this, "carrito")
+	}
+
 }

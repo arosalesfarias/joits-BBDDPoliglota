@@ -145,7 +145,7 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 		]
 		new Button(actionsPanel) => [
 			caption = "Agregar al carrito"
-			onClick [modelObject.agregarAlCarrito]
+			onClick [modelObject.agregar]
 			bindEnabled(funcion)
 		]
 		new Label(actionsPanel) => [
@@ -160,7 +160,7 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 
 	def finalizarCompra() {
 		(new FinalizarCompraWindows(this,
-			new FinalizarCompraModel(modelObject.usuario, modelObject.carrito, modelObject.tiketSeleccionado)).open)
+			new FinalizarCompraModel(modelObject.usuario, modelObject.carrito)).open)
 	}
 
 	def abrirPanel() {

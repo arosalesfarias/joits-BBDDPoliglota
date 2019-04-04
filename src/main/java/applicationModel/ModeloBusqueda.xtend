@@ -14,7 +14,6 @@ import repos.RepoProyecciones
 @Observable
 class ModeloBusqueda extends BuscaSugiereModel<Proyeccion> {
 	Funcion funcionSeleccionada
-	Ticket tiketSeleccionado
 	List<Ticket> carrito = new ArrayList<Ticket>
 
 	override void search() {
@@ -26,13 +25,7 @@ class ModeloBusqueda extends BuscaSugiereModel<Proyeccion> {
 		usuario = null
 	}
 
-	def agregarAlCarrito() {
-		carrito.add(new Ticket => [
-			funcion = funcionSeleccionada
-			pelicula = entidadSeleccionada
-		])
-		clearSeleccionados()
-	}
+
 
 	def clearSeleccionados() {
 		clearEntity
@@ -48,31 +41,13 @@ class ModeloBusqueda extends BuscaSugiereModel<Proyeccion> {
 	def getCarritoNoEstaVacio() {
 		!carrito.isEmpty
 	}
-
-/*
-
- * 	@Dependencies("carrito")
- * 	def getCantidadTicketsAComprar() {
- * 		carrito.size
- * 	}
-
- * 	@Dependencies("carrito")
- * 	def getTotalCarrito() {
- * 		carrito.fold(0.0, [total, pelicula|total + pelicula.precio]).floatValue
- * 	}
- */
-/*
- * 	def sacarDelCarrito() {
- * 		carrito.remove(tiketSeleccionado)
- * 	}
-
- * 	def void limpiarCarrito() {
- * 		carrito.clear
- * 	}
-
- * 	def finalizarCompra() {
- * 		if(totalCarrito > usuario.saldo) throw new UserException("No posee saldo suficiente")
- * 		carrito.forEach[ticket|usuario.comprarTicket(ticket)]
- * 		limpiarCarrito()
- }  */
+	
+	override agregar() {
+		carrito.add(new Ticket => [
+			funcion = funcionSeleccionada
+			pelicula = entidadSeleccionada
+		])
+		clearSeleccionados()
+	}
+	
 }

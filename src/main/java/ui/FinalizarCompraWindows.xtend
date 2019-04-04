@@ -1,5 +1,6 @@
 package ui
 
+import applicationModel.FinalizarCompraModel
 import domain.Ticket
 import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.layout.ColumnLayout
@@ -13,7 +14,6 @@ import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import applicationModel.FinalizarCompraModel
 
 class FinalizarCompraWindows extends SimpleWindow<FinalizarCompraModel> {
 
@@ -67,7 +67,9 @@ class FinalizarCompraWindows extends SimpleWindow<FinalizarCompraModel> {
 
 		new Button(mainPanel) => [
 			caption = "EliminarItem"
-			onClick[|(modelObject.sacarDelCarrito())]
+			onClick[|
+				modelObject.sacarDelCarrito
+			]
 			bindEnabled(new NotNullObservable("tiketSeleccionado"))
 		]
 
