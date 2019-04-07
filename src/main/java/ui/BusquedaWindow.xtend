@@ -37,6 +37,7 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 		val Panel main = new Panel(mainPanel).layout = new HorizontalLayout()
 		createResultados(main)
 		createFunciones(main)
+		crearTablaSugeridos(mainPanel)
 		createAgregarCarrito(mainPanel)
 	}
 
@@ -159,8 +160,7 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 	}
 
 	def finalizarCompra() {
-		(new FinalizarCompraWindows(this,
-			new FinalizarCompraModel(modelObject.usuario, modelObject.carrito)).open)
+		(new FinalizarCompraWindows(this, new FinalizarCompraModel(modelObject.usuario, modelObject.carrito)).open)
 	}
 
 	def abrirPanel() {
@@ -176,6 +176,25 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 	def openDialog(Dialog<?> dialog) {
 		dialog.onAccept[|modelObject.search]
 		dialog.open
+	}
+
+	def importeFuncionSeleccionada(Panel panel) {
+		new Label(panel) => [
+			value <=> "funcionSeleccionada"
+		]
+	}
+
+	def protected crearTablaSugeridos(Panel panel) {
+		val Panel main = new Panel(panel)
+		new Label(main) => [
+			text = "Peliculas sugeridas: "
+			foreground = Color.BLACK
+		]
+		val tabla = new Table<Proyeccion>(main, typeof(Proyeccion)) => [
+			items <=> "pelisSugeridas"
+			numberVisibleRows = 5
+		]
+		this.columnasResultado(tabla)
 	}
 
 	override protected addActions(Panel actionsPanel) {

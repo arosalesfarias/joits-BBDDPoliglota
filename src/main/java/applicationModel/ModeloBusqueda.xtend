@@ -15,17 +15,17 @@ import repos.RepoProyecciones
 class ModeloBusqueda extends BuscaSugiereModel<Proyeccion> {
 	Funcion funcionSeleccionada
 	List<Ticket> carrito = new ArrayList<Ticket>
+	List<Proyeccion> pelisSugeridas = new ArrayList<Proyeccion>
 
 	override void search() {
 		lista = RepoProyecciones.instance.search(valorBusqueda)
 		sugeridos = RepoProyecciones.instance.elementos
+		pelisSugeridas = RepoProyecciones.instance.peliculasSugeridas
 	}
 
 	def void clearUsuario() {
 		usuario = null
 	}
-
-
 
 	def clearSeleccionados() {
 		clearEntity
@@ -41,7 +41,7 @@ class ModeloBusqueda extends BuscaSugiereModel<Proyeccion> {
 	def getCarritoNoEstaVacio() {
 		!carrito.isEmpty
 	}
-	
+
 	override agregar() {
 		carrito.add(new Ticket => [
 			funcion = funcionSeleccionada
@@ -49,5 +49,5 @@ class ModeloBusqueda extends BuscaSugiereModel<Proyeccion> {
 		])
 		clearSeleccionados()
 	}
-	
+
 }

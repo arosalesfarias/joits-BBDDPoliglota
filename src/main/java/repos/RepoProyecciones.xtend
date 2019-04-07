@@ -29,4 +29,8 @@ class RepoProyecciones extends RepoGenerico<Proyeccion> {
 			viejo.añoRodaje = nuevo.añoRodaje
 		]
 	}
+
+	def List<Proyeccion> peliculasSugeridas() {
+		elementos.take(3).toList
+	}
 }
