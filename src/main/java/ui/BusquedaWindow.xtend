@@ -1,5 +1,6 @@
 package ui
 
+import applicationModel.FinalizarCompraModel
 import applicationModel.ModeloBusqueda
 import domain.Funcion
 import domain.Proyeccion
@@ -22,7 +23,6 @@ import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import applicationModel.FinalizarCompraModel
 
 class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 	new(WindowOwner parent, Usuario usuario) {
@@ -38,6 +38,7 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 		createResultados(main)
 		createFunciones(main)
 		crearTablaSugeridos(mainPanel)
+		importeFuncionSeleccionada(mainPanel)
 		createAgregarCarrito(mainPanel)
 	}
 
@@ -178,10 +179,9 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 		dialog.open
 	}
 
-	def importeFuncionSeleccionada(Panel panel) {
-		new Label(panel) => [
-			value <=> "funcionSeleccionada"
-		]
+	def void importeFuncionSeleccionada(Panel panel) {
+		new Label(panel).text = "Importe de la funcion selecionada:   "
+		new Label(panel).value <=> "valorDeLaEntrada"
 	}
 
 	def protected crearTablaSugeridos(Panel panel) {

@@ -15,6 +15,7 @@ import repos.RepoProyecciones
 class ModeloBusqueda extends BuscaSugiereModel<Proyeccion> {
 	Funcion funcionSeleccionada
 	List<Ticket> carrito = new ArrayList<Ticket>
+	Ticket entrada
 
 	override void search() {
 		lista = RepoProyecciones.instance.search(valorBusqueda)
@@ -41,10 +42,8 @@ class ModeloBusqueda extends BuscaSugiereModel<Proyeccion> {
 	}
 
 	override agregar() {
-		carrito.add(new Ticket => [
-			funcion = funcionSeleccionada
-			pelicula = entidadSeleccionada
-		])
+		this.crearTicket
+		carrito.add(entrada)
 		clearSeleccionados()
 	}
 
@@ -52,4 +51,20 @@ class ModeloBusqueda extends BuscaSugiereModel<Proyeccion> {
 		RepoProyecciones.instance.peliculasSugeridas
 	}
 
+	def crearTicket() {
+		entrada = (new Ticket => [
+			funcion = funcionSeleccionada
+			pelicula = entidadSeleccionada
+		])
+	}
+
+	@Dependencies("funcionSeleccionada")
+	def float valorDeLaEntrada() {
+		if (funcionSeleccionada === null) {
+			0
+		} else {
+			this.crearTicket
+			entrada.precio
+		}
+	}
 }
