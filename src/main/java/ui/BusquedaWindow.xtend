@@ -181,7 +181,7 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 
 	def void importeFuncionSeleccionada(Panel panel) {
 		new Label(panel).text = "Importe de la funcion selecionada:   "
-		new Label(panel).value <=> "valorDeLaEntrada"
+		new Label(panel).value <=> "precio"
 	}
 
 	def protected crearTablaSugeridos(Panel panel) {

@@ -16,6 +16,7 @@ class ModeloBusqueda extends BuscaSugiereModel<Proyeccion> {
 	Funcion funcionSeleccionada
 	List<Ticket> carrito = new ArrayList<Ticket>
 	Ticket entrada
+	float precio = 0
 
 	override void search() {
 		lista = RepoProyecciones.instance.search(valorBusqueda)
@@ -58,12 +59,17 @@ class ModeloBusqueda extends BuscaSugiereModel<Proyeccion> {
 		])
 	}
 
+	def void setFuncionSeleccionada(Funcion funcion) {
+		funcionSeleccionada = funcion
+		crearTicket
+		precio = valorDeLaEntrada
+	}
+
 	@Dependencies("funcionSeleccionada")
 	def float valorDeLaEntrada() {
 		if (funcionSeleccionada === null) {
 			0
 		} else {
-			this.crearTicket
 			entrada.precio
 		}
 	}
