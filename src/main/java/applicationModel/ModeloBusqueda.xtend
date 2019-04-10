@@ -9,6 +9,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Dependencies
 import org.uqbar.commons.model.annotations.Observable
 import repos.RepoProyecciones
+import domain.Usuario
 
 @Accessors
 @Observable
@@ -17,10 +18,14 @@ class ModeloBusqueda extends BuscaSugiereModel<Proyeccion> {
 	List<Ticket> carrito = new ArrayList<Ticket>
 	Ticket entrada
 	float precio = 0
+	
+	new(Usuario user){
+		super(user)
+		sugeridos = RepoProyecciones.instance.elementos
+	}
 
 	override void search() {
-		lista = RepoProyecciones.instance.search(valorBusqueda)
-		sugeridos = RepoProyecciones.instance.elementos
+		lista = RepoProyecciones.instance.search(valorBusqueda)	
 	}
 
 	def void clearUsuario() {

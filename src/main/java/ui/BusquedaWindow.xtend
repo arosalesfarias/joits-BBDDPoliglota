@@ -191,7 +191,8 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 			foreground = Color.BLACK
 		]
 		val tabla = new Table<Proyeccion>(main, typeof(Proyeccion)) => [
-			items <=> "pelisSugeridas"
+			items <=> "sugeridos"
+			value <=> "entidadSeleccionada"
 			numberVisibleRows = 5
 		]
 		this.columnasResultado(tabla)
