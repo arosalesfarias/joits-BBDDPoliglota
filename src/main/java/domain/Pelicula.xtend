@@ -1,8 +1,10 @@
 package domain
 
-import org.eclipse.xtend.lib.annotations.Accessors
 import exceptions.BusinessException
+import javax.persistence.Entity
+import org.eclipse.xtend.lib.annotations.Accessors
 
+@Entity
 @Accessors
 class Pelicula extends Proyeccion {
 

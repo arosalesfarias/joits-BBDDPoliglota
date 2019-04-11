@@ -4,6 +4,9 @@ import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import domain.Usuario
 import org.uqbar.commons.model.exceptions.UserException
+import javax.persistence.criteria.CriteriaBuilder
+import javax.persistence.criteria.CriteriaQuery
+import javax.persistence.criteria.Root
 
 @Accessors
 class RepoUsuarios extends RepoGenerico<Usuario> {
@@ -51,4 +54,15 @@ class RepoUsuarios extends RepoGenerico<Usuario> {
 			throw new UserException("Usuario o contraseña incorrectos.")
 	}
 
+	override getEntityType() {
+		Usuario
+	}
+
+	override generateWhere(CriteriaBuilder criteria, CriteriaQuery<Usuario> query, Root<Usuario> camposUsuario, Usuario usuario) {
+		if (usuario.nombre !== null) {
+			query.where(criteria.equal(camposUsuario.get("nombre"), usuario.nombre))
+		}
+	}
+
 }
+	

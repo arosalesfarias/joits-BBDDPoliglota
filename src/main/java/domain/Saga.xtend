@@ -1,13 +1,22 @@
 package domain
 
-import org.eclipse.xtend.lib.annotations.Accessors
-import java.util.List
-import java.util.ArrayList
 import exceptions.BusinessException
+import java.util.ArrayList
+import java.util.List
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.FetchType
+import javax.persistence.OneToMany
+import org.eclipse.xtend.lib.annotations.Accessors
 
+@Entity
 @Accessors
 class Saga extends Proyeccion {
+
+	@OneToMany(fetch=FetchType.LAZY)
 	List<Pelicula> peliculas = new ArrayList<Pelicula>
+
+	@Column(length=50)
 	float nivelClasico
 
 	override precioBase() {

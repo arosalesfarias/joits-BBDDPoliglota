@@ -1,25 +1,47 @@
 package domain
 
-import java.util.List
-import org.eclipse.xtend.lib.annotations.Accessors
 import exceptions.BusinessException
 import java.util.ArrayList
+import java.util.List
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.FetchType
+import javax.persistence.ManyToMany
+import javax.persistence.OneToMany
+import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
 import repos.RepoUsuarios
 
+@Entity
 @TransactionalAndObservable
 @Accessors
 class Usuario extends Entidad {
+
+	@Column(length=50)
 	String nombre
+
+	@Column(length=50)
 	String apellido
+
+	@Column
 	Integer edad
 
+	@Column
 	float saldo
+
+	@Column
 	float cantidad
+
+	@Column(length=25)
 	String usuario
+
+	@Column(length=25)
 	String login
 
+	@ManyToMany(fetch=FetchType.LAZY)
 	List<Usuario> amigos = newArrayList()
+	
+	@OneToMany(fetch=FetchType.EAGER)
 	List<Ticket> tickets = new ArrayList<Ticket>
 
 	override String toString() {

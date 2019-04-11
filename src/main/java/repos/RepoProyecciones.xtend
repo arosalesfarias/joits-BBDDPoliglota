@@ -1,8 +1,11 @@
 package repos
 
-import java.util.List
-import org.eclipse.xtend.lib.annotations.Accessors
 import domain.Proyeccion
+import java.util.List
+import javax.persistence.criteria.CriteriaBuilder
+import javax.persistence.criteria.CriteriaQuery
+import javax.persistence.criteria.Root
+import org.eclipse.xtend.lib.annotations.Accessors
 
 @Accessors
 class RepoProyecciones extends RepoGenerico<Proyeccion> {
@@ -15,13 +18,10 @@ class RepoProyecciones extends RepoGenerico<Proyeccion> {
 		}
 		repoProyecciones
 	}
-
+	
 	private new() {
 	}
 
-	override List<Proyeccion> search(String buscar) {
-		elementos.filter[proyeccion|this.match(buscar, proyeccion.titulo)].toList
-	}
 
 	override actualizarDatos(Proyeccion viejo, Proyeccion nuevo) {
 		viejo => [
@@ -33,4 +33,20 @@ class RepoProyecciones extends RepoGenerico<Proyeccion> {
 	def List<Proyeccion> peliculasSugeridas() {
 		elementos.take(3).toList
 	}
+
+// /////////////////////////////*************************************************/////////////////////////////////
+
+//	override List<Proyeccion> search(String buscar) {
+//		elementos.filter[proyeccion|this.match(buscar, proyeccion.titulo)].toList
+//	}
+	override getEntityType() {
+		Proyeccion
+	}
+
+	override generateWhere(CriteriaBuilder criteria, CriteriaQuery<Proyeccion> query, Root<Proyeccion> camposProyeccion, Proyeccion proyeccion) {
+		if (proyeccion.titulo !== null) {
+			query.where(criteria.equal(camposProyeccion.get("titulo"), proyeccion.titulo))
+		}
+	}
+
 }
