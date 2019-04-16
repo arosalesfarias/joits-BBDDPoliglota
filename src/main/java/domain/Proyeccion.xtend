@@ -4,8 +4,6 @@ import java.util.List
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.FetchType
-import javax.persistence.Inheritance
-import javax.persistence.InheritanceType
 import javax.persistence.OneToMany
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Observable
@@ -13,7 +11,6 @@ import org.uqbar.commons.model.annotations.Observable
 @Entity
 @Observable
 @Accessors
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 abstract class Proyeccion extends Entidad {
 
 	@Column(length=50)

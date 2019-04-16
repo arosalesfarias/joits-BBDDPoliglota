@@ -1,16 +1,22 @@
 package domain
 
+import java.time.DayOfWeek
 import java.time.LocalDateTime
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.Id
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Observable
-import java.time.DayOfWeek
-import javax.persistence.Entity
-import javax.persistence.Column
 
 @Entity
 @Accessors
 @Observable
 class Funcion {
+	
+	@Id
+	@GeneratedValue
+	Long id
 
 	@Column
 	LocalDateTime hora

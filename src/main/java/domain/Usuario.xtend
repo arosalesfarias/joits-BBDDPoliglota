@@ -38,7 +38,7 @@ class Usuario extends Entidad {
 	@Column(length=25)
 	String login
 
-	@ManyToMany(fetch=FetchType.LAZY)
+	@ManyToMany(fetch=FetchType.EAGER)
 	List<Usuario> amigos = newArrayList()
 	
 	@OneToMany(fetch=FetchType.EAGER)
