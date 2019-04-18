@@ -8,13 +8,13 @@ import javax.persistence.InheritanceType
 import org.eclipse.xtend.lib.annotations.Accessors
 
 @Entity
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 @Accessors
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 abstract class Entidad {
-	
+
 	@Id
 	@GeneratedValue
 	int Id
-	
+
 	def Boolean validateCreate()
 }

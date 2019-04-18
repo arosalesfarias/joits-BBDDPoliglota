@@ -56,14 +56,14 @@ class JoitsBootstrap implements Bootstrap {
 		crearUsuarios(arosales)
 		crearUsuarios(chinwenwencha)
 		crearUsuarios(elgato)
-//		// amigos
-//		alezcano.amigos.addAll(dsalamida, arosales)
-//		dsalamida.amigos.addAll(alezcano, arosales)
-//		arosales.amigos.addAll(alezcano, dsalamida)
-//		// Update con amigos
-//		crearUsuarios(alezcano)
-//		crearUsuarios(dsalamida)
-//		crearUsuarios(arosales)
+		// amigos
+		alezcano.amigos.addAll(dsalamida, arosales)
+		dsalamida.amigos.addAll(alezcano, arosales)
+		arosales.amigos.addAll(alezcano, dsalamida)
+		// Update con amigos
+		crearUsuarios(alezcano)
+		crearUsuarios(dsalamida)
+		crearUsuarios(arosales)
 	// amigos
 //		alezcano.amigos.addAll(dsalamida, arosales)
 //		dsalamida.amigos.addAll(alezcano, arosales)
@@ -192,7 +192,7 @@ class JoitsBootstrap implements Bootstrap {
 		} else {
 			val usuarioBD = listaUsuarios.head
 			usuario.id = usuarioBD.id
-			repoUsuarios.update(usuario)
+			repoUsuarios.update(usuario, usuario)
 		}
 	}
 

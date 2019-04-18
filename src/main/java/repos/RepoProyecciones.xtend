@@ -36,9 +36,10 @@ class RepoProyecciones extends RepoGenerico<Proyeccion> {
 
 // /////////////////////////////*************************************************/////////////////////////////////
 
-//	override List<Proyeccion> search(String buscar) {
-//		elementos.filter[proyeccion|this.match(buscar, proyeccion.titulo)].toList
-//	}
+	override List<Proyeccion> search(String buscar) {
+		elementos.filter[proyeccion|this.match(buscar, proyeccion.titulo)].toList
+	}
+	
 	override getEntityType() {
 		Proyeccion
 	}
