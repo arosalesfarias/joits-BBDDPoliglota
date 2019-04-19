@@ -10,6 +10,7 @@ import org.uqbar.commons.model.annotations.Dependencies
 import org.uqbar.commons.model.annotations.Observable
 import repos.RepoProyecciones
 import domain.Usuario
+import domain.Saga
 
 @Accessors
 @Observable
@@ -18,14 +19,14 @@ class ModeloBusqueda extends BuscaSugiereModel<Proyeccion> {
 	List<Ticket> carrito = new ArrayList<Ticket>
 	Ticket entrada
 	float precio = 0
-	
-	new(Usuario user){
+
+	new(Usuario user) {
 		super(user)
 		sugeridos = RepoProyecciones.instance.elementos
 	}
 
 	override void search() {
-		lista = RepoProyecciones.instance.search(valorBusqueda)	
+		lista = RepoProyecciones.instance.searchByExample(new Saga() => [titulo = valorBusqueda]) // RepoProyecciones.instance.search(valorBusqueda)	
 	}
 
 	def void clearUsuario() {

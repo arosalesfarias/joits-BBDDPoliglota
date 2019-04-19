@@ -3,10 +3,13 @@ package application
 import domain.Usuario
 import org.uqbar.arena.bootstrap.Bootstrap
 import repos.RepoUsuarios
+import domain.Proyeccion
+import repos.RepoProyecciones
+import domain.Pelicula
+import domain.Saga
 
 class JoitsBootstrap implements Bootstrap {
 	override run() {
-		// val RepoUsuarios repoUsuarios = RepoUsuarios.instance
 		var alezcano = new Usuario() => [
 			nombre = "Alberto"
 			apellido = "Lezcano"
@@ -16,7 +19,7 @@ class JoitsBootstrap implements Bootstrap {
 			login = "1234"
 		]
 
-		this.crearUsuarios(alezcano)
+		crearUsuarios(alezcano)
 
 		var dsalamida = new Usuario() => [
 			nombre = "Diego"
@@ -64,21 +67,6 @@ class JoitsBootstrap implements Bootstrap {
 		crearUsuarios(alezcano)
 		crearUsuarios(dsalamida)
 		crearUsuarios(arosales)
-	// amigos
-//		alezcano.amigos.addAll(dsalamida, arosales)
-//		dsalamida.amigos.addAll(alezcano, arosales)
-//		arosales.amigos.addAll(alezcano, dsalamida)
-//		// RepoUsuarios
-//		repoUsr.create(alezcano)
-//		println("usuario alezcano creado")
-//		repoUsr.create(dsalamida)
-//		println("usuario dsalamida creado")
-//		repoUsr.create(arosales)
-//		println("usuario arosales creado")
-//		repoUsr.create(chinwenwencha)
-//		println("usuario chinwenwencha creado")
-//		repoUsr.create(elgato)
-//		println("usuario elgato creado")
 //		// Funciones
 //		val funcionMiercoles = new Funcion() => [
 //			hora = LocalDateTime.of(2019, 03, 06, 13, 30)
@@ -93,72 +81,73 @@ class JoitsBootstrap implements Bootstrap {
 //			sala = "6"
 //		]
 //		// Pelis y Sagas
-//		val RepoProyecciones repoProy = RepoProyecciones.instance
-//		val batman = new Pelicula() => [
-//			titulo = "Batman asciende"
-//			añoRodaje = 2010
-//			puntaje = 5
-//			genero = "Accion"
-//			funciones.addAll(funcionMiercoles, funcionFinde, funcionLunes)
-//		]
-//		val superman = new Pelicula() => [
-//			titulo = "Superman"
-//			añoRodaje = 2012
-//			puntaje = 3
-//			genero = "Accion"
-//			funciones.add(funcionMiercoles)
-//		]
-//		val avengers1 = new Pelicula() => [
-//			titulo = "Avengers"
-//			añoRodaje = 2010
-//			puntaje = 5
-//			genero = "Accion"
-//			funciones.addAll(funcionFinde, funcionLunes)
-//		]
-//		val avengers2 = new Pelicula() => [
-//			titulo = "Avengers 2"
-//			añoRodaje = 2012
-//			puntaje = 4
-//			genero = "Accion"
-//			funciones.addAll(funcionMiercoles, funcionLunes)
-//		]
-//		val avengers3 = new Pelicula() => [
-//			titulo = "Avengers 3"
-//			añoRodaje = 2014
-//			puntaje = 5
-//			genero = "Accion"
-//			funciones.addAll(funcionMiercoles, funcionFinde)
-//		]
-//		val volverAlFuturo1 = new Pelicula() => [
-//			titulo = "Volver al futuro"
-//			añoRodaje = 1989
-//			puntaje = 4
-//			genero = "Aventura"
-//			funciones.add(funcionLunes)
-//		]
-//		val volverAlFuturo2 = new Pelicula() => [
-//			titulo = "Volver al futuro 2"
-//			añoRodaje = 1991
-//			puntaje = 5
-//			genero = "Aventura"
-//			funciones.add(funcionFinde)
-//		]
-//		val volverAlFuturo3 = new Pelicula() => [
-//			titulo = "Volver al futuro 3"
-//			añoRodaje = 1992
-//			puntaje = 4
-//			genero = "Aventura"
-//			funciones.addAll(funcionMiercoles, funcionLunes, funcionFinde)
-//		]
-//		val volverAlFuturo = new Saga() => [
-//			titulo = "Saga Volver al futuro"
-//			añoRodaje = 1989
-//			puntaje = 4
-//			nivelClasico = 50
-//			peliculas.addAll(volverAlFuturo1, volverAlFuturo2, volverAlFuturo3)
-//			funciones.addAll(funcionMiercoles, funcionLunes)
-//		]
-//
+		val batman = new Pelicula() => [
+			titulo = "Batman asciende"
+			añoRodaje = 2010
+			puntaje = 5
+			genero = "Accion"
+		// funciones.addAll(funcionMiercoles, funcionFinde, funcionLunes)
+		]
+		val superman = new Pelicula() => [
+			titulo = "Superman"
+			añoRodaje = 2012
+			puntaje = 3
+			genero = "Accion"
+		// funciones.add(funcionMiercoles)
+		]
+		val avengers1 = new Pelicula() => [
+			titulo = "Avengers"
+			añoRodaje = 2010
+			puntaje = 5
+			genero = "Accion"
+		// funciones.addAll(funcionFinde, funcionLunes)
+		]
+		val avengers2 = new Pelicula() => [
+			titulo = "Avengers 2"
+			añoRodaje = 2012
+			puntaje = 4
+			genero = "Accion"
+		// funciones.addAll(funcionMiercoles, funcionLunes)
+		]
+		val avengers3 = new Pelicula() => [
+			titulo = "Avengers 3"
+			añoRodaje = 2014
+			puntaje = 5
+			genero = "Accion"
+		// funciones.addAll(funcionMiercoles, funcionFinde)
+		]
+		val volverAlFuturo1 = new Pelicula() => [
+			titulo = "Volver al futuro"
+			añoRodaje = 1989
+			puntaje = 4
+			genero = "Aventura"
+		// funciones.add(funcionLunes)
+		]
+		val volverAlFuturo2 = new Pelicula() => [
+			titulo = "Volver al futuro 2"
+			añoRodaje = 1991
+			puntaje = 5
+			genero = "Aventura"
+		// funciones.add(funcionFinde)
+		]
+		val volverAlFuturo3 = new Pelicula() => [
+			titulo = "Volver al futuro 3"
+			añoRodaje = 1992
+			puntaje = 4
+			genero = "Aventura"
+		// funciones.addAll(funcionMiercoles, funcionLunes, funcionFinde)
+		]
+		val volverAlFuturo = new Saga() => [
+			titulo = "Saga Volver al futuro"
+			añoRodaje = 1989
+			puntaje = 4
+			nivelClasico = 50
+			peliculas.addAll(volverAlFuturo1, volverAlFuturo2, volverAlFuturo3)
+		// funciones.addAll(funcionMiercoles, funcionLunes)
+		]
+		// Creo las pelis y sagas
+		newArrayList(batman, superman, avengers1, avengers2, avengers3, volverAlFuturo1, volverAlFuturo2,
+			volverAlFuturo3, volverAlFuturo).forEach[proy|this.crearProyeccion(proy)]
 //		println("funcion miercoles agregado a Avengers 1")
 //		// pelis vistas
 //		arosales.tickets.add(new Ticket() => [pelicula = batman])
@@ -183,6 +172,19 @@ class JoitsBootstrap implements Bootstrap {
 //		println("pelicula Avengers 3 creada")
 	}
 
+	def crearProyeccion(Proyeccion proy) {
+		val repoProy = RepoProyecciones.instance
+		val listaProy = repoProy.searchByExample(proy)
+		if (listaProy.isEmpty) {
+			repoProy.create(proy)
+			println("Proyeccion " + proy.titulo + " creada")
+		} else {
+			val proyBD = listaProy.head
+			proy.id = proyBD.id
+			repoProy.update(proyBD, proy)
+		}
+	}
+
 	def void crearUsuarios(Usuario usuario) {
 		val repoUsuarios = RepoUsuarios.instance
 		val listaUsuarios = repoUsuarios.searchByExample(usuario)
@@ -192,7 +194,7 @@ class JoitsBootstrap implements Bootstrap {
 		} else {
 			val usuarioBD = listaUsuarios.head
 			usuario.id = usuarioBD.id
-			repoUsuarios.update(usuario, usuario)
+			repoUsuarios.update(usuarioBD, usuario)
 		}
 	}
 

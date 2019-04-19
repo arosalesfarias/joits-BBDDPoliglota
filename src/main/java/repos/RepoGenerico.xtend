@@ -97,4 +97,21 @@ abstract class RepoGenerico<T extends Entidad> {
 		}
 	}
 
+	def List<T> allInstances() {
+		val entityManager = this.entityManager
+		try {
+			val criteria = entityManager.criteriaBuilder
+			val query = criteria.createQuery(entityType)
+			val from = query.from(entityType)
+			query.select(from)
+			val result = entityManager.createQuery(query).resultList
+			result
+		} finally {
+			entityManager?.close
+		}
+	}
+
+	def String stringBusqueda(String str) {
+		"%" + str + "%"
+	}
 }

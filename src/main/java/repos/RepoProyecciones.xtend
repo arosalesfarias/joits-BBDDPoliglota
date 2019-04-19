@@ -18,10 +18,9 @@ class RepoProyecciones extends RepoGenerico<Proyeccion> {
 		}
 		repoProyecciones
 	}
-	
+
 	private new() {
 	}
-
 
 	override actualizarDatos(Proyeccion viejo, Proyeccion nuevo) {
 		viejo => [
@@ -35,18 +34,18 @@ class RepoProyecciones extends RepoGenerico<Proyeccion> {
 	}
 
 // /////////////////////////////*************************************************/////////////////////////////////
-
 	override List<Proyeccion> search(String buscar) {
 		elementos.filter[proyeccion|this.match(buscar, proyeccion.titulo)].toList
 	}
-	
+
 	override getEntityType() {
 		Proyeccion
 	}
 
-	override generateWhere(CriteriaBuilder criteria, CriteriaQuery<Proyeccion> query, Root<Proyeccion> camposProyeccion, Proyeccion proyeccion) {
+	override generateWhere(CriteriaBuilder criteria, CriteriaQuery<Proyeccion> query, Root<Proyeccion> camposProyeccion,
+		Proyeccion proyeccion) {
 		if (proyeccion.titulo !== null) {
-			query.where(criteria.equal(camposProyeccion.get("titulo"), proyeccion.titulo))
+			query.where(criteria.like(camposProyeccion.get("titulo"), stringBusqueda(proyeccion.titulo)))
 		}
 	}
 
