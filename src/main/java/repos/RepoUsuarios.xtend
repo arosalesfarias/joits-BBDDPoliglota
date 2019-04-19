@@ -44,13 +44,13 @@ class RepoUsuarios extends RepoGenerico<Usuario> {
 		]
 	}
 
-	def devolverUsuario(String usr) {
-		elementos.findFirst[u|u.usuario.equals(usr)]
+	def devolverUsuario(Usuario usu) {
+		repoUsuarios.searchByExample(usu).head
 	}
 
-	def coincide(String usr, String pass) {
-		val usuario = devolverUsuario(usr)
-		if (usuario === null || !usuario.login.equals(pass))
+	def coincide(Usuario usu) {
+		val usuario = devolverUsuario(usu)
+		if (usuario === null || !usuario.login.equals(usu.login))
 			throw new UserException("Usuario o contraseña incorrectos.")
 	}
 
@@ -61,6 +61,9 @@ class RepoUsuarios extends RepoGenerico<Usuario> {
 	override generateWhere(CriteriaBuilder criteria, CriteriaQuery<Usuario> query, Root<Usuario> camposUsuario, Usuario usuario) {
 		if (usuario.nombre !== null) {
 			query.where(criteria.equal(camposUsuario.get("nombre"), usuario.nombre))
+		}
+		if (usuario.usuario !== null) {
+			query.where(criteria.equal(camposUsuario.get("usuario"), usuario.usuario))
 		}
 	}
 

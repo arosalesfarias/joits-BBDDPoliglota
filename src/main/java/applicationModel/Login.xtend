@@ -3,6 +3,7 @@ package applicationModel
 import repos.RepoUsuarios
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Observable
+import domain.Usuario
 
 @Observable
 @Accessors
@@ -18,11 +19,17 @@ class Login {
 	}
 
 	def getUsuario() {
-		repoUsr.devolverUsuario(usuarioIngresado)
+		repoUsr.devolverUsuario(new Usuario() =>[
+			usuario = usuarioIngresado
+		])
 	}
 
 	def autenticar() {
-		repoUsr.coincide(usuarioIngresado, contraseña)
+		repoUsr.coincide( new Usuario() =>[
+			usuario = usuarioIngresado
+			login =  contraseña
+		]
+		)
 	}
 
 }
