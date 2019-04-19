@@ -22,11 +22,11 @@ class LoginWindow extends SimpleWindow<Login> {
 	override protected createFormPanel(Panel mainPanel) {
 		new Label(mainPanel).text = "Usuario"
 		new TextBox(mainPanel) => [
-			value <=> "usuarioIngresado"
+			value <=> "login.usuario"
 		]
 		new Label(mainPanel).text = "Contraseña"
 		new PasswordField(mainPanel) => [
-			value <=> "contraseña"
+			value <=> "login.login"
 		]
 	}
 

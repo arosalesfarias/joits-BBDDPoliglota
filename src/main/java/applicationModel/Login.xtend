@@ -11,25 +11,19 @@ class Login {
 
 	RepoUsuarios repoUsr
 
-	String usuarioIngresado
-	String contraseña
+	Usuario login
 
 	new() {
 		repoUsr = RepoUsuarios.instance
+		login = new Usuario()
 	}
 
 	def getUsuario() {
-		repoUsr.devolverUsuario(new Usuario() =>[
-			usuario = usuarioIngresado
-		])
+		repoUsr.devolverUsuario(login)
 	}
 
 	def autenticar() {
-		repoUsr.coincide( new Usuario() =>[
-			usuario = usuarioIngresado
-			login =  contraseña
-		]
-		)
+		repoUsr.coincide(login)
 	}
 
 }
