@@ -181,7 +181,7 @@ class JoitsBootstrap implements Bootstrap {
 		} else {
 			val proyBD = listaProy.head
 			proy.id = proyBD.id
-			repoProy.update(proyBD, proy)
+			repoProy.update(proy)
 		}
 	}
 
@@ -194,7 +194,7 @@ class JoitsBootstrap implements Bootstrap {
 		} else {
 			val usuarioBD = listaUsuarios.head
 			usuario.id = usuarioBD.id
-			repoUsuarios.update(usuarioBD, usuario)
+			repoUsuarios.update(usuario)
 		}
 	}
 
