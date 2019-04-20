@@ -30,7 +30,7 @@ class RepoProyecciones extends RepoGenerico<Proyeccion> {
 	}
 
 	def List<Proyeccion> peliculasSugeridas() {
-		elementos.take(3).toList
+		allInstances.take(3).toList
 	}
 
 // /////////////////////////////*************************************************/////////////////////////////////

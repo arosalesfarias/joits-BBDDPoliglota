@@ -105,7 +105,6 @@ class ControlPanelWindow extends TransactionalDialog<Usuario> {
 	}
 
 	def aceptar() {
-		println(modelObject.edad)
 		this.accept
 		RepoUsuarios.instance.update(modelObject)
 	}

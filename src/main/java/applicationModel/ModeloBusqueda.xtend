@@ -22,11 +22,11 @@ class ModeloBusqueda extends BuscaSugiereModel<Proyeccion> {
 
 	new(Usuario user) {
 		super(user)
-		sugeridos = RepoProyecciones.instance.elementos
+		sugeridos = RepoProyecciones.instance.peliculasSugeridas
 	}
 
 	override void search() {
-		lista = RepoProyecciones.instance.searchByExample(new Saga() => [titulo = valorBusqueda]) // RepoProyecciones.instance.search(valorBusqueda)	
+		lista = RepoProyecciones.instance.searchByExample(new Saga() => [titulo = valorBusqueda]) // RepoProyecciones.instance.search(valorBusqueda)
 	}
 
 	def void clearUsuario() {
