@@ -110,6 +110,22 @@ abstract class RepoGenerico<T extends Entidad> {
 			entityManager?.close
 		}
 	}
+	def update(T t) {
+		val entityManager = this.entityManager
+		try {
+			entityManager => [
+				transaction.begin
+				merge(t)
+				transaction.commit
+			]
+		} catch (PersistenceException e) {
+			e.printStackTrace
+			entityManager.transaction.rollback
+			throw new RuntimeException("Ocurrió un error, la operación no puede completarse", e)
+		} finally {
+			entityManager?.close
+		}
+	}
 
 	def String stringBusqueda(String str) {
 		"%" + str + "%"

@@ -16,6 +16,7 @@ import org.uqbar.arena.widgets.List
 import org.uqbar.arena.widgets.Spinner
 import org.uqbar.arena.aop.windows.TransactionalDialog
 import applicationModel.BusquedaAmigos
+import repos.RepoUsuarios
 
 class ControlPanelWindow extends TransactionalDialog<Usuario> {
 
@@ -94,12 +95,18 @@ class ControlPanelWindow extends TransactionalDialog<Usuario> {
 		]
 		new Button(actionsPanel) => [
 			caption = "Aceptar"
-			onClick[|this.accept]
+			onClick[|this.aceptar]
 			setAsDefault
 		]
 		new Button(actionsPanel) => [
 			caption = "Cancelar"
 			onClick[|this.close]
 		]
+	}
+
+	def aceptar() {
+		println(modelObject.edad)
+		RepoUsuarios.instance.update(modelObject)
+		this.accept
 	}
 }
