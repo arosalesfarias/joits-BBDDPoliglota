@@ -9,7 +9,7 @@ import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 
 class BusquedaAmigosWindow extends BusquedaMainWindow {
 	new(WindowOwner parent, BusquedaAmigos model) {
-		super(parent, model, newArrayList("nombre","apellido"))
+		super(parent, model, newArrayList("nombre", "apellido"))
 		title = "Busqueda de Personas"
 	}
 
@@ -17,7 +17,6 @@ class BusquedaAmigosWindow extends BusquedaMainWindow {
 		new Button(panel) => [
 			caption = "Agregar Amigo"
 			onClick[|modelObject.agregar()]
-			setAsDefault
 			enabled <=> "hayUnoSeleccionado"
 		]
 		new Button(panel) => [

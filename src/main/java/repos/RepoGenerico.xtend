@@ -60,6 +60,9 @@ abstract class RepoGenerico<T extends Entidad> {
 
 	abstract def void generateWhere(CriteriaBuilder criteria, CriteriaQuery<T> query, Root<T> camposCandidato, T t)
 
+	abstract def void generateWhereString(CriteriaBuilder criteria, CriteriaQuery<T> query, Root<T> camposCandidato,
+		String str)
+
 	abstract def Class<T> getEntityType()
 
 	def getEntityManager() {
@@ -97,6 +100,20 @@ abstract class RepoGenerico<T extends Entidad> {
 		}
 	}
 
+	def searchByString(String str) {
+		val entityManager = this.entityManager
+		try {
+			val criteria = entityManager.criteriaBuilder
+			val query = criteria.createQuery(entityType)
+			val from = query.from(entityType)
+			query.select(from)
+			generateWhereString(criteria, query, from, str)
+			entityManager.createQuery(query).resultList
+		} finally {
+			entityManager?.close
+		}
+	}
+
 	def List<T> allInstances() {
 		val entityManager = this.entityManager
 		try {
@@ -110,6 +127,7 @@ abstract class RepoGenerico<T extends Entidad> {
 			entityManager?.close
 		}
 	}
+
 	def update(T t) {
 		val entityManager = this.entityManager
 		try {
@@ -125,6 +143,10 @@ abstract class RepoGenerico<T extends Entidad> {
 		} finally {
 			entityManager?.close
 		}
+	}
+
+	def List<T> listaSugeridos() {
+		allInstances.take(3).toList // TODO: que el query me traiga los tres y no tener que filtrar trayendo todos
 	}
 
 	def String stringBusqueda(String str) {

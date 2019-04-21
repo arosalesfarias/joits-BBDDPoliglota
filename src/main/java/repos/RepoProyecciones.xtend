@@ -29,10 +29,6 @@ class RepoProyecciones extends RepoGenerico<Proyeccion> {
 		]
 	}
 
-	def List<Proyeccion> peliculasSugeridas() {
-		allInstances.take(3).toList
-	}
-
 // /////////////////////////////*************************************************/////////////////////////////////
 	override List<Proyeccion> search(String buscar) {
 		elementos.filter[proyeccion|this.match(buscar, proyeccion.titulo)].toList
@@ -48,5 +44,8 @@ class RepoProyecciones extends RepoGenerico<Proyeccion> {
 			query.where(criteria.like(camposProyeccion.get("titulo"), stringBusqueda(proyeccion.titulo)))
 		}
 	}
+
+	override generateWhereString(CriteriaBuilder criteria, CriteriaQuery<Proyeccion> query,
+		Root<Proyeccion> camposProyeccion, String str) {}
 
 }

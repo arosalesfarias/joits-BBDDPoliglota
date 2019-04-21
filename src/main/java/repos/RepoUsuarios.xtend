@@ -30,7 +30,8 @@ class RepoUsuarios extends RepoGenerico<Usuario> {
 	}
 
 	def buscarPersonas(Usuario usuario, String buscar) {
-		search(buscar).filter[persona|!usuario.amigos.exists[amigo|amigo === persona] && persona !== usuario].toList
+		// search(buscar).filter[persona|!usuario.amigos.exists[amigo|amigo === persona] && persona !== usuario].toList
+		searchByString(buscar)
 	}
 
 	override void actualizarDatos(Usuario usuarioViejo, Usuario usuarioNuevo) {
@@ -58,7 +59,8 @@ class RepoUsuarios extends RepoGenerico<Usuario> {
 		Usuario
 	}
 
-	override generateWhere(CriteriaBuilder criteria, CriteriaQuery<Usuario> query, Root<Usuario> camposUsuario, Usuario usuario) {
+	override generateWhere(CriteriaBuilder criteria, CriteriaQuery<Usuario> query, Root<Usuario> camposUsuario,
+		Usuario usuario) {
 		if (usuario.nombre !== null) {
 			query.where(criteria.equal(camposUsuario.get("nombre"), usuario.nombre))
 		}
@@ -67,5 +69,17 @@ class RepoUsuarios extends RepoGenerico<Usuario> {
 		}
 	}
 
+	override generateWhereString(CriteriaBuilder criteria, CriteriaQuery<Usuario> query, Root<Usuario> camposUsuario,
+		String str) {
+		if (str !== null) {
+			query.where(
+				criteria.or(
+					criteria.like(camposUsuario.get("nombre"), stringBusqueda(str)),
+					criteria.like(camposUsuario.get("apellido"), stringBusqueda(str)),
+					criteria.like(camposUsuario.get("usuario"), stringBusqueda(str))
+				)
+			)
+		}
+	}
+
 }
-	

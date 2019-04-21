@@ -29,9 +29,6 @@ class Usuario extends Entidad {
 	@Column
 	float saldo
 
-	@Column
-	float cantidad
-
 	@Column(length=25)
 	String usuario
 
@@ -43,6 +40,8 @@ class Usuario extends Entidad {
 	
 	@OneToMany(fetch=FetchType.EAGER)
 	List<Ticket> tickets = new ArrayList<Ticket>
+	
+	float cantidad
 
 	override String toString() {
 		usuario

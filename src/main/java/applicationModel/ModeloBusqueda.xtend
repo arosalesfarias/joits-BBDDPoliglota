@@ -22,7 +22,7 @@ class ModeloBusqueda extends BuscaSugiereModel<Proyeccion> {
 
 	new(Usuario user) {
 		super(user)
-		sugeridos = RepoProyecciones.instance.peliculasSugeridas
+		sugeridos = RepoProyecciones.instance.listaSugeridos
 	}
 
 	override void search() {
@@ -52,10 +52,6 @@ class ModeloBusqueda extends BuscaSugiereModel<Proyeccion> {
 		this.crearTicket
 		carrito.add(entrada)
 		clearSeleccionados()
-	}
-
-	def pelisSugeridas() {
-		RepoProyecciones.instance.peliculasSugeridas
 	}
 
 	def crearTicket() {
