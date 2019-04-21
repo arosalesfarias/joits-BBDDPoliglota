@@ -22,7 +22,7 @@ class ModeloBusqueda extends BuscaSugiereModel<Proyeccion> {
 
 	new(Usuario user) {
 		super(user)
-		sugeridos = RepoProyecciones.instance.listaSugeridos
+		sugeridos = RepoProyecciones.instance.listaSugeridos(3)
 	}
 
 	override void search() {

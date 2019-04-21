@@ -128,6 +128,20 @@ abstract class RepoGenerico<T extends Entidad> {
 		}
 	}
 
+	def List<T> allTopInstances(int num) {
+		val entityManager = this.entityManager
+		try {
+			val criteria = entityManager.criteriaBuilder
+			val query = criteria.createQuery(entityType)
+			val from = query.from(entityType)
+			query.select(from)
+			val result = entityManager.createQuery(query).setMaxResults(num).resultList
+			result
+		} finally {
+			entityManager?.close
+		}
+	}
+
 	def update(T t) {
 		val entityManager = this.entityManager
 		try {
@@ -145,8 +159,8 @@ abstract class RepoGenerico<T extends Entidad> {
 		}
 	}
 
-	def List<T> listaSugeridos() {
-		allInstances.take(3).toList // TODO: que el query me traiga los tres y no tener que filtrar trayendo todos
+	def List<T> listaSugeridos(int n) {
+		allTopInstances(n) // TODO: que el query me traiga los tres y no tener que filtrar trayendo todos
 	}
 
 	def String stringBusqueda(String str) {

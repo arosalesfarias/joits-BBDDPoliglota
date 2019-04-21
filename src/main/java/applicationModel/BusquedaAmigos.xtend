@@ -11,7 +11,7 @@ class BusquedaAmigos extends BuscaSugiereModel<Usuario> {
 
 	new(Usuario _usuario) {
 		super(_usuario)
-		sugeridos = RepoUsuarios.instance.listaSugeridos
+		sugeridos = RepoUsuarios.instance.listaSugeridos(3)
 	}
 
 	override search() {
