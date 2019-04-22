@@ -25,6 +25,10 @@ class ModeloBusqueda extends BuscaSugiereModel<Proyeccion> {
 		sugeridos = RepoProyecciones.instance.listaSugeridos(3)
 	}
 
+	override setEntidadSeleccionada(Proyeccion proyeccion) {
+		entidadSeleccionada = RepoProyecciones.instance.searchById(proyeccion.id)
+	}
+
 	override void search() {
 		lista = RepoProyecciones.instance.searchByExample(new Saga() => [titulo = valorBusqueda]) // RepoProyecciones.instance.search(valorBusqueda)
 	}

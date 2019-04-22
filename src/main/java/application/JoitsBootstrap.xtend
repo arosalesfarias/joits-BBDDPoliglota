@@ -1,12 +1,15 @@
 package application
 
-import domain.Usuario
-import org.uqbar.arena.bootstrap.Bootstrap
-import repos.RepoUsuarios
-import domain.Proyeccion
-import repos.RepoProyecciones
+import domain.Funcion
 import domain.Pelicula
+import domain.Proyeccion
 import domain.Saga
+import domain.Usuario
+import java.time.LocalDateTime
+import org.uqbar.arena.bootstrap.Bootstrap
+import repos.RepoProyecciones
+import repos.RepoUsuarios
+import repos.RepoFunciones
 
 class JoitsBootstrap implements Bootstrap {
 	override run() {
@@ -68,18 +71,18 @@ class JoitsBootstrap implements Bootstrap {
 		crearUsuarios(dsalamida)
 		crearUsuarios(arosales)
 //		// Funciones
-//		val funcionMiercoles = new Funcion() => [
-//			hora = LocalDateTime.of(2019, 03, 06, 13, 30)
-//			sala = "2"
-//		]
-//		val funcionFinde = new Funcion() => [
-//			hora = LocalDateTime.of(2019, 03, 03, 13, 30)
-//			sala = "12"
-//		]
-//		val funcionLunes = new Funcion() => [
-//			hora = LocalDateTime.of(2019, 03, 04, 13, 30)
-//			sala = "6"
-//		]
+		val funcionMiercoles = new Funcion() => [
+			hora = LocalDateTime.of(2019, 03, 06, 13, 30)
+			sala = "2"
+		]
+		val funcionFinde = new Funcion() => [
+			hora = LocalDateTime.of(2019, 03, 03, 13, 30)
+			sala = "12"
+		]
+		val funcionLunes = new Funcion() => [
+			hora = LocalDateTime.of(2019, 03, 04, 13, 30)
+			sala = "6"
+		]
 //		// Pelis y Sagas
 		val batman = new Pelicula() => [
 			titulo = "Batman asciende"
@@ -145,9 +148,14 @@ class JoitsBootstrap implements Bootstrap {
 			peliculas.addAll(volverAlFuturo1, volverAlFuturo2, volverAlFuturo3)
 		// funciones.addAll(funcionMiercoles, funcionLunes)
 		]
+		// Creo las funciones
+		crearFunciones(funcionMiercoles)
+		crearFunciones(funcionFinde)
+		crearFunciones(funcionLunes)
 		// Creo las pelis y sagas
 		newArrayList(batman, superman, avengers1, avengers2, avengers3, volverAlFuturo1, volverAlFuturo2,
 			volverAlFuturo3, volverAlFuturo).forEach[proy|this.crearProyeccion(proy)]
+
 //		println("funcion miercoles agregado a Avengers 1")
 //		// pelis vistas
 //		arosales.tickets.add(new Ticket() => [pelicula = batman])
@@ -195,6 +203,19 @@ class JoitsBootstrap implements Bootstrap {
 			val usuarioBD = listaUsuarios.head
 			usuario.id = usuarioBD.id
 			repoUsuarios.update(usuario)
+		}
+	}
+
+	def void crearFunciones(Funcion funcion) {
+		val repoFunciones = RepoFunciones.instance
+		val listaFunciones = repoFunciones.searchByExample(funcion)
+		if (listaFunciones.isEmpty) {
+			repoFunciones.create(funcion)
+			println("Funcion creada")
+		} else {
+			val funcionBD = listaFunciones.head
+			funcion.id = funcionBD.id
+			repoFunciones.update(funcion)
 		}
 	}
 

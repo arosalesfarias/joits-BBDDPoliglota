@@ -4,19 +4,18 @@ import java.time.DayOfWeek
 import java.time.LocalDateTime
 import javax.persistence.Column
 import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Observable
+import exceptions.BusinessException
 
 @Entity
 @Accessors
 @Observable
-class Funcion {
-	
-	@Id
-	@GeneratedValue
-	Long id
+class Funcion extends Entidad {
+//	
+//	@Id
+//	@GeneratedValue
+//	Long id
 
 	@Column
 	LocalDateTime hora
@@ -35,6 +34,12 @@ class Funcion {
 			50
 		} else
 			80
+	}
+	
+	override validateCreate() {
+		if (hora === null || sala === null) {
+			throw new BusinessException("le falta campo hora o sala")
+		}
 	}
 
 }

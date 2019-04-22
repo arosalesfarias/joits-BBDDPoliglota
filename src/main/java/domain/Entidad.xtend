@@ -14,7 +14,7 @@ abstract class Entidad {
 
 	@Id
 	@GeneratedValue
-	int Id
+	Long id
 
 	def Boolean validateCreate()
 }

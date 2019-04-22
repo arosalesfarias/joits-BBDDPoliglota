@@ -58,7 +58,7 @@ abstract class RepoGenerico<T extends Entidad> {
 	// ///////////////////  **********************************************************////////////////////////////////
 	static final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Joyts")
 
-	abstract def void generateWhere(CriteriaBuilder criteria, CriteriaQuery<T> query, Root<T> camposCandidato, T t)
+	abstract def void generateWhere(CriteriaBuilder criteria, CriteriaQuery<T> query, Root<T> camposEntidad, T t)
 
 	abstract def void generateWhereString(CriteriaBuilder criteria, CriteriaQuery<T> query, Root<T> camposCandidato,
 		T t, String str)
