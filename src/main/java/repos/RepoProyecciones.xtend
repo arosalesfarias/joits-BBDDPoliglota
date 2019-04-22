@@ -46,6 +46,6 @@ class RepoProyecciones extends RepoGenerico<Proyeccion> {
 	}
 
 	override generateWhereString(CriteriaBuilder criteria, CriteriaQuery<Proyeccion> query,
-		Root<Proyeccion> camposProyeccion, String str) {}
+		Root<Proyeccion> camposProyeccion, Proyeccion proy, String str) {}
 
 }

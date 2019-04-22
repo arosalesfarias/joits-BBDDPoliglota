@@ -61,7 +61,7 @@ abstract class RepoGenerico<T extends Entidad> {
 	abstract def void generateWhere(CriteriaBuilder criteria, CriteriaQuery<T> query, Root<T> camposCandidato, T t)
 
 	abstract def void generateWhereString(CriteriaBuilder criteria, CriteriaQuery<T> query, Root<T> camposCandidato,
-		String str)
+		T t, String str)
 
 	abstract def Class<T> getEntityType()
 
@@ -100,14 +100,14 @@ abstract class RepoGenerico<T extends Entidad> {
 		}
 	}
 
-	def searchByString(String str) {
+	def searchByString(T t, String str) {
 		val entityManager = this.entityManager
 		try {
 			val criteria = entityManager.criteriaBuilder
 			val query = criteria.createQuery(entityType)
 			val from = query.from(entityType)
 			query.select(from)
-			generateWhereString(criteria, query, from, str)
+			generateWhereString(criteria, query, from, t, str)
 			entityManager.createQuery(query).resultList
 		} finally {
 			entityManager?.close
