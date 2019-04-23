@@ -16,7 +16,6 @@ import org.uqbar.arena.widgets.List
 import org.uqbar.arena.widgets.Spinner
 import org.uqbar.arena.aop.windows.TransactionalDialog
 import applicationModel.BusquedaAmigos
-import repos.RepoUsuarios
 
 class ControlPanelWindow extends TransactionalDialog<Usuario> {
 
@@ -106,6 +105,6 @@ class ControlPanelWindow extends TransactionalDialog<Usuario> {
 
 	def aceptar() {
 		this.accept
-		RepoUsuarios.instance.update(modelObject)
+		modelObject.update
 	}
 }

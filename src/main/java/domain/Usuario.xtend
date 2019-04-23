@@ -87,4 +87,9 @@ class Usuario extends Entidad {
 		if(ticket.precio > saldo) throw new BusinessException("el usuario no tiene saldo suficiente")
 		saldo = saldo - ticket.precio
 	}
+	
+	def update() {
+		RepoUsuarios.instance.update(this)
+	}
+	
 }
