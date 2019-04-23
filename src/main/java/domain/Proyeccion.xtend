@@ -4,7 +4,7 @@ import java.util.List
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.FetchType
-import javax.persistence.OneToMany
+import javax.persistence.ManyToMany
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Observable
 
@@ -25,7 +25,7 @@ abstract class Proyeccion extends Entidad {
 	@Column(length=50)
 	String genero
 
-	@OneToMany(fetch=FetchType.LAZY)
+	@ManyToMany(fetch=FetchType.LAZY)
 	List<Funcion> funciones
 
 	new() {

@@ -83,62 +83,68 @@ class JoitsBootstrap implements Bootstrap {
 			hora = LocalDateTime.of(2019, 03, 04, 13, 30)
 			sala = "6"
 		]
-//		// Pelis y Sagas
+
+		// Creo las funciones
+		crearFunciones(funcionMiercoles)
+		crearFunciones(funcionFinde)
+		crearFunciones(funcionLunes)
+
+		// Pelis y Sagas
 		val batman = new Pelicula() => [
 			titulo = "Batman asciende"
 			añoRodaje = 2010
 			puntaje = 5
 			genero = "Accion"
-		// funciones.addAll(funcionMiercoles, funcionFinde, funcionLunes)
+			funciones.addAll(funcionMiercoles, funcionFinde, funcionLunes)
 		]
 		val superman = new Pelicula() => [
 			titulo = "Superman"
 			añoRodaje = 2012
 			puntaje = 3
 			genero = "Accion"
-		// funciones.add(funcionMiercoles)
+			funciones.add(funcionMiercoles)
 		]
 		val avengers1 = new Pelicula() => [
 			titulo = "Avengers"
 			añoRodaje = 2010
 			puntaje = 5
 			genero = "Accion"
-		// funciones.addAll(funcionFinde, funcionLunes)
+			funciones.addAll(funcionFinde, funcionLunes)
 		]
 		val avengers2 = new Pelicula() => [
 			titulo = "Avengers 2"
 			añoRodaje = 2012
 			puntaje = 4
 			genero = "Accion"
-		// funciones.addAll(funcionMiercoles, funcionLunes)
+			funciones.addAll(funcionMiercoles, funcionLunes)
 		]
 		val avengers3 = new Pelicula() => [
 			titulo = "Avengers 3"
 			añoRodaje = 2014
 			puntaje = 5
 			genero = "Accion"
-		// funciones.addAll(funcionMiercoles, funcionFinde)
+			funciones.addAll(funcionMiercoles, funcionFinde)
 		]
 		val volverAlFuturo1 = new Pelicula() => [
 			titulo = "Volver al futuro"
 			añoRodaje = 1989
 			puntaje = 4
 			genero = "Aventura"
-		// funciones.add(funcionLunes)
+			funciones.add(funcionLunes)
 		]
 		val volverAlFuturo2 = new Pelicula() => [
 			titulo = "Volver al futuro 2"
 			añoRodaje = 1991
 			puntaje = 5
 			genero = "Aventura"
-		// funciones.add(funcionFinde)
+			funciones.add(funcionFinde)
 		]
 		val volverAlFuturo3 = new Pelicula() => [
 			titulo = "Volver al futuro 3"
 			añoRodaje = 1992
 			puntaje = 4
 			genero = "Aventura"
-		// funciones.addAll(funcionMiercoles, funcionLunes, funcionFinde)
+			funciones.addAll(funcionMiercoles, funcionLunes, funcionFinde)
 		]
 		val volverAlFuturo = new Saga() => [
 			titulo = "Saga Volver al futuro"
@@ -146,12 +152,9 @@ class JoitsBootstrap implements Bootstrap {
 			puntaje = 4
 			nivelClasico = 50
 			peliculas.addAll(volverAlFuturo1, volverAlFuturo2, volverAlFuturo3)
-		// funciones.addAll(funcionMiercoles, funcionLunes)
+			funciones.addAll(funcionMiercoles, funcionLunes)
 		]
-		// Creo las funciones
-		crearFunciones(funcionMiercoles)
-		crearFunciones(funcionFinde)
-		crearFunciones(funcionLunes)
+
 		// Creo las pelis y sagas
 		newArrayList(batman, superman, avengers1, avengers2, avengers3, volverAlFuturo1, volverAlFuturo2,
 			volverAlFuturo3, volverAlFuturo).forEach[proy|this.crearProyeccion(proy)]
