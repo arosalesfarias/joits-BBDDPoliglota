@@ -74,7 +74,7 @@ class RepoUsuarios extends RepoGenerico<Usuario> {
 		if (usuario !== null && str !== null) {
 			query.where(
 				criteria.isNotMember(usuario, camposUsuario.get("amigos")),
-				criteria.notEqual(camposUsuario.get("Id"), usuario.id),
+				criteria.notEqual(camposUsuario.get("id"), usuario.id),
 				criteria.or(
 					criteria.like(camposUsuario.get("nombre"), stringBusqueda(str)),
 					criteria.like(camposUsuario.get("apellido"), stringBusqueda(str)),
@@ -84,7 +84,7 @@ class RepoUsuarios extends RepoGenerico<Usuario> {
 		} else {
 			query.where(
 				criteria.isNotMember(usuario, camposUsuario.get("amigos")),
-				criteria.notEqual(camposUsuario.get("Id"), usuario.id)
+				criteria.notEqual(camposUsuario.get("id"), usuario.id)
 			)
 		}
 	}

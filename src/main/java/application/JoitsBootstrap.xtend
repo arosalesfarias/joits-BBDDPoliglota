@@ -65,7 +65,7 @@ class JoitsBootstrap implements Bootstrap {
 		// amigos
 		alezcano.amigos.addAll(dsalamida, arosales)
 		dsalamida.amigos.addAll(alezcano, arosales)
-		arosales.amigos.addAll(alezcano, dsalamida)
+		arosales.amigos.addAll()
 		// Update con amigos
 		crearUsuarios(alezcano)
 		crearUsuarios(dsalamida)
