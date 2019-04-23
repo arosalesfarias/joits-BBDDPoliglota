@@ -12,10 +12,6 @@ import exceptions.BusinessException
 @Accessors
 @Observable
 class Funcion extends Entidad {
-//	
-//	@Id
-//	@GeneratedValue
-//	Long id
 
 	@Column
 	LocalDateTime hora
