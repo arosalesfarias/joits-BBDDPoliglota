@@ -1,19 +1,13 @@
 package applicationModel
 
-import domain.Entidad
 import org.uqbar.commons.model.annotations.Observable
 import org.eclipse.xtend.lib.annotations.Accessors
-import java.util.List
 import domain.Usuario
-import org.uqbar.commons.model.annotations.Dependencies
 
 @Accessors
 @Observable
-abstract class BuscaSugiereModel<T extends Entidad> {
+abstract class BuscaSugiereModel {
 	String valorBusqueda
-	T entidadSeleccionada
-	List<T> lista
-	List<T> sugeridos
 	Usuario usuario
 
 	new(Usuario _usuario) {
@@ -22,18 +16,11 @@ abstract class BuscaSugiereModel<T extends Entidad> {
 
 	def void search()
 
-	def void clearEntity() {
-		entidadSeleccionada = null
-	}
-
 	def clearBusqueda() {
 		valorBusqueda = ""
 	}
 
-	@Dependencies("entidadSeleccionada")
-	def getHayUnoSeleccionado() {
-		entidadSeleccionada !== null
-	}
-	
 	def void agregar()
+
+	def void clearEntity()
 }

@@ -54,22 +54,16 @@ class TestLogin {
 
 	@Test(expected=typeof(UserException))
 	def void ingresoUnUsuarioIncorrectoEnLogin() {
-		login.usuarioIngresado = "SoyFalso"
-		login.contraseña = "fake"
-		login.autenticar()
+
 	}
 
 	@Test(expected=typeof(UserException))
 	def void ingresoUnPasswordIncorrectoEnLogin() {
-		login.usuarioIngresado = "alezcano"
-		login.contraseña = "clavefalsa"
-		login.autenticar()
+
 	}
 
 	@Test
 	def void logueoExitosoMeDevuelveUsuario() {
-		login.usuarioIngresado = "alezcano"
-		login.contraseña = "1234"
-		login.autenticar()
+
 	}
 }

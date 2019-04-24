@@ -14,18 +14,21 @@ import domain.Saga
 
 @Accessors
 @Observable
-class ModeloBusqueda extends BuscaSugiereModel<Proyeccion> {
+class ModeloBusqueda extends BuscaSugiereModel {
 	Funcion funcionSeleccionada
 	List<Ticket> carrito = new ArrayList<Ticket>
 	Ticket entrada
 	float precio = 0
+	List<Proyeccion> lista
+	List<Proyeccion> sugeridos
+	Proyeccion entidadSeleccionada
 
 	new(Usuario user) {
 		super(user)
 		sugeridos = RepoProyecciones.instance.listaSugeridos(3)
 	}
 
-	override setEntidadSeleccionada(Proyeccion proyeccion) {
+	def void setEntidadSeleccionada(Proyeccion proyeccion) {
 		entidadSeleccionada = RepoProyecciones.instance.searchById(proyeccion.id)
 	}
 
@@ -71,6 +74,11 @@ class ModeloBusqueda extends BuscaSugiereModel<Proyeccion> {
 		precio = valorDeLaEntrada
 	}
 
+	@Dependencies("entidadSeleccionada")
+	def getHayUnoSeleccionado() {
+		entidadSeleccionada !== null
+	}
+
 	@Dependencies("funcionSeleccionada")
 	def float valorDeLaEntrada() {
 		if (funcionSeleccionada === null) {
@@ -78,5 +86,9 @@ class ModeloBusqueda extends BuscaSugiereModel<Proyeccion> {
 		} else {
 			entrada.precio
 		}
+	}
+
+	override void clearEntity() {
+		entidadSeleccionada = null
 	}
 }
