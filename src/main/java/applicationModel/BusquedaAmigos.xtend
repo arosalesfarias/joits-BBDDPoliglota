@@ -6,6 +6,7 @@ import org.uqbar.commons.model.annotations.Observable
 import repos.RepoUsuarios
 import java.util.List
 import org.uqbar.commons.model.annotations.Dependencies
+import org.uqbar.commons.model.utils.ObservableUtils
 
 @Accessors
 @Observable
@@ -25,6 +26,7 @@ class BusquedaAmigos extends BuscaSugiereModel {
 
 	override agregar() {
 		usuario.agregarAmigo(entidadSeleccionada)
+		actualizarUsuario
 		clearBusqueda()
 		search()
 		clearEntity
@@ -37,5 +39,9 @@ class BusquedaAmigos extends BuscaSugiereModel {
 	@Dependencies("entidadSeleccionada")
 	def getHayUnoSeleccionado() {
 		entidadSeleccionada !== null
+	}
+
+	def actualizarUsuario() {
+		ObservableUtils.firePropertyChanged(usuario, "amigos")
 	}
 }
