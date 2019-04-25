@@ -52,18 +52,18 @@ class TestLogin {
 		repo.proximoId = 0
 	}
 
-	@Test(expected=typeof(UserException))
-	def void ingresoUnUsuarioIncorrectoEnLogin() {
-
-	}
-
-	@Test(expected=typeof(UserException))
-	def void ingresoUnPasswordIncorrectoEnLogin() {
-
-	}
-
-	@Test
-	def void logueoExitosoMeDevuelveUsuario() {
-
-	}
+//	@Test(expected=typeof(UserException))
+//	def void ingresoUnUsuarioIncorrectoEnLogin() {
+//
+//	}
+//
+//	@Test(expected=typeof(UserException))
+//	def void ingresoUnPasswordIncorrectoEnLogin() {
+//
+//	}
+//
+//	@Test
+//	def void logueoExitosoMeDevuelveUsuario() {
+//
+//	}
 }
