@@ -10,6 +10,8 @@ import org.uqbar.arena.bootstrap.Bootstrap
 import repos.RepoProyecciones
 import repos.RepoUsuarios
 import repos.RepoFunciones
+import domain.Ticket
+import repos.RepoTickets
 
 class JoitsBootstrap implements Bootstrap {
 	override run() {
@@ -21,8 +23,6 @@ class JoitsBootstrap implements Bootstrap {
 			usuario = "alezcano"
 			login = "1234"
 		]
-
-		crearUsuarios(alezcano)
 
 		var dsalamida = new Usuario() => [
 			nombre = "Diego"
@@ -84,10 +84,15 @@ class JoitsBootstrap implements Bootstrap {
 			sala = "6"
 		]
 
+		val funcionMartes = new Funcion() => [
+			hora = LocalDateTime.of(2019, 03, 05, 17, 30)
+			sala = "8"
+		]
 		// Creo las funciones
 		crearFunciones(funcionMiercoles)
 		crearFunciones(funcionFinde)
 		crearFunciones(funcionLunes)
+		crearFunciones(funcionMartes)
 
 		// Pelis y Sagas
 		val batman = new Pelicula() => [
@@ -123,7 +128,7 @@ class JoitsBootstrap implements Bootstrap {
 			añoRodaje = 2014
 			puntaje = 5
 			genero = "Accion"
-			funciones.addAll(funcionMiercoles, funcionFinde)
+			funciones.addAll(funcionMiercoles, funcionFinde, funcionMartes, funcionLunes)
 		]
 		val volverAlFuturo1 = new Pelicula() => [
 			titulo = "Volver al futuro"
@@ -181,6 +186,7 @@ class JoitsBootstrap implements Bootstrap {
 //		println("pelicula Avengers 2 creada")
 //		repoProy.create(avengers3)
 //		println("pelicula Avengers 3 creada")
+
 	}
 
 	def crearProyeccion(Proyeccion proy) {

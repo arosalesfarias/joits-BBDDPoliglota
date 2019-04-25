@@ -11,6 +11,7 @@ import org.uqbar.commons.model.annotations.Observable
 import repos.RepoProyecciones
 import domain.Usuario
 import domain.Saga
+import domain.Pelicula
 
 @Accessors
 @Observable
@@ -29,7 +30,12 @@ class ModeloBusqueda extends BuscaSugiereModel {
 	}
 
 	def void setEntidadSeleccionada(Proyeccion proyeccion) {
-		entidadSeleccionada = RepoProyecciones.instance.searchById(proyeccion.id)
+		if (proyeccion instanceof Pelicula) {
+			entidadSeleccionada = RepoProyecciones.instance.searchByIdPelicula(proyeccion.id)
+		} else if (proyeccion instanceof Saga) {
+			entidadSeleccionada = RepoProyecciones.instance.searchByIdSaga(proyeccion.id)
+		}
+
 	}
 
 	override void search() {

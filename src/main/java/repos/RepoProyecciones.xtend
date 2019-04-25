@@ -48,7 +48,7 @@ class RepoProyecciones extends RepoGenerico<Proyeccion> {
 	override generateWhereString(CriteriaBuilder criteria, CriteriaQuery<Proyeccion> query,
 		Root<Proyeccion> camposProyeccion, Proyeccion proy, String str) {}
 
-	def Proyeccion searchById(Long id) {
+	def Proyeccion searchByIdPelicula(Long id) {
 		val entityManager = entityManager
 		try {
 			val criteria = entityManager.criteriaBuilder
@@ -60,6 +60,22 @@ class RepoProyecciones extends RepoGenerico<Proyeccion> {
 			entityManager.createQuery(query).singleResult
 		} finally {
 			entityManager.close
+		}
+	}
+
+	def searchByIdSaga(Long id) {
+		val entityManager = entityManager
+		try {
+			val criteria = entityManager.criteriaBuilder
+			val query = criteria.createQuery(entityType)
+			val camposSaga = query.from(entityType)
+			camposSaga.fetch("funciones")
+			camposSaga.fetch("peliculas")
+			query.select(camposSaga)
+			query.where(criteria.equal(camposSaga.get("id"), id))
+			entityManager.createQuery(query).singleResult
+		} finally {
+			entityManager?.close
 		}
 	}
 

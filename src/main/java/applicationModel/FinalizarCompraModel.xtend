@@ -9,6 +9,8 @@ import org.uqbar.commons.model.exceptions.UserException
 import org.uqbar.commons.model.annotations.Observable
 import org.uqbar.commons.model.annotations.Dependencies
 import org.uqbar.commons.model.utils.ObservableUtils
+import repos.RepoUsuarios
+import repos.RepoTickets
 
 @Observable
 @Accessors
@@ -39,22 +41,24 @@ class FinalizarCompraModel {
 
 	def sacarDelCarrito() {
 		carrito.remove(tiketSeleccionado)
-		this.actualizarLsitas
+		this.actualizarListas
 	}
 
 	def void limpiarCarrito() {
 		carrito.clear
-		this.actualizarLsitas
+		this.actualizarListas
 	}
 
 	def finalizarCompra() {
 		if(totalCarrito > usuario.saldo) throw new UserException("No posee saldo suficiente")
 		carrito.forEach[ticket|usuario.comprarTicket(ticket)]
 		limpiarCarrito()
-	}
-	
-		def actualizarLsitas() {
-		ObservableUtils.firePropertyChanged(this, "carrito")
+		val repo = RepoTickets.instance
+		carrito.forEach[tiket | repo.crearTickets(tiket)]
+		//RepoUsuarios.instance.update(usuario)
 	}
 
+	def actualizarListas() {
+		ObservableUtils.firePropertyChanged(this, "carrito")
+	}
 }

@@ -1,20 +1,15 @@
 package domain
 
 import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
 import javax.persistence.OneToOne
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Observable
+import exceptions.BusinessException
 
 @Entity
 @Accessors
 @Observable
-class Ticket {
-	
-	@Id
-	@GeneratedValue
-	Long id
+class Ticket extends Entidad{
 
 	@OneToOne
 	Funcion funcion
@@ -28,6 +23,12 @@ class Ticket {
 	
 	override toString(){
 		pelicula.toString
+	}
+	
+	override validateCreate() {
+		if (funcion === null || pelicula === null) {
+			throw new BusinessException("le falta campo pelicula o funcion")
+		}
 	}
 
 }
