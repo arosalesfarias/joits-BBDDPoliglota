@@ -30,8 +30,7 @@ class RepoUsuarios extends RepoGenerico<Usuario> {
 	}
 
 	def buscarPersonas(Usuario usuario, String buscar) {
-		// search(buscar).filter[persona|!usuario.amigos.exists[amigo|amigo === persona] && persona !== usuario].toList
-		searchByString(usuario, buscar)
+		searchByString(usuario, buscar).filter[persona|!usuario.amigos.exists[amigo|amigo === persona] && persona !== usuario].toList
 	}
 
 	override void actualizarDatos(Usuario usuarioViejo, Usuario usuarioNuevo) {
@@ -73,7 +72,7 @@ class RepoUsuarios extends RepoGenerico<Usuario> {
 		Usuario usuario, String str) { // TODO: Mejorar codigo
 		if (usuario !== null && str !== null) {
 			query.where(
-				criteria.isNotMember(usuario, camposUsuario.get("amigos")),
+				//criteria.isNotMember(usuario, camposUsuario.get("amigos")),
 				criteria.notEqual(camposUsuario.get("id"), usuario.id),
 				criteria.or(
 					criteria.like(camposUsuario.get("nombre"), stringBusqueda(str)),
@@ -83,7 +82,7 @@ class RepoUsuarios extends RepoGenerico<Usuario> {
 			)
 		} else {
 			query.where(
-				criteria.isNotMember(usuario, camposUsuario.get("amigos")),
+				//criteria.isNotMember(usuario, camposUsuario.get("amigos")),
 				criteria.notEqual(camposUsuario.get("id"), usuario.id)
 			)
 		}
