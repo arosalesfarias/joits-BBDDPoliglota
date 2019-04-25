@@ -57,7 +57,7 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 				title = "Fecha"
 				fixedSize = 200
 				bindContentsToProperty("hora").transformer = [ LocalDateTime fecha |
-					DateTimeFormatter.ofPattern("hh:MM dd/mm/yyyy").format(fecha)
+					DateTimeFormatter.ofPattern("hh:MM dd/MM/yyyy").format(fecha)
 				]
 			]
 			new Column<Funcion>(it) => [
