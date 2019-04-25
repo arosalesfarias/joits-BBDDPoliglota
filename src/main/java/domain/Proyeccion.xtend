@@ -1,12 +1,12 @@
 package domain
 
-import java.util.List
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.FetchType
 import javax.persistence.ManyToMany
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Observable
+import java.util.Set
 
 @Entity
 @Observable
@@ -26,10 +26,10 @@ abstract class Proyeccion extends Entidad {
 	String genero
 
 	@ManyToMany(fetch=FetchType.LAZY)
-	List<Funcion> funciones
+	Set<Funcion> funciones
 
 	new() {
-		funciones = newArrayList
+		funciones = newHashSet
 	}
 
 	def float precioBase()

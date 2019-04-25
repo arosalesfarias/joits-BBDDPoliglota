@@ -9,22 +9,22 @@ import exceptions.BusinessException
 @Entity
 @Accessors
 @Observable
-class Ticket extends Entidad{
+class Ticket extends Entidad {
 
 	@OneToOne
 	Funcion funcion
-	
+
 	@OneToOne
 	Proyeccion pelicula // que puede ser pelicula o saga
 
 	def float precio() {
 		pelicula.precioBase + funcion.precioSegunDia
 	}
-	
-	override toString(){
+
+	override toString() {
 		pelicula.toString
 	}
-	
+
 	override validateCreate() {
 		if (funcion === null || pelicula === null) {
 			throw new BusinessException("le falta campo pelicula o funcion")

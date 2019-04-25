@@ -31,7 +31,7 @@ class Funcion extends Entidad {
 		} else
 			80
 	}
-	
+
 	override validateCreate() {
 		if (hora === null || sala === null) {
 			throw new BusinessException("le falta campo hora o sala")

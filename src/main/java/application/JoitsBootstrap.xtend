@@ -10,8 +10,6 @@ import org.uqbar.arena.bootstrap.Bootstrap
 import repos.RepoProyecciones
 import repos.RepoUsuarios
 import repos.RepoFunciones
-import domain.Ticket
-import repos.RepoTickets
 
 class JoitsBootstrap implements Bootstrap {
 	override run() {
@@ -186,7 +184,6 @@ class JoitsBootstrap implements Bootstrap {
 //		println("pelicula Avengers 2 creada")
 //		repoProy.create(avengers3)
 //		println("pelicula Avengers 3 creada")
-
 	}
 
 	def crearProyeccion(Proyeccion proy) {

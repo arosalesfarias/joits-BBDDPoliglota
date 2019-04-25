@@ -6,6 +6,8 @@ import javax.persistence.criteria.CriteriaBuilder
 import javax.persistence.criteria.CriteriaQuery
 import javax.persistence.criteria.Root
 import org.eclipse.xtend.lib.annotations.Accessors
+import domain.Saga
+import domain.Pelicula
 
 @Accessors
 class RepoProyecciones extends RepoGenerico<Proyeccion> {
@@ -48,34 +50,38 @@ class RepoProyecciones extends RepoGenerico<Proyeccion> {
 	override generateWhereString(CriteriaBuilder criteria, CriteriaQuery<Proyeccion> query,
 		Root<Proyeccion> camposProyeccion, Proyeccion proy, String str) {}
 
-	def Proyeccion searchByIdPelicula(Long id) {
+	def Proyeccion searchById(Proyeccion proy) {
+		searchByProyeccion(proy)
+	}
+
+	def dispatch Saga searchByProyeccion(Saga saga) {
 		val entityManager = entityManager
 		try {
 			val criteria = entityManager.criteriaBuilder
-			val query = criteria.createQuery(entityType)
-			val camposProyeccion = query.from(entityType)
+			val query = criteria.createQuery(typeof(Saga))
+			val camposProyeccion = query.from(typeof(Saga))
 			camposProyeccion.fetch("funciones")
+			camposProyeccion.fetch("peliculas")
 			query.select(camposProyeccion)
-			query.where(criteria.equal(camposProyeccion.get("id"), id))
+			query.where(criteria.equal(camposProyeccion.get("id"), saga.id))
 			entityManager.createQuery(query).singleResult
 		} finally {
 			entityManager.close
 		}
 	}
 
-	def searchByIdSaga(Long id) {
+	def dispatch Pelicula searchByProyeccion(Pelicula peli) {
 		val entityManager = entityManager
 		try {
 			val criteria = entityManager.criteriaBuilder
-			val query = criteria.createQuery(entityType)
-			val camposSaga = query.from(entityType)
-			camposSaga.fetch("funciones")
-			camposSaga.fetch("peliculas")
-			query.select(camposSaga)
-			query.where(criteria.equal(camposSaga.get("id"), id))
+			val query = criteria.createQuery(typeof(Pelicula))
+			val camposProyeccion = query.from(typeof(Pelicula))
+			camposProyeccion.fetch("funciones")
+			query.select(camposProyeccion)
+			query.where(criteria.equal(camposProyeccion.get("id"), peli.id))
 			entityManager.createQuery(query).singleResult
 		} finally {
-			entityManager?.close
+			entityManager.close
 		}
 	}
 
