@@ -68,29 +68,62 @@ class JoitsBootstrap implements Bootstrap {
 		crearUsuarios(alezcano)
 		crearUsuarios(dsalamida)
 		crearUsuarios(arosales)
-//		// Funciones
-		val funcionMiercoles = new Funcion() => [
+
+		// Funciones
+		val funcionBatman = new Funcion() => [
+			hora = LocalDateTime.of(2019, 03, 03, 13, 30)
+			sala = "5"
+		]
+
+		val funcionSuperman = new Funcion() => [
+			hora = LocalDateTime.of(2019, 03, 04, 13, 30)
+			sala = "8"
+		]
+
+		val funcionSaga = new Funcion() => [
 			hora = LocalDateTime.of(2019, 03, 06, 13, 30)
 			sala = "2"
 		]
-		val funcionFinde = new Funcion() => [
+
+		val funcionVolver1 = new Funcion() => [
 			hora = LocalDateTime.of(2019, 03, 03, 13, 30)
-			sala = "12"
-		]
-		val funcionLunes = new Funcion() => [
-			hora = LocalDateTime.of(2019, 03, 04, 13, 30)
-			sala = "6"
+			sala = "1"
 		]
 
-		val funcionMartes = new Funcion() => [
-			hora = LocalDateTime.of(2019, 03, 05, 17, 30)
-			sala = "8"
+		val funcionVolver2 = new Funcion() => [
+			hora = LocalDateTime.of(2019, 03, 04, 13, 30)
+			sala = "9"
 		]
+		val funcionVolver3 = new Funcion() => [
+			hora = LocalDateTime.of(2019, 03, 06, 13, 30)
+			sala = "7"
+		]
+
+		val funcionAvengers1 = new Funcion() => [
+			hora = LocalDateTime.of(2019, 03, 06, 13, 30)
+			sala = "11"
+		]
+
+		val funcionAvengers2 = new Funcion() => [
+			hora = LocalDateTime.of(2019, 03, 04, 13, 30)
+			sala = "14"
+		]
+
+		val funcionAvengers3 = new Funcion() => [
+			hora = LocalDateTime.of(2019, 03, 04, 13, 30)
+			sala = "18"
+		]
+
 		// Creo las funciones
-		crearFunciones(funcionMiercoles)
-		crearFunciones(funcionFinde)
-		crearFunciones(funcionLunes)
-		crearFunciones(funcionMartes)
+		crearFunciones(funcionBatman)
+		crearFunciones(funcionSaga)
+		crearFunciones(funcionSuperman)
+		crearFunciones(funcionVolver1)
+		crearFunciones(funcionVolver2)
+		crearFunciones(funcionVolver3)
+		crearFunciones(funcionAvengers1)
+		crearFunciones(funcionAvengers2)
+		crearFunciones(funcionAvengers3)
 
 		// Pelis y Sagas
 		val batman = new Pelicula() => [
@@ -98,56 +131,57 @@ class JoitsBootstrap implements Bootstrap {
 			añoRodaje = 2010
 			puntaje = 5
 			genero = "Accion"
-			funciones.addAll(funcionMiercoles, funcionFinde, funcionLunes)
+			funciones.addAll(funcionBatman)
 		]
 		val superman = new Pelicula() => [
 			titulo = "Superman"
 			añoRodaje = 2012
 			puntaje = 3
 			genero = "Accion"
-			funciones.add(funcionMiercoles)
+			funciones.add(funcionSuperman)
 		]
+
 		val avengers1 = new Pelicula() => [
 			titulo = "Avengers"
 			añoRodaje = 2010
 			puntaje = 5
 			genero = "Accion"
-			funciones.addAll(funcionFinde, funcionLunes)
+			funciones.addAll(funcionAvengers1)
 		]
 		val avengers2 = new Pelicula() => [
 			titulo = "Avengers 2"
 			añoRodaje = 2012
 			puntaje = 4
 			genero = "Accion"
-			funciones.addAll(funcionMiercoles, funcionLunes)
+			funciones.addAll(funcionAvengers2)
 		]
 		val avengers3 = new Pelicula() => [
 			titulo = "Avengers 3"
 			añoRodaje = 2014
 			puntaje = 5
 			genero = "Accion"
-			funciones.addAll(funcionMiercoles, funcionFinde, funcionMartes, funcionLunes)
+			funciones.addAll(funcionAvengers3)
 		]
 		val volverAlFuturo1 = new Pelicula() => [
 			titulo = "Volver al futuro"
 			añoRodaje = 1989
 			puntaje = 4
 			genero = "Aventura"
-			funciones.add(funcionLunes)
+			funciones.add(funcionVolver1)
 		]
 		val volverAlFuturo2 = new Pelicula() => [
 			titulo = "Volver al futuro 2"
 			añoRodaje = 1991
 			puntaje = 5
 			genero = "Aventura"
-			funciones.add(funcionFinde)
+			funciones.add(funcionVolver2)
 		]
 		val volverAlFuturo3 = new Pelicula() => [
 			titulo = "Volver al futuro 3"
 			añoRodaje = 1992
 			puntaje = 4
 			genero = "Aventura"
-			funciones.addAll(funcionMiercoles, funcionLunes, funcionFinde)
+			funciones.addAll(funcionVolver3)
 		]
 		val volverAlFuturo = new Saga() => [
 			titulo = "Saga Volver al futuro"
@@ -155,35 +189,13 @@ class JoitsBootstrap implements Bootstrap {
 			puntaje = 4
 			nivelClasico = 50
 			peliculas.addAll(volverAlFuturo1, volverAlFuturo2, volverAlFuturo3)
-			funciones.addAll(funcionMiercoles, funcionLunes)
+			funciones.addAll(funcionSaga)
 		]
 
 		// Creo las pelis y sagas
 		newArrayList(batman, superman, avengers1, avengers2, avengers3, volverAlFuturo1, volverAlFuturo2,
 			volverAlFuturo3, volverAlFuturo).forEach[proy|this.crearProyeccion(proy)]
 
-//		println("funcion miercoles agregado a Avengers 1")
-//		// pelis vistas
-//		arosales.tickets.add(new Ticket() => [pelicula = batman])
-//		arosales.tickets.add(new Ticket() => [pelicula = volverAlFuturo])
-//		repoProy.create(batman)
-//		println("pelicula batman creado")
-//		repoProy.create(volverAlFuturo1)
-//		println("pelicula volver al futuro creada")
-//		repoProy.create(volverAlFuturo2)
-//		println("pelicula volver al futuro 2 creada")
-//		repoProy.create(volverAlFuturo3)
-//		println("pelicula volver al futuro 3 creada")
-//		repoProy.create(volverAlFuturo)
-//		println("saga volver al futuro creada")
-//		repoProy.create(superman)
-//		println("pelicula superman creado")
-//		repoProy.create(avengers1)
-//		println("pelicula Avengers creada")
-//		repoProy.create(avengers2)
-//		println("pelicula Avengers 2 creada")
-//		repoProy.create(avengers3)
-//		println("pelicula Avengers 3 creada")
 	}
 
 	def crearProyeccion(Proyeccion proy) {

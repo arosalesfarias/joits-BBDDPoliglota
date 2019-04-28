@@ -33,6 +33,7 @@ class ModeloBusqueda extends BuscaSugiereModel {
 	}
 
 	override void search() {
+		this.clearSeleccionados
 		lista = RepoProyecciones.instance.searchByExample(new Saga() => [titulo = valorBusqueda]) // RepoProyecciones.instance.search(valorBusqueda)
 	}
 

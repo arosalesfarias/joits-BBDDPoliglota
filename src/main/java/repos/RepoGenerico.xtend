@@ -1,19 +1,18 @@
 package repos
 
 import java.util.List
-import org.eclipse.xtend.lib.annotations.Accessors
-import org.uqbar.commons.model.annotations.TransactionalAndObservable
-import domain.Entidad
 import javax.persistence.EntityManagerFactory
 import javax.persistence.Persistence
 import javax.persistence.PersistenceException
 import javax.persistence.criteria.CriteriaBuilder
 import javax.persistence.criteria.CriteriaQuery
 import javax.persistence.criteria.Root
+import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.model.annotations.TransactionalAndObservable
 
 @Accessors
 @TransactionalAndObservable
-abstract class RepoGenerico<T extends Entidad> {
+abstract class RepoGenerico<T> {
 
 	List<T> elementos = newArrayList()
 
@@ -23,28 +22,22 @@ abstract class RepoGenerico<T extends Entidad> {
 
 	def void actualizarDatos(T t, T t2)
 
-	def void update(T objectViejo, T objectNuevo) {
-		objectNuevo.validateCreate
-		this.actualizarDatos(objectViejo, objectNuevo)
-	}
-
-	def void delete(T object) {
-		elementos.remove(object)
-	}
-
-	def T searchById(int id) {
-		elementos.findFirst[elem|elem.id == id]
-	}
-
-	def boolean existeId(T object) {
-		elementos.exists[elemento|elemento.id == object.id]
-	}
-
-	def limpiar() {
-		elementos.clear
-		proximoId = 0
-	}
-
+//	def void update(T objectViejo, T objectNuevo) {
+//		objectNuevo.validateCreate
+//		this.actualizarDatos(objectViejo, objectNuevo)
+//	}
+//
+//	def void delete(T object) {
+//		elementos.remove(object)
+//	}
+//
+//	def T searchById(int id) {
+//		elementos.findFirst[elem|elem.id == id]
+//	}
+//
+//	def boolean existeId(T object) {
+//		elementos.exists[elemento|elemento.id == object.id]
+//	}
 	def match(Object expectedValue, Object realValue) {
 		if (expectedValue === null) {
 			return true
@@ -53,6 +46,11 @@ abstract class RepoGenerico<T extends Entidad> {
 			return false
 		}
 		realValue.toString().toLowerCase().contains(expectedValue.toString().toLowerCase())
+	}
+
+	def limpiar() {
+		elementos.clear
+		proximoId = 0
 	}
 
 	// ///////////////////  **********************************************************////////////////////////////////

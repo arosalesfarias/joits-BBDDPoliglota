@@ -3,9 +3,12 @@ package domain
 import exceptions.BusinessException
 import java.util.ArrayList
 import java.util.List
+import javax.persistence.CascadeType
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.FetchType
+import javax.persistence.GeneratedValue
+import javax.persistence.Id
 import javax.persistence.ManyToMany
 import javax.persistence.OneToMany
 import org.eclipse.xtend.lib.annotations.Accessors
@@ -15,7 +18,11 @@ import repos.RepoUsuarios
 @Entity
 @TransactionalAndObservable
 @Accessors
-class Usuario extends Entidad {
+class Usuario {
+	
+	@Id
+	@GeneratedValue
+	Long id
 
 	@Column(length=50)
 	String nombre
@@ -37,10 +44,10 @@ class Usuario extends Entidad {
 
 	@ManyToMany(fetch=FetchType.EAGER)
 	List<Usuario> amigos = newArrayList()
-	
-	@OneToMany(fetch=FetchType.EAGER)
+
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	List<Ticket> tickets = new ArrayList<Ticket>
-	
+
 	float cantidad
 
 	override String toString() {
@@ -64,7 +71,7 @@ class Usuario extends Entidad {
 		RepoUsuarios.instance.buscarPersonas(this, buscar)
 	}
 
-	override validateCreate() {
+	def validateCreate() {
 		if (!this.tengoUsuario || !this.tengoLogin) {
 			throw new BusinessException("no tiene usuario y/o login")
 		}
@@ -87,9 +94,9 @@ class Usuario extends Entidad {
 		if(ticket.precio > saldo) throw new BusinessException("el usuario no tiene saldo suficiente")
 		saldo = saldo - ticket.precio
 	}
-	
+
 	def update() {
 		RepoUsuarios.instance.update(this)
 	}
-	
+
 }
