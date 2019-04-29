@@ -15,7 +15,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 @DiscriminatorValue("2")
 class Saga extends Proyeccion {
 
-	@OneToMany(fetch=FetchType.LAZY)
+	@OneToMany(fetch=FetchType.EAGER)
 	List<Pelicula> peliculas = new ArrayList<Pelicula>
 
 	@Column(length=50)

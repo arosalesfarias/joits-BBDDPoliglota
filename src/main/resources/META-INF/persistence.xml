@@ -13,7 +13,6 @@
 		<class>domain.Saga</class>
 		<class>domain.Funcion</class>
 		<class>domain.Ticket</class>
-		<class>domain.Entidad</class>
 		<class>domain.Usuario</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url"

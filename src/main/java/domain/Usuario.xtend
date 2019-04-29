@@ -19,7 +19,7 @@ import repos.RepoUsuarios
 @TransactionalAndObservable
 @Accessors
 class Usuario {
-	
+
 	@Id
 	@GeneratedValue
 	Long id

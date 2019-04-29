@@ -39,16 +39,4 @@ class RepoTickets extends RepoGenerico<Ticket> {
 		Ticket
 	}
 
-	def void crearTickets(Ticket ticket) {
-		val listaTikets = searchByExample(ticket)
-		if (listaTikets.isEmpty) {
-			create(ticket)
-			println("Ticket creado")
-		} else {
-			val ticketBD = listaTikets.head
-			ticket.id = ticketBD.id
-			update(ticket)
-		}
-	}
-
 }

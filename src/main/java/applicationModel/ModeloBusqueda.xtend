@@ -29,7 +29,7 @@ class ModeloBusqueda extends BuscaSugiereModel {
 	}
 
 	def void setEntidadSeleccionada(Proyeccion proyeccion) {
-		entidadSeleccionada = RepoProyecciones.instance.searchById(proyeccion)
+		entidadSeleccionada = RepoProyecciones.instance.searchById(proyeccion.id)
 	}
 
 	override void search() {
