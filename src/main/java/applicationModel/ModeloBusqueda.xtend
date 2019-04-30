@@ -9,8 +9,8 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Dependencies
 import org.uqbar.commons.model.annotations.Observable
 import repos.RepoProyecciones
-import domain.Usuario
 import domain.Saga
+import repos.RepoUsuarios
 
 @Accessors
 @Observable
@@ -23,8 +23,8 @@ class ModeloBusqueda extends BuscaSugiereModel {
 	List<Proyeccion> sugeridos
 	Proyeccion entidadSeleccionada
 
-	new(Usuario user) {
-		super(user)
+	new() {
+		super(RepoUsuarios.instance.usuarioLogueado)
 		sugeridos = RepoProyecciones.instance.listaSugeridos(3)
 	}
 

@@ -4,7 +4,6 @@ import applicationModel.FinalizarCompraModel
 import applicationModel.ModeloBusqueda
 import domain.Funcion
 import domain.Proyeccion
-import domain.Usuario
 import java.awt.Color
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -25,8 +24,8 @@ import org.uqbar.arena.windows.WindowOwner
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 
 class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
-	new(WindowOwner parent, Usuario usuario) {
-		super(parent, new ModeloBusqueda(usuario))
+	new(WindowOwner parent) {
+		super(parent, new ModeloBusqueda)
 		modelObject.search
 	}
 

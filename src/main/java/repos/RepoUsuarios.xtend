@@ -10,6 +10,8 @@ import javax.persistence.criteria.Root
 
 @Accessors
 class RepoUsuarios extends RepoGenerico<Usuario> {
+	
+	Usuario usuarioLogueado
 
 	static RepoUsuarios repoUsuarios
 
@@ -50,8 +52,8 @@ class RepoUsuarios extends RepoGenerico<Usuario> {
 	}
 
 	def coincide(Usuario usu) {
-		val usuario = devolverUsuario(usu)
-		if (usuario === null || !usuario.login.equals(usu.login))
+		usuarioLogueado = devolverUsuario(usu)
+		if (usuarioLogueado === null || !usuarioLogueado.login.equals(usu.login))
 			throw new UserException("Usuario o contraseña incorrectos.")
 	}
 

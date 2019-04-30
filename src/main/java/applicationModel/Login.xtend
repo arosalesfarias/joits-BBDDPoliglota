@@ -18,10 +18,6 @@ class Login {
 		login = new Usuario()
 	}
 
-	def getUsuario() {
-		repoUsr.devolverUsuario(login)
-	}
-
 	def autenticar() {
 		repoUsr.coincide(login)
 	}
