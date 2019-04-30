@@ -27,8 +27,11 @@ class RepoTickets extends RepoGenerico<Ticket> {
 	override actualizarDatos(Ticket t, Ticket t2) {
 	}
 
-	override generateWhere(CriteriaBuilder criteria, CriteriaQuery<Ticket> query, Root<Ticket> camposEntidad,
-		Ticket t) {
+	override generateWhere(CriteriaBuilder criteria, CriteriaQuery<Ticket> query, Root<Ticket> camposTiket,
+		Ticket ticket) {
+		if (ticket.pelicula !== null && ticket.funcion !== null) {
+			query.where(criteria.equal(camposTiket.get("id"), ticket.id))
+		}
 	}
 
 	override generateWhereString(CriteriaBuilder criteria, CriteriaQuery<Ticket> query, Root<Ticket> camposCandidato,

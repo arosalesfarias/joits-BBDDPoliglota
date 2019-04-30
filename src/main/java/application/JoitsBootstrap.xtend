@@ -373,11 +373,11 @@ class JoitsBootstrap implements Bootstrap {
 		chinwenwencha.tickets.addAll(entradaChinwenwencha1, entradaChinwenwencha2)
 
 		// Update con entradas y amigos
-//		crearUsuarios(alezcano)
-//		crearUsuarios(dsalamida)
-//		crearUsuarios(arosales)
-//		crearUsuarios(elgato)
-//		crearUsuarios(chinwenwencha)
+		crearUsuarios(alezcano)
+		crearUsuarios(dsalamida)
+		crearUsuarios(arosales)
+		crearUsuarios(elgato)
+		crearUsuarios(chinwenwencha)
 	}
 
 	def crearProyeccion(Proyeccion proy) {
