@@ -10,7 +10,6 @@ import javax.persistence.FetchType
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
 import javax.persistence.ManyToMany
-import javax.persistence.OneToMany
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
 import repos.RepoUsuarios
@@ -45,7 +44,7 @@ class Usuario {
 	@ManyToMany(fetch=FetchType.EAGER)
 	List<Usuario> amigos = newArrayList()
 
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+	@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	List<Ticket> tickets = new ArrayList<Ticket>
 
 	float cantidad

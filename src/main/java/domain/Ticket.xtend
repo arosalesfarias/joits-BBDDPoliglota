@@ -4,7 +4,7 @@ import exceptions.BusinessException
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
-import javax.persistence.ManyToOne
+import javax.persistence.OneToOne
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Observable
 
@@ -17,10 +17,10 @@ class Ticket {
 	@GeneratedValue
 	Long id
 
-	@ManyToOne
+	@OneToOne
 	Funcion funcion
 
-	@ManyToOne
+	@OneToOne
 	Proyeccion pelicula // que puede ser pelicula o saga
 
 	def float precio() {
