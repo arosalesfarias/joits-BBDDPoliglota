@@ -4,9 +4,9 @@ import exceptions.BusinessException
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
+import javax.persistence.ManyToOne
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Observable
-import javax.persistence.ManyToOne
 
 @Entity
 @Accessors

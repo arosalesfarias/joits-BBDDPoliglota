@@ -309,8 +309,8 @@ class JoitsBootstrap implements Bootstrap {
 		]
 
 		val entradaAlberto2 = new Ticket => [
-			funcion = funcionAvengers3Finde
-			pelicula = avengers3
+			funcion = funcionVolver1Finde
+			pelicula = volverAlFuturo1
 		]
 
 		val entradaAriel1 = new Ticket => [
@@ -329,13 +329,13 @@ class JoitsBootstrap implements Bootstrap {
 		]
 
 		val entradaDiego2 = new Ticket => [
-			funcion = funcionVolver3Lunes
-			pelicula = volverAlFuturo3
+			funcion = funcionVolver1Miercoles
+			pelicula = volverAlFuturo1
 		]
 
 		val entradaChinwenwencha1 = new Ticket => [
 			funcion = funcionVolver2Miercoles
-			pelicula = volverAlFuturo2
+			pelicula = volverAlFuturo1
 		]
 
 		val entradaChinwenwencha2 = new Ticket => [
