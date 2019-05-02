@@ -13,6 +13,13 @@ import javax.persistence.ManyToMany
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
 import repos.RepoUsuarios
+import javax.persistence.OneToMany
+import java.util.Set
+import java.util.HashSet
+import org.hibernate.annotations.Fetch
+import org.hibernate.annotations.FetchMode
+import org.hibernate.annotations.LazyCollection
+import org.hibernate.annotations.LazyCollectionOption
 
 @Entity
 @TransactionalAndObservable
@@ -41,11 +48,11 @@ class Usuario {
 	@Column(length=25)
 	String login
 
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany(fetch=FetchType.LAZY)
 	List<Usuario> amigos = newArrayList()
 
-	@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-	List<Ticket> tickets = new ArrayList<Ticket>
+	@OneToMany(fetch=FetchType.EAGER)
+	Set<Ticket> tickets = new HashSet<Ticket>
 
 	float cantidad
 

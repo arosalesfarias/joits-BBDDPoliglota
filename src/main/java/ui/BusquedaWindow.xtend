@@ -164,7 +164,7 @@ class BusquedaWindow extends SimpleWindow<ModeloBusqueda> {
 	}
 
 	def abrirPanel() {
-		(new ControlPanelWindow(this, modelObject.usuario).open)
+		(new ControlPanelWindow(this, modelObject.user).open)
 	}
 
 	def void cerrarSesion() {

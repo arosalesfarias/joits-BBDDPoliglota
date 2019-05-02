@@ -10,7 +10,7 @@ import javax.persistence.criteria.Root
 
 @Accessors
 class RepoUsuarios extends RepoGenerico<Usuario> {
-	
+
 	Usuario usuarioLogueado
 
 	static RepoUsuarios repoUsuarios
@@ -91,4 +91,18 @@ class RepoUsuarios extends RepoGenerico<Usuario> {
 		}
 	}
 
+	def Usuario searchById(Long id) {
+		val entityManager = entityManager
+		try {
+			val criteria = entityManager.criteriaBuilder
+			val query = criteria.createQuery(entityType)
+			val camposUsuario = query.from(entityType)
+			camposUsuario.fetch("amigos")
+			query.select(camposUsuario)
+			query.where(criteria.equal(camposUsuario.get("id"), id))
+			entityManager.createQuery(query).singleResult
+		} finally {
+			entityManager.close
+		}
+	}
 }

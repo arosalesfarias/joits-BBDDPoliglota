@@ -37,7 +37,7 @@ abstract class Proyeccion {
 	@Column(length=50)
 	String genero
 
-	@OneToMany(fetch=FetchType.LAZY)
+	@OneToMany(fetch=FetchType.EAGER)
 	Set<Funcion> funciones
 
 	new() {

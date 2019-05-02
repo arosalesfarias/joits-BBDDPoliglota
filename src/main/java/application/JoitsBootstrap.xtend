@@ -67,7 +67,7 @@ class JoitsBootstrap implements Bootstrap {
 		// amigos
 		alezcano.amigos.addAll(dsalamida, arosales)
 		dsalamida.amigos.addAll(alezcano, arosales)
-		arosales.amigos.addAll()
+		arosales.amigos.addAll(alezcano)
 
 		// Funciones
 		val funcionBatmanFinde = new Funcion() => [

@@ -3,6 +3,7 @@ package applicationModel
 import org.uqbar.commons.model.annotations.Observable
 import org.eclipse.xtend.lib.annotations.Accessors
 import domain.Usuario
+import repos.RepoUsuarios
 
 @Accessors
 @Observable
@@ -19,7 +20,9 @@ abstract class BuscaSugiereModel {
 	def clearBusqueda() {
 		valorBusqueda = ""
 	}
-
+	def getUser(){
+		usuario = RepoUsuarios.instance.searchById(usuario.id)
+	}
 	def void agregar()
 
 	def void clearEntity()
