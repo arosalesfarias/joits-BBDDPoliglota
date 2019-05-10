@@ -7,6 +7,7 @@ import org.uqbar.commons.model.exceptions.UserException
 import javax.persistence.criteria.CriteriaBuilder
 import javax.persistence.criteria.CriteriaQuery
 import javax.persistence.criteria.Root
+import javax.persistence.criteria.Predicate
 
 @Accessors
 class RepoUsuarios extends RepoGenerico<Usuario> {
@@ -32,8 +33,7 @@ class RepoUsuarios extends RepoGenerico<Usuario> {
 	}
 
 	def buscarPersonas(Usuario usuario, String buscar) {
-		print(usuario.amigos)
-		searchByString(usuario, buscar).filter[persona|!usuario.amigos.exists[amigo|amigo.id === persona.id]].toList
+		searchByString(usuario, buscar)
 	}
 
 	override void actualizarDatos(Usuario usuarioViejo, Usuario usuarioNuevo) {
@@ -72,23 +72,19 @@ class RepoUsuarios extends RepoGenerico<Usuario> {
 	}
 
 	override generateWhereString(CriteriaBuilder criteria, CriteriaQuery<Usuario> query, Root<Usuario> camposUsuario,
-		Usuario usuario, String str) { // TODO: Mejorar codigo
-		if (usuario !== null && str !== null) {
-			query.where(
-				// criteria.isNotMember(usuario, camposUsuario.get("amigos")),
-				criteria.notEqual(camposUsuario.get("id"), usuario.id),
-				criteria.or(
-					criteria.like(camposUsuario.get("nombre"), stringBusqueda(str)),
-					criteria.like(camposUsuario.get("apellido"), stringBusqueda(str)),
-					criteria.like(camposUsuario.get("usuario"), stringBusqueda(str))
-				)
-			)
-		} else {
-			query.where(
-				// criteria.isNotMember(usuario, camposUsuario.get("amigos")),
-				criteria.notEqual(camposUsuario.get("id"), usuario.id)
+		Usuario usuario, String str) {
+		val idAmigos = usuario.amigos.map[x|x.id].toList
+		val List<Predicate> condiciones = newArrayList(criteria.not(camposUsuario.in(idAmigos)),
+			criteria.notEqual(camposUsuario.get("id"), usuario.id))
+		println(idAmigos)
+		if (str !== null) {
+			condiciones.addAll(
+				criteria.like(camposUsuario.get("nombre"), stringBusqueda(str)),
+				criteria.like(camposUsuario.get("apellido"), stringBusqueda(str)),
+				criteria.like(camposUsuario.get("usuario"), stringBusqueda(str))
 			)
 		}
+		if(usuario !== null) query.where(condiciones)
 	}
 
 	def Usuario searchById(Long id) {
