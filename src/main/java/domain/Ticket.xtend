@@ -1,6 +1,7 @@
 package domain
 
 import exceptions.BusinessException
+import javax.persistence.CascadeType
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
@@ -17,7 +18,7 @@ class Ticket {
 	@GeneratedValue
 	Long id
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REFRESH )
 	Funcion funcion
 
 	@ManyToOne

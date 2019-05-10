@@ -104,6 +104,6 @@ class ControlPanelWindow extends TransactionalDialog<Usuario> {
 
 	def aceptar() {
 		modelObject.update
-		this.accept
+		this.close
 	}
 }

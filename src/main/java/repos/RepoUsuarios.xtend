@@ -98,6 +98,7 @@ class RepoUsuarios extends RepoGenerico<Usuario> {
 			val query = criteria.createQuery(entityType)
 			val camposUsuario = query.from(entityType)
 			camposUsuario.fetch("amigos")
+			camposUsuario.fetch("tickets")
 			query.select(camposUsuario)
 			query.where(criteria.equal(camposUsuario.get("id"), id))
 			entityManager.createQuery(query).singleResult

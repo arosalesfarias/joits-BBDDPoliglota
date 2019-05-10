@@ -1,8 +1,8 @@
 package domain
 
 import exceptions.BusinessException
-import java.util.ArrayList
-import java.util.List
+import java.util.HashSet
+import java.util.Set
 import javax.persistence.CascadeType
 import javax.persistence.Column
 import javax.persistence.Entity
@@ -10,16 +10,10 @@ import javax.persistence.FetchType
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
 import javax.persistence.ManyToMany
+import javax.persistence.OneToMany
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
 import repos.RepoUsuarios
-import javax.persistence.OneToMany
-import java.util.Set
-import java.util.HashSet
-import org.hibernate.annotations.Fetch
-import org.hibernate.annotations.FetchMode
-import org.hibernate.annotations.LazyCollection
-import org.hibernate.annotations.LazyCollectionOption
 
 @Entity
 @TransactionalAndObservable
@@ -49,9 +43,9 @@ class Usuario {
 	String login
 
 	@ManyToMany(fetch=FetchType.LAZY)
-	List<Usuario> amigos = newArrayList()
+	Set<Usuario> amigos = newHashSet
 
-	@OneToMany(fetch=FetchType.EAGER)
+	@OneToMany(fetch=FetchType.LAZY,cascade = CascadeType.ALL)
 	Set<Ticket> tickets = new HashSet<Ticket>
 
 	float cantidad

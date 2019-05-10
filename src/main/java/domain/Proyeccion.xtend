@@ -13,6 +13,7 @@ import javax.persistence.InheritanceType
 import javax.persistence.OneToMany
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Observable
+import javax.persistence.CascadeType
 
 @Entity
 @Observable
@@ -37,7 +38,7 @@ abstract class Proyeccion {
 	@Column(length=50)
 	String genero
 
-	@OneToMany(fetch=FetchType.EAGER)
+	@OneToMany(fetch=FetchType.LAZY ,cascade = CascadeType.ALL)
 	Set<Funcion> funciones
 
 	new() {

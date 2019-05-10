@@ -15,60 +15,6 @@ import repos.RepoTickets
 
 class JoitsBootstrap implements Bootstrap {
 	override run() {
-		var alezcano = new Usuario() => [
-			nombre = "Alberto"
-			apellido = "Lezcano"
-			edad = 26
-			saldo = 1000
-			usuario = "alezcano"
-			login = "1234"
-		]
-
-		var dsalamida = new Usuario() => [
-			nombre = "Diego"
-			apellido = "Salamida"
-			edad = 32
-			saldo = 2500
-			usuario = "dsalamida"
-			login = "dsalamida"
-		]
-		var arosales = new Usuario() => [
-			nombre = "Ariel"
-			apellido = "Rosales"
-			edad = 8
-			saldo = 12
-			usuario = "arosales"
-			login = "3333"
-		]
-		var chinwenwencha = new Usuario() => [
-			nombre = "El"
-			apellido = "Chinwenwencha"
-			edad = 26
-			saldo = 5
-			usuario = "chinwenwencha"
-			login = "1234"
-		]
-		var elgato = new Usuario() => [
-			nombre = "Mauiricio"
-			apellido = "Macri"
-			edad = 50
-			saldo = 999999999
-			usuario = "elgato"
-			login = "1234"
-		]
-
-		// RepoUsuarios
-		crearUsuarios(alezcano)
-		crearUsuarios(dsalamida)
-		crearUsuarios(arosales)
-		crearUsuarios(chinwenwencha)
-		crearUsuarios(elgato)
-
-		// amigos
-		alezcano.amigos.addAll(dsalamida, arosales)
-		dsalamida.amigos.addAll(alezcano, arosales)
-		arosales.amigos.addAll(alezcano)
-
 		// Funciones
 		val funcionBatmanFinde = new Funcion() => [
 			hora = LocalDateTime.of(2019, 03, 03, 13, 30)
@@ -201,36 +147,7 @@ class JoitsBootstrap implements Bootstrap {
 			hora = LocalDateTime.of(2019, 03, 06, 13, 30)
 			sala = "12"
 		]
-
-		// Creo las funciones
-		crearFunciones(funcionBatmanFinde)
-		crearFunciones(funcionSagaFinde)
-		crearFunciones(funcionSupermanFinde)
-		crearFunciones(funcionVolver1Finde)
-		crearFunciones(funcionVolver2Finde)
-		crearFunciones(funcionVolver3Finde)
-		crearFunciones(funcionAvengers1Finde)
-		crearFunciones(funcionAvengers2Finde)
-		crearFunciones(funcionAvengers3Finde)
-		crearFunciones(funcionBatmanLunes)
-		crearFunciones(funcionSagaLunes)
-		crearFunciones(funcionSupermanLunes)
-		crearFunciones(funcionVolver1Lunes)
-		crearFunciones(funcionVolver2Lunes)
-		crearFunciones(funcionVolver3Lunes)
-		crearFunciones(funcionAvengers1Lunes)
-		crearFunciones(funcionAvengers2Lunes)
-		crearFunciones(funcionAvengers3Lunes)
-		crearFunciones(funcionBatmanMiercoles)
-		crearFunciones(funcionSagaMiercoles)
-		crearFunciones(funcionSupermanMiercoles)
-		crearFunciones(funcionVolver1Miercoles)
-		crearFunciones(funcionVolver2Miercoles)
-		crearFunciones(funcionVolver3Miercoles)
-		crearFunciones(funcionAvengers1Miercoles)
-		crearFunciones(funcionAvengers2Miercoles)
-		crearFunciones(funcionAvengers3Miercoles)
-
+		
 		// Pelis y Sagas
 		val batman = new Pelicula() => [
 			titulo = "Batman asciende"
@@ -297,11 +214,7 @@ class JoitsBootstrap implements Bootstrap {
 			peliculas.addAll(volverAlFuturo1, volverAlFuturo2, volverAlFuturo3)
 			funciones.addAll(funcionSagaFinde, funcionSagaLunes, funcionSagaMiercoles)
 		]
-
-		// Creo las pelis y sagas
-		newArrayList(batman, superman, avengers1, avengers2, avengers3, volverAlFuturo1, volverAlFuturo2,
-			volverAlFuturo3, volverAlFuturo).forEach[proy|this.crearProyeccion(proy)]
-
+		
 		// creo los Tickets
 		val entradaAlberto1 = new Ticket => [
 			funcion = funcionVolver1Lunes
@@ -352,25 +265,72 @@ class JoitsBootstrap implements Bootstrap {
 			funcion = funcionBatmanMiercoles
 			pelicula = batman
 		]
+		
+		var alezcano = new Usuario() => [
+			nombre = "Alberto"
+			apellido = "Lezcano"
+			edad = 26
+			saldo = 1000
+			usuario = "alezcano"
+			login = "1234"
+		]
 
-		// crear Tickerts
-		crearTickets(entradaAlberto1)
-		crearTickets(entradaAlberto2)
-		crearTickets(entradaAriel1)
-		crearTickets(entradaAriel2)
-		crearTickets(entradaDiego1)
-		crearTickets(entradaDiego2)
-		crearTickets(entradaChinwenwencha1)
-		crearTickets(entradaChinwenwencha2)
-		crearTickets(entradaMacri1)
-		crearTickets(entradaMacri2)
-
+		var dsalamida = new Usuario() => [
+			nombre = "Diego"
+			apellido = "Salamida"
+			edad = 32
+			saldo = 2500
+			usuario = "dsalamida"
+			login = "dsalamida"
+		]
+		var arosales = new Usuario() => [
+			nombre = "Ariel"
+			apellido = "Rosales"
+			edad = 8
+			saldo = 12
+			usuario = "arosales"
+			login = "3333"
+		]
+		var chinwenwencha = new Usuario() => [
+			nombre = "El"
+			apellido = "Chinwenwencha"
+			edad = 26
+			saldo = 5
+			usuario = "chinwenwencha"
+			login = "1234"
+		]
+		var elgato = new Usuario() => [
+			nombre = "Mauiricio"
+			apellido = "Macri"
+			edad = 50
+			saldo = 999999999
+			usuario = "elgato"
+			login = "1234"
+		]
 		// agrego las entradas a los usuarios
 		alezcano.tickets.addAll(entradaAlberto1, entradaAlberto2)
 		arosales.tickets.addAll(entradaAriel1, entradaAriel2)
 		dsalamida.tickets.addAll(entradaDiego1, entradaDiego2)
 		elgato.tickets.addAll(entradaMacri1, entradaMacri2)
 		chinwenwencha.tickets.addAll(entradaChinwenwencha1, entradaChinwenwencha2)
+		
+		
+		// Creo las pelis y sagas
+		newArrayList(batman, superman, avengers1, avengers2, avengers3, volverAlFuturo1, volverAlFuturo2,
+			volverAlFuturo3, volverAlFuturo).forEach[proy|this.crearProyeccion(proy)]
+		
+
+		// RepoUsuarios
+		crearUsuarios(alezcano)
+		crearUsuarios(dsalamida)
+		crearUsuarios(arosales)
+		crearUsuarios(chinwenwencha)
+		crearUsuarios(elgato)
+
+		// amigos
+		alezcano.amigos.addAll(dsalamida, arosales)
+		dsalamida.amigos.addAll(alezcano, arosales)
+		arosales.amigos.addAll(alezcano)
 
 		// Update con entradas y amigos
 		crearUsuarios(alezcano)
@@ -433,6 +393,6 @@ class JoitsBootstrap implements Bootstrap {
 	}
 
 	override isPending() {
-		true
+		RepoUsuarios.instance.allInstances.isNullOrEmpty
 	}
 }
