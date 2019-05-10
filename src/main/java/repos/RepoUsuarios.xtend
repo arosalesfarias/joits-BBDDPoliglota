@@ -79,9 +79,11 @@ class RepoUsuarios extends RepoGenerico<Usuario> {
 		println(idAmigos)
 		if (str !== null) {
 			condiciones.addAll(
-				criteria.like(camposUsuario.get("nombre"), stringBusqueda(str)),
-				criteria.like(camposUsuario.get("apellido"), stringBusqueda(str)),
-				criteria.like(camposUsuario.get("usuario"), stringBusqueda(str))
+				criteria.or(
+					criteria.like(camposUsuario.get("nombre"), stringBusqueda(str)),
+					criteria.like(camposUsuario.get("apellido"), stringBusqueda(str)),
+					criteria.like(camposUsuario.get("usuario"), stringBusqueda(str))
+				)
 			)
 		}
 		if(usuario !== null) query.where(condiciones)
