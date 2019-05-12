@@ -21,7 +21,7 @@ class BusquedaAmigos extends BuscaSugiereModel {
 	}
 
 	override search() {
-		lista = usuario.buscarPersonas(valorBusqueda)
+		lista = RepoUsuarios.instance.buscarPersonas(usuario, valorBusqueda)
 	}
 
 	override agregar() {

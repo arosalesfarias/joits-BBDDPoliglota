@@ -13,7 +13,6 @@ import javax.persistence.ManyToMany
 import javax.persistence.OneToMany
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
-import repos.RepoUsuarios
 
 @Entity
 @TransactionalAndObservable
@@ -58,10 +57,6 @@ class Usuario {
 
 	def buscarAmigo(String usuarioAmigo) {
 		amigos.filter[it.usuario == usuarioAmigo]
-	}
-
-	def buscarPersonas(String buscar) {
-		RepoUsuarios.instance.buscarPersonas(this, buscar)
 	}
 
 	def validateCreate() {
