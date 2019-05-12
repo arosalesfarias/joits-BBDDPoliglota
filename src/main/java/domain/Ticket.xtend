@@ -18,7 +18,7 @@ class Ticket {
 	@GeneratedValue
 	Long id
 
-	@ManyToOne(cascade = CascadeType.REFRESH )
+	@ManyToOne(cascade=CascadeType.REFRESH)
 	Funcion funcion
 
 	@ManyToOne

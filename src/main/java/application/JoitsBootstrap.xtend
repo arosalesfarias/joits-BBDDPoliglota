@@ -147,7 +147,7 @@ class JoitsBootstrap implements Bootstrap {
 			hora = LocalDateTime.of(2019, 03, 06, 13, 30)
 			sala = "12"
 		]
-		
+
 		// Pelis y Sagas
 		val batman = new Pelicula() => [
 			titulo = "Batman asciende"
@@ -214,7 +214,7 @@ class JoitsBootstrap implements Bootstrap {
 			peliculas.addAll(volverAlFuturo1, volverAlFuturo2, volverAlFuturo3)
 			funciones.addAll(funcionSagaFinde, funcionSagaLunes, funcionSagaMiercoles)
 		]
-		
+
 		// creo los Tickets
 		val entradaAlberto1 = new Ticket => [
 			funcion = funcionVolver1Lunes
@@ -265,7 +265,7 @@ class JoitsBootstrap implements Bootstrap {
 			funcion = funcionBatmanMiercoles
 			pelicula = batman
 		]
-		
+
 		var alezcano = new Usuario() => [
 			nombre = "Alberto"
 			apellido = "Lezcano"
@@ -313,12 +313,10 @@ class JoitsBootstrap implements Bootstrap {
 		dsalamida.tickets.addAll(entradaDiego1, entradaDiego2)
 		elgato.tickets.addAll(entradaMacri1, entradaMacri2)
 		chinwenwencha.tickets.addAll(entradaChinwenwencha1, entradaChinwenwencha2)
-		
-		
+
 		// Creo las pelis y sagas
 		newArrayList(batman, superman, avengers1, avengers2, avengers3, volverAlFuturo1, volverAlFuturo2,
 			volverAlFuturo3, volverAlFuturo).forEach[proy|this.crearProyeccion(proy)]
-		
 
 		// RepoUsuarios
 		crearUsuarios(alezcano)

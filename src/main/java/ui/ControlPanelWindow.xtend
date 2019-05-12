@@ -14,12 +14,13 @@ import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.List
 import org.uqbar.arena.widgets.Spinner
-import org.uqbar.arena.aop.windows.TransactionalDialog
+import applicationModel.ControlPanelModel
+import org.uqbar.arena.windows.SimpleWindow
 
-class ControlPanelWindow extends TransactionalDialog<Usuario> {
+class ControlPanelWindow extends SimpleWindow<ControlPanelModel> {
 
 	new(WindowOwner parent, Usuario usu) {
-		super(parent, usu)
+		super(parent, new ControlPanelModel(usu))
 		title = "Panel de Control"
 	}
 
@@ -35,15 +36,15 @@ class ControlPanelWindow extends TransactionalDialog<Usuario> {
 		val Panel PanelPeliculas = new Panel(PanelDerecho)
 		new Label(PanelNombre).text = "Usuario: "
 		new Label(PanelNombre) => [
-			value <=> "nombre"
+			value <=> "usuario.nombre"
 		]
 		new Label(PanelSaldo).text = "Saldo: "
 		new Label(PanelSaldo) => [
-			value <=> "saldo"
+			value <=> "usuario.saldo"
 		]
 		new Label(PanelEdad).text = "Edad: "
 		new Spinner(PanelEdad) => [
-			value <=> "edad"
+			value <=> "usuario.edad"
 		]
 		new Label(PanelCarga).text = "Cargar Saldo: "
 		new Spinner(PanelCarga) => [
@@ -61,7 +62,7 @@ class ControlPanelWindow extends TransactionalDialog<Usuario> {
 	def listaPeliculas(Panel panel) {
 		new Label(panel).text = "Pelis Vistas"
 		new List(panel) => [
-			items <=> "tickets"
+			items <=> "usuario.tickets"
 			width = 220
 			height = 80
 		]
@@ -70,7 +71,7 @@ class ControlPanelWindow extends TransactionalDialog<Usuario> {
 	def tablaAmigos(Panel panel) {
 		new Label(panel).text = "Amigos"
 		val table = new Table<Usuario>(panel, typeof(Usuario)) => [
-			items <=> "amigos"
+			items <=> "usuario.amigos"
 			numberVisibleRows = 4
 		]
 		new Column<Usuario>(table) => [
@@ -88,7 +89,7 @@ class ControlPanelWindow extends TransactionalDialog<Usuario> {
 	override protected addActions(Panel actionsPanel) {
 		new Button(actionsPanel) => [
 			caption = "Buscar Amigos"
-			onClick[|(new BusquedaAmigosWindow(this, modelObject).open)]
+			onClick[|(new BusquedaAmigosWindow(this, modelObject.usuario).open)]
 			setAsDefault
 		]
 		new Button(actionsPanel) => [

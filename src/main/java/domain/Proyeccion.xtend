@@ -38,7 +38,7 @@ abstract class Proyeccion {
 	@Column(length=50)
 	String genero
 
-	@OneToMany(fetch=FetchType.LAZY ,cascade = CascadeType.ALL)
+	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	Set<Funcion> funciones
 
 	new() {

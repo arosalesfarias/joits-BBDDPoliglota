@@ -45,10 +45,8 @@ class Usuario {
 	@ManyToMany(fetch=FetchType.LAZY)
 	Set<Usuario> amigos = newHashSet
 
-	@OneToMany(fetch=FetchType.LAZY,cascade = CascadeType.ALL)
+	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	Set<Ticket> tickets = new HashSet<Ticket>
-
-	float cantidad
 
 	override String toString() {
 		usuario
@@ -56,11 +54,6 @@ class Usuario {
 
 	def void agregarAmigo(Usuario amigo) {
 		amigos.add(amigo)
-	}
-
-	def void agregarSaldo() {
-		saldo = saldo + cantidad
-		cantidad = 0
 	}
 
 	def buscarAmigo(String usuarioAmigo) {
@@ -93,10 +86,6 @@ class Usuario {
 	def void pagarTicket(Ticket ticket) {
 		if(ticket.precio > saldo) throw new BusinessException("el usuario no tiene saldo suficiente")
 		saldo = saldo - ticket.precio
-	}
-
-	def update() {
-		RepoUsuarios.instance.update(this)
 	}
 
 }
