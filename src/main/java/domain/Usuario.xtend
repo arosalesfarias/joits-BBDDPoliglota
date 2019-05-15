@@ -44,7 +44,7 @@ class Usuario {
 	@ManyToMany(fetch=FetchType.LAZY)
 	Set<Usuario> amigos = newHashSet
 
-	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	Set<Ticket> tickets = new HashSet<Ticket>
 
 	override String toString() {
