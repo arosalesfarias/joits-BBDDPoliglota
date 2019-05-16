@@ -8,10 +8,8 @@ import domain.Ticket
 import domain.Usuario
 import java.time.LocalDateTime
 import org.uqbar.arena.bootstrap.Bootstrap
-import repos.RepoFunciones
 import repos.RepoProyecciones
 import repos.RepoUsuarios
-import repos.RepoTickets
 
 class JoitsBootstrap implements Bootstrap {
 	override run() {
@@ -361,32 +359,6 @@ class JoitsBootstrap implements Bootstrap {
 			val usuarioBD = listaUsuarios.head
 			usuario.id = usuarioBD.id
 			repoUsuarios.update(usuario)
-		}
-	}
-
-	def void crearFunciones(Funcion funcion) {
-		val repoFunciones = RepoFunciones.instance
-		val listaFunciones = repoFunciones.searchByExample(funcion)
-		if (listaFunciones.isEmpty) {
-			repoFunciones.create(funcion)
-			println("Funcion creada")
-		} else {
-			val funcionBD = listaFunciones.head
-			funcion.id = funcionBD.id
-			repoFunciones.update(funcion)
-		}
-	}
-
-	def void crearTickets(Ticket ticket) {
-		val repoTickets = RepoTickets.instance
-		val listaTikets = repoTickets.searchByExample(ticket)
-		if (listaTikets.isEmpty) {
-			repoTickets.create(ticket)
-			println("Ticket creado")
-		} else {
-			val ticketBD = listaTikets.head
-			ticket.id = ticketBD.id
-			repoTickets.update(ticket)
 		}
 	}
 

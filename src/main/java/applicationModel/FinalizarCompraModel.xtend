@@ -10,7 +10,6 @@ import org.uqbar.commons.model.annotations.Observable
 import org.uqbar.commons.model.exceptions.UserException
 import org.uqbar.commons.model.utils.ObservableUtils
 import repos.RepoUsuarios
-import repos.RepoTickets
 
 @Observable
 @Accessors
@@ -53,7 +52,6 @@ class FinalizarCompraModel {
 		if(totalCarrito > usuario.saldo) throw new UserException("No posee saldo suficiente")
 		carrito.forEach [ ticket |
 			usuario.comprarTicket(ticket)
-			RepoTickets.instance.create(ticket)
 		]
 		RepoUsuarios.instance.update(usuario)
 		limpiarCarrito()
