@@ -3,22 +3,17 @@ package domain
 import exceptions.BusinessException
 import java.util.ArrayList
 import java.util.List
-import javax.persistence.Column
-import javax.persistence.DiscriminatorValue
-import javax.persistence.Entity
-import javax.persistence.FetchType
-import javax.persistence.OneToMany
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.mongodb.morphia.annotations.Embedded
+import org.mongodb.morphia.annotations.Entity
 
 @Entity
 @Accessors
-@DiscriminatorValue("2")
 class Saga extends Proyeccion {
 
-	@OneToMany(fetch=FetchType.EAGER)
+	@Embedded
 	List<Pelicula> peliculas = new ArrayList<Pelicula>
 
-	@Column(length=50)
 	float nivelClasico
 
 	override precioBase() {

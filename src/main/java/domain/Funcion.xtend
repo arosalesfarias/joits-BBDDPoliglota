@@ -3,26 +3,20 @@ package domain
 import exceptions.BusinessException
 import java.time.DayOfWeek
 import java.time.LocalDateTime
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
 import javax.persistence.Id
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.mongodb.morphia.annotations.Entity
 import org.uqbar.commons.model.annotations.Observable
 
-@Entity
+@Entity // decidir si esta va en una coleccion nueva o dejarlo asi xq esta embebido
 @Accessors
 @Observable
 class Funcion {
-	
-	@Id
-	@GeneratedValue
-	Long id
 
-	@Column
+	@Id Object id
+
 	LocalDateTime hora
 
-	@Column(length=10)
 	String sala
 
 	def boolean esFinDeSemana() { hora.dayOfWeek == DayOfWeek.SUNDAY || hora.dayOfWeek == DayOfWeek.SATURDAY }

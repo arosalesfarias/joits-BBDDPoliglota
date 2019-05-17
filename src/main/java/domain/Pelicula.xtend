@@ -1,13 +1,11 @@
 package domain
 
 import exceptions.BusinessException
-import javax.persistence.DiscriminatorValue
-import javax.persistence.Entity
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.mongodb.morphia.annotations.Entity
 
 @Entity
 @Accessors
-@DiscriminatorValue("1")
 class Pelicula extends Proyeccion {
 
 	override precioBase() {

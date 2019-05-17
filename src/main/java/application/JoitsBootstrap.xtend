@@ -8,11 +8,17 @@ import domain.Ticket
 import domain.Usuario
 import java.time.LocalDateTime
 import org.uqbar.arena.bootstrap.Bootstrap
-import repos.RepoProyecciones
 import repos.RepoUsuarios
+import reposMorphia.AbstractRepository
+import org.uqbar.commons.applicationContext.ApplicationContext
+import reposMorphia.RepoProyecciones
 
 class JoitsBootstrap implements Bootstrap {
+
+	AbstractRepository<Proyeccion> repoProyecciones = ApplicationContext.instance.getSingleton(RepoProyecciones)
+
 	override run() {
+
 		// Funciones
 		val funcionBatmanFinde = new Funcion() => [
 			hora = LocalDateTime.of(2019, 03, 03, 13, 30)
@@ -314,7 +320,7 @@ class JoitsBootstrap implements Bootstrap {
 
 		// Creo las pelis y sagas
 		newArrayList(batman, superman, avengers1, avengers2, avengers3, volverAlFuturo1, volverAlFuturo2,
-			volverAlFuturo3, volverAlFuturo).forEach[proy|this.crearProyeccion(proy)]
+			volverAlFuturo3, volverAlFuturo).forEach[proy|repoProyecciones.create(proy)]
 
 		// RepoUsuarios
 		crearUsuarios(alezcano)
@@ -334,19 +340,6 @@ class JoitsBootstrap implements Bootstrap {
 		crearUsuarios(arosales)
 		crearUsuarios(elgato)
 		crearUsuarios(chinwenwencha)
-	}
-
-	def crearProyeccion(Proyeccion proy) {
-		val repoProy = RepoProyecciones.instance
-		val listaProy = repoProy.searchByExample(proy)
-		if (listaProy.isEmpty) {
-			repoProy.create(proy)
-			println("Proyeccion " + proy.titulo + " creada")
-		} else {
-			val proyBD = listaProy.head
-			proy.id = proyBD.id
-			repoProy.update(proy)
-		}
 	}
 
 	def void crearUsuarios(Usuario usuario) {

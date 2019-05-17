@@ -8,9 +8,11 @@ import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Dependencies
 import org.uqbar.commons.model.annotations.Observable
-import repos.RepoProyecciones
 import domain.Saga
 import repos.RepoUsuarios
+import reposMorphia.AbstractRepository
+import org.uqbar.commons.applicationContext.ApplicationContext
+import reposMorphia.RepoProyecciones
 
 @Accessors
 @Observable
@@ -22,19 +24,21 @@ class ModeloBusqueda extends BuscaSugiereModel {
 	List<Proyeccion> lista
 	List<Proyeccion> sugeridos
 	Proyeccion entidadSeleccionada
+	AbstractRepository<Proyeccion> repoProyecciones = ApplicationContext.instance.getSingleton(RepoProyecciones)
 
 	new() {
 		super(RepoUsuarios.instance.usuarioLogueado)
-		sugeridos = RepoProyecciones.instance.listaSugeridos(3)
+		//sugeridos = RepoProyecciones.instance.listaSugeridos(3)
 	}
 
-	def void setEntidadSeleccionada(Proyeccion proyeccion) {
-		entidadSeleccionada = RepoProyecciones.instance.searchById(proyeccion.id)
-	}
+//  si no me equivoco esto ya no hace falta
+//	def void setEntidadSeleccionada(Proyeccion proyeccion) {
+//		entidadSeleccionada = repoProyecciones.searchByExample(proyeccion)
+//	}
 
 	override void search() {
 		this.clearSeleccionados
-		lista = RepoProyecciones.instance.searchByExample(new Saga() => [titulo = valorBusqueda]) // RepoProyecciones.instance.search(valorBusqueda)
+		lista = repoProyecciones.searchByExample(new Saga() => [titulo = valorBusqueda]) // RepoProyecciones.instance.search(valorBusqueda)
 	}
 
 	def void clearUsuario() {
