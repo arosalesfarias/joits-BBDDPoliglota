@@ -56,7 +56,7 @@ class ControlPanelWindow extends SimpleWindow<ControlPanelModel> {
 			bindEnabled(new NotNullObservable("cantidad"))
 		]
 		this.tablaAmigos(PanelAmigos)
-		this.listaPeliculas(PanelPeliculas)
+//		this.listaPeliculas(PanelPeliculas)
 	}
 
 	def listaPeliculas(Panel panel) {
