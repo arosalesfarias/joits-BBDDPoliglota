@@ -9,10 +9,8 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import org.mongodb.morphia.Datastore
 import org.mongodb.morphia.Morphia
 import org.mongodb.morphia.query.UpdateOperations
-import org.uqbar.commons.model.annotations.TransactionalAndObservable
 
 @Accessors
-@TransactionalAndObservable
 abstract class AbstractRepository<T> {
 
 	static protected Datastore ds
@@ -27,7 +25,7 @@ abstract class AbstractRepository<T> {
 			val mongo = new MongoClient("localhost", 27017)
 			morphia = new Morphia => [
 				map(Proyeccion).map(Pelicula).map(Saga)
-				ds = createDatastore(mongo, "test") // preguntar como cambiar si quiero usar otro que no sea test
+				ds = createDatastore(mongo, "joyts") // preguntar como cambiar si quiero usar otro que no sea test
 				ds.ensureIndexes
 			]
 		}
