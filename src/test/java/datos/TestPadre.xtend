@@ -2,12 +2,10 @@ package datos
 
 import repos.RepoUsuarios
 import domain.Usuario
-import repos.RepoProyecciones
 import domain.Pelicula
 import domain.Saga
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.junit.Before
-import org.junit.After
 import domain.Proyeccion
 
 @Accessors
@@ -17,7 +15,7 @@ class TestPadre {
 	Usuario dsalamida
 	Usuario arosales
 
-	RepoProyecciones repoProy = RepoProyecciones.instance
+	// RepoProyecciones repoProy = RepoProyecciones.instance
 	Pelicula batman
 	Pelicula volverAlFuturo1
 	Pelicula volverAlFuturo2
@@ -33,13 +31,13 @@ class TestPadre {
 		inicioRepoUsuarios
 		inicioRepoProyecciones
 	}
+
 //
 //	@After
 //	def void finish() {
 //		repoUsr.limpiar
 //		repoProy.limpiar
 //	}
-
 	def inicioVariables() {
 		// Usuarios
 		alezcano = new Usuario() => [
@@ -112,6 +110,7 @@ class TestPadre {
 		crearProyeccion(volverAlFuturo3)
 		crearProyeccion(volverAlFuturo)
 	}
+
 	def void crearUsuarios(Usuario usuario) {
 		val listaUsuarios = repoUsr.searchByExample(usuario)
 		if (listaUsuarios.isEmpty) {
@@ -123,16 +122,17 @@ class TestPadre {
 			repoUsr.update(usuario)
 		}
 	}
+
 	def crearProyeccion(Proyeccion proy) {
-		val repoProy = RepoProyecciones.instance
-		val listaProy = repoProy.searchByExample(proy)
-		if (listaProy.isEmpty) {
-			repoProy.create(proy)
-			println("Proyeccion " + proy.titulo + " creada")
-		} else {
-			val proyBD = listaProy.head
-			proy.id = proyBD.id
-			repoProy.update(proy)
-		}
+		/*val repoProy = RepoProyecciones.instance
+		 * val listaProy = repoProy.searchByExample(proy)
+		 * if (listaProy.isEmpty) {
+		 * 	repoProy.create(proy)
+		 * 	println("Proyeccion " + proy.titulo + " creada")
+		 * } else {
+		 * 	val proyBD = listaProy.head
+		 * 	proy.id = proyBD.id
+		 * 	repoProy.update(proy)
+		 }*/
 	}
 }

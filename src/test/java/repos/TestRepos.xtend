@@ -11,9 +11,9 @@ class TestRepos extends TestPadre {
 
 	@Test
 	def void arrancoConUnUsuarioEnrepoUsr() {
-		Assert.assertEquals(repoUsr.searchByString(new Usuario=>[id = 99L],"").length, 2)
+		Assert.assertEquals(repoUsr.searchByString(new Usuario => [id = 99L], "").length, 2)
 	}
-	
+
 	@Test
 	def void creoUnUsuarioAlrepoUsrYTieneId2() {
 		Assert.assertEquals(repoUsr.devolverUsuario(dsalamida).id, 2)
@@ -44,7 +44,6 @@ class TestRepos extends TestPadre {
 //		Assert.assertEquals(repoUsr.elementos.length, 0)
 //		Assert.assertFalse(repoUsr.proximoId == 0)
 //	}
-
 //	@Test
 //	def void actualizoNombreDeUsuario() {
 //		val listaUsuarios = repoUsr.searchByString(new Usuario=>[id = 99L],"Alberto")
@@ -67,24 +66,23 @@ class TestRepos extends TestPadre {
 		Assert.assertTrue(texto.equals("alezcano"))
 	}
 
-	@Test
-	def void buscoVolverYMeAparece3PeliculasY1Saga() {
-		Assert.assertEquals(3 + 1, repoProy.searchByExample(new Pelicula =>[titulo = "Volver"]).length)
-	}
-
-	@Test
-	def void buscoBatYMeAparece1LaPeliculaBatman() {
-		Assert.assertEquals(1, repoProy.searchByExample(new Pelicula =>[titulo = "bat"]).length)
-	}
-
-	@Test
-	def void buscoSagaMeApareceLaUnica() {
-		Assert.assertEquals(1, repoProy.searchByExample(new Pelicula =>[titulo = "Saga"]).length)
-	}
-
-	@Test
-	def void noAgregoValorABuscarMeDebenAparecerTodos() {
-		Assert.assertEquals(5, repoProy.searchByExample(new Pelicula =>[titulo = ""]).length)
-	}
-
+//	@Test
+//	def void buscoVolverYMeAparece3PeliculasY1Saga() {
+//		Assert.assertEquals(3 + 1, repoProy.searchByExample(new Pelicula =>[titulo = "Volver"]).length)
+//	}
+//
+//	@Test
+//	def void buscoBatYMeAparece1LaPeliculaBatman() {
+//		Assert.assertEquals(1, repoProy.searchByExample(new Pelicula =>[titulo = "bat"]).length)
+//	}
+//
+//	@Test
+//	def void buscoSagaMeApareceLaUnica() {
+//		Assert.assertEquals(1, repoProy.searchByExample(new Pelicula =>[titulo = "Saga"]).length)
+//	}
+//
+//	@Test
+//	def void noAgregoValorABuscarMeDebenAparecerTodos() {
+//		Assert.assertEquals(5, repoProy.searchByExample(new Pelicula =>[titulo = ""]).length)
+//	}
 }

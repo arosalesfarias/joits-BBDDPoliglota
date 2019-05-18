@@ -1,13 +1,12 @@
 package domain
 
 import exceptions.BusinessException
-import javax.persistence.CascadeType
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
-import javax.persistence.ManyToOne
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Observable
+import javax.persistence.Transient
 
 @Entity
 @Accessors
@@ -18,10 +17,10 @@ class Ticket {
 	@GeneratedValue
 	Long id
 
-	@ManyToOne(cascade=CascadeType.REFRESH)
+	@Transient
 	Funcion funcion
 
-	@ManyToOne
+	@Transient
 	Proyeccion pelicula // que puede ser pelicula o saga
 
 	def float precio() {

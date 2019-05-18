@@ -2,6 +2,8 @@ package application
 
 import org.uqbar.arena.Application
 import ui.LoginWindow
+import reposMorphia.RepoProyecciones
+import org.uqbar.commons.applicationContext.ApplicationContext
 
 class JoitsApplication extends Application {
 
@@ -14,6 +16,7 @@ class JoitsApplication extends Application {
 	}
 
 	static def void main(String[] args) {
+		ApplicationContext.instance.configureSingleton(typeof(RepoProyecciones), new RepoProyecciones)
 		new JoitsApplication(new JoitsBootstrap).start()
 	}
 
