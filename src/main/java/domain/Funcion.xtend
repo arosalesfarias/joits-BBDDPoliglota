@@ -9,11 +9,16 @@ import org.uqbar.commons.model.annotations.Observable
 import org.bson.types.ObjectId
 import org.mongodb.morphia.annotations.Id
 
- // decidir si esta va en una coleccion nueva o dejarlo asi xq esta embebido
+// decidir si esta va en una coleccion nueva o dejarlo asi xq esta embebido
 @Accessors
 @Observable
 @Entity(value="Funcion", noClassnameStored=true)
 class Funcion {
+
+	new(LocalDateTime _hora, String _sala) {
+		hora = _hora
+		sala = _sala
+	}
 
 	@Id ObjectId id
 

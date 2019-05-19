@@ -22,138 +22,60 @@ class JoitsBootstrap implements Bootstrap {
 	override run() {
 
 		// Funciones
-		val funcionBatmanFinde = new Funcion() => [
-			hora = LocalDateTime.of(2019, 03, 03, 13, 30)
-			sala = "5"
-		]
+		val funcionBatmanFinde = new Funcion(LocalDateTime.of(2019, 03, 03, 13, 30), "5")
 		repoFunciones.create(funcionBatmanFinde)
 
-		val funcionSupermanFinde = new Funcion() => [
-			hora = LocalDateTime.of(2019, 03, 03, 13, 30)
-			sala = "8"
-		]
+		val funcionSupermanFinde = new Funcion(LocalDateTime.of(2019, 03, 03, 13, 30), "8")
 
-		val funcionSagaFinde = new Funcion() => [
-			hora = LocalDateTime.of(2019, 03, 03, 13, 30)
-			sala = "2"
-		]
+		val funcionSagaFinde = new Funcion(LocalDateTime.of(2019, 03, 03, 13, 30), "2")
 
-		val funcionVolver1Finde = new Funcion() => [
-			hora = LocalDateTime.of(2019, 03, 03, 13, 30)
-			sala = "1"
-		]
+		val funcionVolver1Finde = new Funcion(LocalDateTime.of(2019, 03, 03, 13, 30), "1")
 
-		val funcionVolver2Finde = new Funcion() => [
-			hora = LocalDateTime.of(2019, 03, 03, 13, 30)
-			sala = "9"
-		]
-		val funcionVolver3Finde = new Funcion() => [
-			hora = LocalDateTime.of(2019, 03, 03, 13, 30)
-			sala = "7"
-		]
+		val funcionVolver2Finde = new Funcion(LocalDateTime.of(2019, 03, 03, 13, 30), "9")
 
-		val funcionAvengers1Finde = new Funcion() => [
-			hora = LocalDateTime.of(2019, 03, 03, 13, 30)
-			sala = "11"
-		]
+		val funcionVolver3Finde = new Funcion(LocalDateTime.of(2019, 03, 03, 13, 30), "7")
 
-		val funcionAvengers2Finde = new Funcion() => [
-			hora = LocalDateTime.of(2019, 03, 03, 13, 30)
-			sala = "14"
-		]
+		val funcionAvengers1Finde = new Funcion(LocalDateTime.of(2019, 03, 03, 13, 30), "11")
 
-		val funcionAvengers3Finde = new Funcion() => [
-			hora = LocalDateTime.of(2019, 03, 03, 13, 30)
-			sala = "18"
-		]
+		val funcionAvengers2Finde = new Funcion(LocalDateTime.of(2019, 03, 03, 13, 30), "14")
 
-		val funcionBatmanLunes = new Funcion() => [
-			hora = LocalDateTime.of(2019, 03, 04, 13, 30)
-			sala = "8"
-		]
+		val funcionAvengers3Finde = new Funcion(LocalDateTime.of(2019, 03, 03, 13, 30), "18")
 
-		val funcionSupermanLunes = new Funcion() => [
-			hora = LocalDateTime.of(2019, 03, 04, 13, 30)
-			sala = "5"
-		]
+		val funcionBatmanLunes = new Funcion(LocalDateTime.of(2019, 03, 04, 13, 30), "8")
 
-		val funcionSagaLunes = new Funcion() => [
-			hora = LocalDateTime.of(2019, 03, 04, 13, 30)
-			sala = "10"
-		]
+		val funcionSupermanLunes = new Funcion(LocalDateTime.of(2019, 03, 04, 13, 30), "5")
 
-		val funcionVolver1Lunes = new Funcion() => [
-			hora = LocalDateTime.of(2019, 03, 04, 13, 30)
-			sala = "4"
-		]
+		val funcionSagaLunes = new Funcion(LocalDateTime.of(2019, 03, 04, 13, 30), "10")
 
-		val funcionVolver2Lunes = new Funcion() => [
-			hora = LocalDateTime.of(2019, 03, 04, 13, 30)
-			sala = "2"
-		]
-		val funcionVolver3Lunes = new Funcion() => [
-			hora = LocalDateTime.of(2019, 03, 04, 13, 30)
-			sala = "7"
-		]
+		val funcionVolver1Lunes = new Funcion(LocalDateTime.of(2019, 03, 04, 13, 30), "4")
 
-		val funcionAvengers1Lunes = new Funcion() => [
-			hora = LocalDateTime.of(2019, 03, 04, 13, 30)
-			sala = "12"
-		]
+		val funcionVolver2Lunes = new Funcion(LocalDateTime.of(2019, 03, 04, 13, 30), "2")
 
-		val funcionAvengers2Lunes = new Funcion() => [
-			hora = LocalDateTime.of(2019, 03, 04, 13, 30)
-			sala = "15"
-		]
+		val funcionVolver3Lunes = new Funcion(LocalDateTime.of(2019, 03, 04, 13, 30), "7")
 
-		val funcionAvengers3Lunes = new Funcion() => [
-			hora = LocalDateTime.of(2019, 03, 04, 13, 30)
-			sala = "1"
-		]
+		val funcionAvengers1Lunes = new Funcion(LocalDateTime.of(2019, 03, 04, 13, 30), "12")
 
-		val funcionBatmanMiercoles = new Funcion() => [
-			hora = LocalDateTime.of(2019, 03, 06, 13, 30)
-			sala = "1"
-		]
+		val funcionAvengers2Lunes = new Funcion(LocalDateTime.of(2019, 03, 04, 13, 30), "15")
 
-		val funcionSupermanMiercoles = new Funcion() => [
-			hora = LocalDateTime.of(2019, 03, 06, 13, 30)
-			sala = "7"
-		]
+		val funcionAvengers3Lunes = new Funcion(LocalDateTime.of(2019, 03, 04, 13, 30), "1")
 
-		val funcionSagaMiercoles = new Funcion() => [
-			hora = LocalDateTime.of(2019, 03, 06, 13, 30)
-			sala = "4"
-		]
+		val funcionBatmanMiercoles = new Funcion(LocalDateTime.of(2019, 03, 06, 13, 30), "1")
 
-		val funcionVolver1Miercoles = new Funcion() => [
-			hora = LocalDateTime.of(2019, 03, 06, 13, 30)
-			sala = "10"
-		]
+		val funcionSupermanMiercoles = new Funcion(LocalDateTime.of(2019, 03, 06, 13, 30), "7")
 
-		val funcionVolver2Miercoles = new Funcion() => [
-			hora = LocalDateTime.of(2019, 03, 06, 13, 30)
-			sala = "8"
-		]
-		val funcionVolver3Miercoles = new Funcion() => [
-			hora = LocalDateTime.of(2019, 03, 06, 13, 30)
-			sala = "2"
-		]
+		val funcionSagaMiercoles = new Funcion(LocalDateTime.of(2019, 03, 06, 13, 30), "4")
 
-		val funcionAvengers1Miercoles = new Funcion() => [
-			hora = LocalDateTime.of(2019, 03, 06, 13, 30)
-			sala = "6"
-		]
+		val funcionVolver1Miercoles = new Funcion(LocalDateTime.of(2019, 03, 06, 13, 30), "10")
 
-		val funcionAvengers2Miercoles = new Funcion() => [
-			hora = LocalDateTime.of(2019, 03, 06, 13, 30)
-			sala = "17"
-		]
+		val funcionVolver2Miercoles = new Funcion(LocalDateTime.of(2019, 03, 06, 13, 30), "8")
 
-		val funcionAvengers3Miercoles = new Funcion() => [
-			hora = LocalDateTime.of(2019, 03, 06, 13, 30)
-			sala = "12"
-		]
+		val funcionVolver3Miercoles = new Funcion(LocalDateTime.of(2019, 03, 06, 13, 30), "2")
+
+		val funcionAvengers1Miercoles = new Funcion(LocalDateTime.of(2019, 03, 06, 13, 30), "6")
+
+		val funcionAvengers2Miercoles = new Funcion(LocalDateTime.of(2019, 03, 06, 13, 30), "17")
+
+		val funcionAvengers3Miercoles = new Funcion(LocalDateTime.of(2019, 03, 06, 13, 30), "12")
 
 		// Pelis y Sagas
 		val batman = new Pelicula() => [
@@ -161,7 +83,7 @@ class JoitsBootstrap implements Bootstrap {
 			añoRodaje = 2010
 			puntaje = 5
 			genero = "Accion"
-			//funciones.addAll(funcionBatmanFinde, funcionBatmanLunes, funcionBatmanMiercoles)
+		// funciones.addAll(funcionBatmanFinde, funcionBatmanLunes, funcionBatmanMiercoles)
 		]
 		val superman = new Pelicula() => [
 			titulo = "Superman"
@@ -323,9 +245,8 @@ class JoitsBootstrap implements Bootstrap {
 
 		// Creo las pelis y sagas
 		/*newArrayList(batman, superman, avengers1, avengers2, avengers3, volverAlFuturo1, volverAlFuturo2,
-			volverAlFuturo3, volverAlFuturo).forEach[proy|repoProyecciones.create(proy)]*/
-		//newArrayList(batman).forEach[proy|repoProyecciones.create(proy)]
-
+		 volverAlFuturo3, volverAlFuturo).forEach[proy|repoProyecciones.create(proy)]*/
+		// newArrayList(batman).forEach[proy|repoProyecciones.create(proy)]
 		// RepoUsuarios
 		crearUsuarios(alezcano)
 		crearUsuarios(dsalamida)
