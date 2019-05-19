@@ -16,7 +16,7 @@ import reposMorphia.RepoFunciones
 
 class JoitsBootstrap implements Bootstrap {
 
-	//AbstractRepository<Proyeccion> repoProyecciones = ApplicationContext.instance.getSingleton(typeof(RepoProyecciones))
+	AbstractRepository<Proyeccion> repoProyecciones = ApplicationContext.instance.getSingleton(typeof(RepoProyecciones))
 	AbstractRepository<Funcion> repoFunciones = ApplicationContext.instance.getSingleton(typeof(RepoFunciones))
 
 	override run() {
@@ -26,7 +26,7 @@ class JoitsBootstrap implements Bootstrap {
 			hora = LocalDateTime.of(2019, 03, 03, 13, 30)
 			sala = "5"
 		]
-		repoFunciones.createIfNotExists(funcionBatmanFinde)
+		repoFunciones.create(funcionBatmanFinde)
 
 		val funcionSupermanFinde = new Funcion() => [
 			hora = LocalDateTime.of(2019, 03, 03, 13, 30)
@@ -360,6 +360,6 @@ class JoitsBootstrap implements Bootstrap {
 	}
 
 	override isPending() {
-		RepoUsuarios.instance.allInstances.isNullOrEmpty
+		true
 	}
 }

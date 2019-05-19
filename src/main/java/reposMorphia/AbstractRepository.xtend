@@ -18,7 +18,7 @@ abstract class AbstractRepository<T> {
 			val mongo = new MongoClient("localhost", 27017)
 			new Morphia => [
 				map(typeof(Funcion))
-				ds = createDatastore(mongo, "test") // preguntar como cambiar si quiero usar otro que no sea test
+				ds = createDatastore(mongo, "Joyts") // preguntar como cambiar si quiero usar otro que no sea test
 				ds.ensureIndexes
 			]
 			println("Conectado a MongoDB. Bases: " + ds.getDB.collectionNames)

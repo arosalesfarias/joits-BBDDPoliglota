@@ -7,7 +7,7 @@ import domain.Funcion
 class RepoFunciones extends AbstractRepository<Funcion> {
 
 	override getEntityType() {
-		Funcion
+		typeof(Funcion)
 	}
 
 	override searchByExample(Funcion funcion) {
