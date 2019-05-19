@@ -10,7 +10,10 @@ import org.bson.types.ObjectId
 
 @Observable
 @Accessors
+@Entity(value="Proyecciones", noClassnameStored=true)
 abstract class Proyeccion {
+	
+	@Id ObjectId id
 
 	String titulo
 
@@ -19,7 +22,8 @@ abstract class Proyeccion {
 	float puntaje
 
 	String genero
-
+	
+	@Embedded
 	Set<Funcion> funciones
 
 	new() {

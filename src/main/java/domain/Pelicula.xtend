@@ -5,6 +5,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import org.mongodb.morphia.annotations.Entity
 
 @Accessors
+@Entity(value="Proyecciones")
 class Pelicula extends Proyeccion {
 
 	override precioBase() {

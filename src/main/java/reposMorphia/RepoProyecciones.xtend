@@ -11,15 +11,12 @@ class RepoProyecciones extends AbstractRepository<Proyeccion> {
 	}
 
 	override searchByExample(Proyeccion proyeccion) {
-		ds.createQuery(entityType).field("titulo").contains(proyeccion.titulo ?: "").asList
+		ds.createQuery(entityType).field("titulo").equal(proyeccion.titulo).asList
 	}
 
 	override defineUpdateOperations(Proyeccion proyeccion) {
-		ds.createUpdateOperations(entityType)
-		.set("titulo", proyeccion.titulo)
-		.set("añoRodaje", proyeccion.añoRodaje)
-		.set("puntaje", proyeccion.puntaje)
-		.set("genero", proyeccion.genero)
+		ds.createUpdateOperations(entityType).set("titulo", proyeccion.titulo).set("añoRodaje", proyeccion.añoRodaje).
+			set("puntaje", proyeccion.puntaje).set("genero", proyeccion.genero)
 	}
 
 }

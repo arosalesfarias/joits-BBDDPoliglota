@@ -68,6 +68,7 @@ class JoitsBootstrap implements Bootstrap {
 			genero = "Accion"
 			funciones.addAll(funcionBatmanFinde, funcionBatmanLunes, funcionBatmanMiercoles)
 		]
+
 		val superman = new Pelicula() => [
 			titulo = "Superman"
 			añoRodaje = 2012
@@ -126,7 +127,6 @@ class JoitsBootstrap implements Bootstrap {
 			peliculas.addAll(volverAlFuturo1, volverAlFuturo2, volverAlFuturo3)
 			funciones.addAll(funcionSagaFinde, funcionSagaLunes, funcionSagaMiercoles)
 		]
-
 		// creo los Tickets
 		val entradaAlberto1 = new Ticket => [
 			funcion = funcionVolver1Lunes
@@ -227,9 +227,9 @@ class JoitsBootstrap implements Bootstrap {
 		chinwenwencha.tickets.addAll(entradaChinwenwencha1, entradaChinwenwencha2)
 
 		// Creo las pelis y sagas
-		/*newArrayList(batman, superman, avengers1, avengers2, avengers3, volverAlFuturo1, volverAlFuturo2,
-		 volverAlFuturo3, volverAlFuturo).forEach[proy|repoProyecciones.create(proy)]*/
-		// newArrayList(batman).forEach[proy|repoProyecciones.create(proy)]
+		newArrayList(batman, superman, avengers1, avengers2, avengers3, volverAlFuturo1, volverAlFuturo2,
+			volverAlFuturo3, volverAlFuturo).forEach[repoProyecciones.createIfNotExists(it)]
+
 		// RepoUsuarios
 		crearUsuarios(alezcano)
 		crearUsuarios(dsalamida)

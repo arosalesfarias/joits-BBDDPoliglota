@@ -5,12 +5,13 @@ import java.util.ArrayList
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.mongodb.morphia.annotations.Entity
-import org.mongodb.morphia.annotations.Property
-
+import org.mongodb.morphia.annotations.Embedded
 
 @Accessors
+@Entity(value="Proyecciones")
 class Saga extends Proyeccion {
-
+	
+	@Embedded
 	List<Pelicula> peliculas = new ArrayList<Pelicula>
 
 	float nivelClasico
