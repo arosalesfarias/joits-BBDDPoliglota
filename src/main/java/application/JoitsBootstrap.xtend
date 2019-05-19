@@ -17,7 +17,7 @@ import reposMorphia.RepoFunciones
 class JoitsBootstrap implements Bootstrap {
 
 	AbstractRepository<Proyeccion> repoProyecciones = ApplicationContext.instance.getSingleton(typeof(RepoProyecciones))
-	AbstractRepository<Funcion> repoFunciones = ApplicationContext.instance.getSingleton(typeof(RepoFunciones))
+	//AbstractRepository<Funcion> repoFunciones = ApplicationContext.instance.getSingleton(typeof(RepoFunciones))
 
 	override run() {
 
@@ -50,7 +50,7 @@ class JoitsBootstrap implements Bootstrap {
 		val funcionAvengers2Miercoles = new Funcion(LocalDateTime.of(2019, 03, 06, 13, 30), "26")
 		val funcionAvengers3Miercoles = new Funcion(LocalDateTime.of(2019, 03, 06, 13, 30), "27")
 
-		newArrayList(funcionBatmanFinde, funcionSupermanFinde, funcionSagaFinde, funcionVolver1Finde,
+		/*newArrayList(funcionBatmanFinde, funcionSupermanFinde, funcionSagaFinde, funcionVolver1Finde,
 			funcionVolver2Finde, funcionVolver3Finde, funcionAvengers1Finde, funcionAvengers2Finde,
 			funcionAvengers3Finde, funcionBatmanLunes, funcionSupermanLunes, funcionSagaLunes, funcionVolver1Lunes,
 			funcionVolver2Lunes, funcionVolver3Lunes, funcionAvengers1Lunes, funcionAvengers2Lunes,
@@ -58,7 +58,7 @@ class JoitsBootstrap implements Bootstrap {
 			funcionVolver1Miercoles, funcionVolver2Miercoles, funcionVolver3Miercoles, funcionAvengers1Miercoles,
 			funcionAvengers2Miercoles, funcionAvengers3Miercoles).forEach [
 			repoFunciones.createIfNotExists(it)
-		]
+		]*/
 
 		// Pelis y Sagas
 		val batman = new Pelicula() => [
