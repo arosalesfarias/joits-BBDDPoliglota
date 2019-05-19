@@ -12,54 +12,52 @@ import repos.RepoUsuarios
 import reposMorphia.AbstractRepository
 import org.uqbar.commons.applicationContext.ApplicationContext
 import reposMorphia.RepoProyecciones
-import reposMorphia.RepoFunciones
 
 class JoitsBootstrap implements Bootstrap {
 
 	AbstractRepository<Proyeccion> repoProyecciones = ApplicationContext.instance.getSingleton(typeof(RepoProyecciones))
-	//AbstractRepository<Funcion> repoFunciones = ApplicationContext.instance.getSingleton(typeof(RepoFunciones))
 
+//	AbstractRepository<Funcion> repoFunciones = ApplicationContext.instance.getSingleton(typeof(RepoFunciones))
 	override run() {
 
 		// Funciones (27)
-		val funcionBatmanFinde = new Funcion(LocalDateTime.of(2019, 03, 03, 13, 30), "1")
-		val funcionSupermanFinde = new Funcion(LocalDateTime.of(2019, 03, 03, 13, 30), "2")
-		val funcionSagaFinde = new Funcion(LocalDateTime.of(2019, 03, 03, 13, 30), "3")
-		val funcionVolver1Finde = new Funcion(LocalDateTime.of(2019, 03, 03, 13, 30), "4")
-		val funcionVolver2Finde = new Funcion(LocalDateTime.of(2019, 03, 03, 13, 30), "5")
-		val funcionVolver3Finde = new Funcion(LocalDateTime.of(2019, 03, 03, 13, 30), "6")
-		val funcionAvengers1Finde = new Funcion(LocalDateTime.of(2019, 03, 03, 13, 30), "7")
-		val funcionAvengers2Finde = new Funcion(LocalDateTime.of(2019, 03, 03, 13, 30), "8")
-		val funcionAvengers3Finde = new Funcion(LocalDateTime.of(2019, 03, 03, 13, 30), "9")
-		val funcionBatmanLunes = new Funcion(LocalDateTime.of(2019, 03, 04, 13, 30), "10")
-		val funcionSupermanLunes = new Funcion(LocalDateTime.of(2019, 03, 04, 13, 30), "11")
-		val funcionSagaLunes = new Funcion(LocalDateTime.of(2019, 03, 04, 13, 30), "12")
-		val funcionVolver1Lunes = new Funcion(LocalDateTime.of(2019, 03, 04, 13, 30), "13")
-		val funcionVolver2Lunes = new Funcion(LocalDateTime.of(2019, 03, 04, 13, 30), "14")
-		val funcionVolver3Lunes = new Funcion(LocalDateTime.of(2019, 03, 04, 13, 30), "15")
-		val funcionAvengers1Lunes = new Funcion(LocalDateTime.of(2019, 03, 04, 13, 30), "16")
-		val funcionAvengers2Lunes = new Funcion(LocalDateTime.of(2019, 03, 04, 13, 30), "17")
-		val funcionAvengers3Lunes = new Funcion(LocalDateTime.of(2019, 03, 04, 13, 30), "18")
-		val funcionBatmanMiercoles = new Funcion(LocalDateTime.of(2019, 03, 06, 13, 30), "19")
-		val funcionSupermanMiercoles = new Funcion(LocalDateTime.of(2019, 03, 06, 13, 30), "20")
-		val funcionSagaMiercoles = new Funcion(LocalDateTime.of(2019, 03, 06, 13, 30), "21")
-		val funcionVolver1Miercoles = new Funcion(LocalDateTime.of(2019, 03, 06, 13, 30), "22")
-		val funcionVolver2Miercoles = new Funcion(LocalDateTime.of(2019, 03, 06, 13, 30), "23")
-		val funcionVolver3Miercoles = new Funcion(LocalDateTime.of(2019, 03, 06, 13, 30), "24")
-		val funcionAvengers1Miercoles = new Funcion(LocalDateTime.of(2019, 03, 06, 13, 30), "25")
-		val funcionAvengers2Miercoles = new Funcion(LocalDateTime.of(2019, 03, 06, 13, 30), "26")
-		val funcionAvengers3Miercoles = new Funcion(LocalDateTime.of(2019, 03, 06, 13, 30), "27")
+		val funcionBatmanFinde = new Funcion(LocalDateTime.of(2019, 03, 03, 13, 30), "5")
+		val funcionSupermanFinde = new Funcion(LocalDateTime.of(2019, 03, 03, 13, 30), "8")
+		val funcionSagaFinde = new Funcion(LocalDateTime.of(2019, 03, 03, 13, 30), "2")
+		val funcionVolver1Finde = new Funcion(LocalDateTime.of(2019, 03, 03, 13, 30), "1")
+		val funcionVolver2Finde = new Funcion(LocalDateTime.of(2019, 03, 03, 13, 30), "9")
+		val funcionVolver3Finde = new Funcion(LocalDateTime.of(2019, 03, 03, 13, 30), "7")
+		val funcionAvengers1Finde = new Funcion(LocalDateTime.of(2019, 03, 03, 13, 30), "11")
+		val funcionAvengers2Finde = new Funcion(LocalDateTime.of(2019, 03, 03, 13, 30), "14")
+		val funcionAvengers3Finde = new Funcion(LocalDateTime.of(2019, 03, 03, 13, 30), "18")
+		val funcionBatmanLunes = new Funcion(LocalDateTime.of(2019, 03, 04, 13, 30), "8")
+		val funcionSupermanLunes = new Funcion(LocalDateTime.of(2019, 03, 04, 13, 30), "5")
+		val funcionSagaLunes = new Funcion(LocalDateTime.of(2019, 03, 04, 13, 30), "10")
+		val funcionVolver1Lunes = new Funcion(LocalDateTime.of(2019, 03, 04, 13, 30), "4")
+		val funcionVolver2Lunes = new Funcion(LocalDateTime.of(2019, 03, 04, 13, 30), "2")
+		val funcionVolver3Lunes = new Funcion(LocalDateTime.of(2019, 03, 04, 13, 30), "7")
+		val funcionAvengers1Lunes = new Funcion(LocalDateTime.of(2019, 03, 04, 13, 30), "12")
+		val funcionAvengers2Lunes = new Funcion(LocalDateTime.of(2019, 03, 04, 13, 30), "15")
+		val funcionAvengers3Lunes = new Funcion(LocalDateTime.of(2019, 03, 04, 13, 30), "1")
+		val funcionBatmanMiercoles = new Funcion(LocalDateTime.of(2019, 03, 06, 13, 30), "1")
+		val funcionSupermanMiercoles = new Funcion(LocalDateTime.of(2019, 03, 06, 13, 30), "7")
+		val funcionSagaMiercoles = new Funcion(LocalDateTime.of(2019, 03, 06, 13, 30), "4")
+		val funcionVolver1Miercoles = new Funcion(LocalDateTime.of(2019, 03, 06, 13, 30), "10")
+		val funcionVolver2Miercoles = new Funcion(LocalDateTime.of(2019, 03, 06, 13, 30), "8")
+		val funcionVolver3Miercoles = new Funcion(LocalDateTime.of(2019, 03, 06, 13, 30), "2")
+		val funcionAvengers1Miercoles = new Funcion(LocalDateTime.of(2019, 03, 06, 13, 30), "6")
+		val funcionAvengers2Miercoles = new Funcion(LocalDateTime.of(2019, 03, 06, 13, 30), "17")
+		val funcionAvengers3Miercoles = new Funcion(LocalDateTime.of(2019, 03, 06, 13, 30), "12")
 
 		/*newArrayList(funcionBatmanFinde, funcionSupermanFinde, funcionSagaFinde, funcionVolver1Finde,
-			funcionVolver2Finde, funcionVolver3Finde, funcionAvengers1Finde, funcionAvengers2Finde,
-			funcionAvengers3Finde, funcionBatmanLunes, funcionSupermanLunes, funcionSagaLunes, funcionVolver1Lunes,
-			funcionVolver2Lunes, funcionVolver3Lunes, funcionAvengers1Lunes, funcionAvengers2Lunes,
-			funcionAvengers3Lunes, funcionBatmanMiercoles, funcionSupermanMiercoles, funcionSagaMiercoles,
-			funcionVolver1Miercoles, funcionVolver2Miercoles, funcionVolver3Miercoles, funcionAvengers1Miercoles,
-			funcionAvengers2Miercoles, funcionAvengers3Miercoles).forEach [
-			repoFunciones.createIfNotExists(it)
-		]*/
-
+		 * 	funcionVolver2Finde, funcionVolver3Finde, funcionAvengers1Finde, funcionAvengers2Finde,
+		 * 	funcionAvengers3Finde, funcionBatmanLunes, funcionSupermanLunes, funcionSagaLunes, funcionVolver1Lunes,
+		 * 	funcionVolver2Lunes, funcionVolver3Lunes, funcionAvengers1Lunes, funcionAvengers2Lunes,
+		 * 	funcionAvengers3Lunes, funcionBatmanMiercoles, funcionSupermanMiercoles, funcionSagaMiercoles,
+		 * 	funcionVolver1Miercoles, funcionVolver2Miercoles, funcionVolver3Miercoles, funcionAvengers1Miercoles,
+		 * 	funcionAvengers2Miercoles, funcionAvengers3Miercoles).forEach [
+		 * 	repoFunciones.createIfNotExists(it)
+		 ]*/
 		// Pelis y Sagas
 		val batman = new Pelicula() => [
 			titulo = "Batman asciende"
