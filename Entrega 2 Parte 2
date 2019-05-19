@@ -1,0 +1,18 @@
+Tp Entrega 2 Parte 2
+1- db.system.js.save({
+_id: "buscarPelisPorSala", 
+value: function buscarPelisPorSala(str){return db.Proyecciones.find({"funciones.sala":str}).pretty();}
+})
+
+2- db.system.js.save({
+_id: "buscarPelisPorAnioConMuchasFunciones", 
+value: function buscarPelisPorAnioConMuchasFunciones(anio){
+	return db.Proyecciones.find({$and:[
+    	{ $where: "this.funciones.length > 1" },
+    	{"añoRodaje": anio}
+	]}).pretty();}
+})
+
+db.loadServerScripts();
+buscarPelisPorSala("10")
+buscarPelisPorAnioConMuchasFunciones(2012)
