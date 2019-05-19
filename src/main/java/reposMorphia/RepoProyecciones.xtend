@@ -11,7 +11,7 @@ class RepoProyecciones extends AbstractRepository<Proyeccion> {
 	}
 
 	override searchByExample(Proyeccion proyeccion) {
-		ds.createQuery(entityType).field("titulo").equal(proyeccion.titulo).asList
+		ds.createQuery(entityType).field("titulo").containsIgnoreCase(proyeccion.titulo ?: "").asList
 	}
 
 	override defineUpdateOperations(Proyeccion proyeccion) {

@@ -24,7 +24,7 @@ class ModeloBusqueda extends BuscaSugiereModel {
 	List<Proyeccion> lista
 	List<Proyeccion> sugeridos
 	Proyeccion entidadSeleccionada
-	//AbstractRepository<Proyeccion> repoProyecciones = ApplicationContext.instance.getSingleton(RepoProyecciones)
+	AbstractRepository<Proyeccion> repoProyecciones = ApplicationContext.instance.getSingleton(RepoProyecciones)
 
 	new() {
 		super(RepoUsuarios.instance.usuarioLogueado)
@@ -38,7 +38,7 @@ class ModeloBusqueda extends BuscaSugiereModel {
 
 	override void search() {
 		this.clearSeleccionados
-		//lista = repoProyecciones.searchByExample(new Saga() => [titulo = valorBusqueda]) // RepoProyecciones.instance.search(valorBusqueda)
+		lista = repoProyecciones.searchByExample(new Saga() => [titulo = valorBusqueda]) // RepoProyecciones.instance.search(valorBusqueda)
 	}
 
 	def void clearUsuario() {
