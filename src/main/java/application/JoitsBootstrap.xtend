@@ -12,10 +12,12 @@ import repos.RepoUsuarios
 import reposMorphia.AbstractRepository
 import org.uqbar.commons.applicationContext.ApplicationContext
 import reposMorphia.RepoProyecciones
+import reposMorphia.RepoFunciones
 
 class JoitsBootstrap implements Bootstrap {
 
-	AbstractRepository<Proyeccion> repoProyecciones = ApplicationContext.instance.getSingleton(RepoProyecciones)
+	//AbstractRepository<Proyeccion> repoProyecciones = ApplicationContext.instance.getSingleton(typeof(RepoProyecciones))
+	AbstractRepository<Funcion> repoFunciones = ApplicationContext.instance.getSingleton(typeof(RepoFunciones))
 
 	override run() {
 
@@ -24,6 +26,7 @@ class JoitsBootstrap implements Bootstrap {
 			hora = LocalDateTime.of(2019, 03, 03, 13, 30)
 			sala = "5"
 		]
+		repoFunciones.createIfNotExists(funcionBatmanFinde)
 
 		val funcionSupermanFinde = new Funcion() => [
 			hora = LocalDateTime.of(2019, 03, 03, 13, 30)
@@ -158,7 +161,7 @@ class JoitsBootstrap implements Bootstrap {
 			añoRodaje = 2010
 			puntaje = 5
 			genero = "Accion"
-			funciones.addAll(funcionBatmanFinde, funcionBatmanLunes, funcionBatmanMiercoles)
+			//funciones.addAll(funcionBatmanFinde, funcionBatmanLunes, funcionBatmanMiercoles)
 		]
 		val superman = new Pelicula() => [
 			titulo = "Superman"
@@ -319,8 +322,9 @@ class JoitsBootstrap implements Bootstrap {
 		chinwenwencha.tickets.addAll(entradaChinwenwencha1, entradaChinwenwencha2)
 
 		// Creo las pelis y sagas
-		newArrayList(batman, superman, avengers1, avengers2, avengers3, volverAlFuturo1, volverAlFuturo2,
-			volverAlFuturo3, volverAlFuturo).forEach[proy|repoProyecciones.create(proy)]
+		/*newArrayList(batman, superman, avengers1, avengers2, avengers3, volverAlFuturo1, volverAlFuturo2,
+			volverAlFuturo3, volverAlFuturo).forEach[proy|repoProyecciones.create(proy)]*/
+		//newArrayList(batman).forEach[proy|repoProyecciones.create(proy)]
 
 		// RepoUsuarios
 		crearUsuarios(alezcano)

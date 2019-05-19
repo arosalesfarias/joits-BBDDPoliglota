@@ -4,7 +4,6 @@ import exceptions.BusinessException
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.mongodb.morphia.annotations.Entity
 
-@Entity
 @Accessors
 class Pelicula extends Proyeccion {
 

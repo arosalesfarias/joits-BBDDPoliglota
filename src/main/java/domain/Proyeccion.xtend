@@ -8,12 +8,9 @@ import org.uqbar.commons.model.annotations.Observable
 import org.mongodb.morphia.annotations.Id
 import org.bson.types.ObjectId
 
-@Entity(value="Proyeccion")
 @Observable
 @Accessors
 abstract class Proyeccion {
-
-	@Id ObjectId id
 
 	String titulo
 
@@ -23,7 +20,6 @@ abstract class Proyeccion {
 
 	String genero
 
-	@Embedded
 	Set<Funcion> funciones
 
 	new() {

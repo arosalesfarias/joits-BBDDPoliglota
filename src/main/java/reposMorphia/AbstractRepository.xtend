@@ -1,33 +1,27 @@
 package reposMorphia
 
 import com.mongodb.MongoClient
-import domain.Pelicula
-import domain.Proyeccion
-import domain.Saga
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.mongodb.morphia.Datastore
 import org.mongodb.morphia.Morphia
 import org.mongodb.morphia.query.UpdateOperations
+import domain.Funcion
 
 @Accessors
 abstract class AbstractRepository<T> {
 
 	static protected Datastore ds
-	static Morphia morphia
-
-	List<T> elementos = newArrayList()
-
-	int proximoId = 0
 
 	new() {
 		if (ds === null) {
 			val mongo = new MongoClient("localhost", 27017)
-			morphia = new Morphia => [
-				map(Proyeccion).map(Pelicula).map(Saga)
-				ds = createDatastore(mongo, "joyts") // preguntar como cambiar si quiero usar otro que no sea test
+			new Morphia => [
+				map(typeof(Funcion))
+				ds = createDatastore(mongo, "test") // preguntar como cambiar si quiero usar otro que no sea test
 				ds.ensureIndexes
 			]
+			println("Conectado a MongoDB. Bases: " + ds.getDB.collectionNames)
 		}
 	}
 
