@@ -16,3 +16,9 @@ value: function buscarPelisPorAnioConMuchasFunciones(anio){
 db.loadServerScripts();
 buscarPelisPorSala("10")
 buscarPelisPorAnioConMuchasFunciones(2012)
+
+-3 db.Proyecciones.aggregate([{ $unwind: "$funciones" },
+{ $match: 
+    {"funciones.hora" : { $gte : new ISODate("2019-03-05T00:00:00Z") }}
+}
+])
