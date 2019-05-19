@@ -19,6 +19,7 @@ class Funcion {
 		hora = _hora
 		sala = _sala
 	}
+	new(){}
 
 	@Id ObjectId id
 

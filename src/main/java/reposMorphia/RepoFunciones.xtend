@@ -11,7 +11,7 @@ class RepoFunciones extends AbstractRepository<Funcion> {
 	}
 
 	override searchByExample(Funcion funcion) {
-		ds.createQuery(entityType).field("titulo").contains(funcion.sala ?: "").asList
+		ds.createQuery(entityType).field("sala").equal(funcion.sala).asList
 	}
 
 	override defineUpdateOperations(Funcion funcion) {
