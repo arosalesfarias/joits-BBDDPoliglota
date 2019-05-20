@@ -13,8 +13,6 @@ import javax.persistence.Transient
 @Observable
 class Ticket {
 
-	@Id
-	@GeneratedValue
 	Long id
 
 	@Transient
