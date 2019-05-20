@@ -29,7 +29,7 @@ abstract class AbstractRepository<T> {
 		ds.createQuery(this.getEntityType()).asList
 	}
 
-	def List<T> searchByExample(T t)
+	abstract def List<T> searchByExample(T t)
 
 	def T create(T t) {
 		ds.save(t)

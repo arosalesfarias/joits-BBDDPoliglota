@@ -28,17 +28,17 @@ class ModeloBusqueda extends BuscaSugiereModel {
 
 	new() {
 		super(RepoUsuarios.instance.usuarioLogueado)
-		//sugeridos = RepoProyecciones.instance.listaSugeridos(3)
+		inicializarLista
+		sugeridos = lista.take(3).toList
 	}
 
-//  si no me equivoco esto ya no hace falta
-//	def void setEntidadSeleccionada(Proyeccion proyeccion) {
-//		entidadSeleccionada = repoProyecciones.searchByExample(proyeccion)
-//	}
+	def inicializarLista() {
+		lista = repoProyecciones.searchByExample(new Saga() => [titulo = valorBusqueda])
+	}
 
 	override void search() {
 		this.clearSeleccionados
-		lista = repoProyecciones.searchByExample(new Saga() => [titulo = valorBusqueda]) // RepoProyecciones.instance.search(valorBusqueda)
+		inicializarLista
 	}
 
 	def void clearUsuario() {
