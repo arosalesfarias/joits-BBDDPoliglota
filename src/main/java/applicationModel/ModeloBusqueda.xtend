@@ -13,6 +13,7 @@ import repos.RepoUsuarios
 import reposMorphia.AbstractRepository
 import org.uqbar.commons.applicationContext.ApplicationContext
 import reposMorphia.RepoProyecciones
+import RepoJedis.Carrito
 
 @Accessors
 @Observable
@@ -70,6 +71,7 @@ class ModeloBusqueda extends BuscaSugiereModel {
 		entrada = (new Ticket => [
 			funcion = funcionSeleccionada
 			pelicula = entidadSeleccionada
+			Carrito.instance.salvarCarrito(this.usuario, carrito)
 		])
 	}
 
