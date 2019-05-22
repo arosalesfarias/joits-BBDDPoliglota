@@ -13,14 +13,8 @@ class Carrito {
 
 	Jedis jedis = new Jedis("localhost")
 
-//	var JedisPool jedisPool
 	static Carrito instance = null
 
-//
-//	private new() {
-//		jedisPool = new JedisPool(new JedisPoolConfig, "localhost")
-//	}
-//
 	static def getInstance() {
 		if (instance === null) {
 			instance = new Carrito
@@ -29,33 +23,10 @@ class Carrito {
 	}
 
 	def salvarCarrito(Usuario usuario, List<Ticket> carrito) {
-		jedis.set(usuario.usuario, carrito.toString)
+		jedis.set(usuario.id.toString, carrito.toString)
 	}
 
 	def recuperarCarrito(Usuario usuario) {
-		jedis.get(usuario.usuario)
+		jedis.get(usuario.id.toString)
 	}
-
-//	private def applyOnJedis((Jedis)=>String aBlock) {
-//		var Jedis jedis
-//		try {
-//			jedis = jedisPool.resource
-//			val value = aBlock.apply(jedis)
-//			if (value === null) {
-//				throw new UserException("No hay datos de la pelicula")
-//			}
-//			val returnValue = value
-//			jedis.close()
-//			returnValue
-//		} catch (JedisConnectionException e) {
-//			throw new UserException("Error de conexión a Redis")
-//		} finally {
-//			if (jedis !== null)
-//				jedis.close()
-//		}
-//	}
-//
-//	private def traerValor(String key) {
-//		return [Jedis jedis|jedis.get(key)]
-//	}
 }
