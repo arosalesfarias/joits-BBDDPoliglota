@@ -1,12 +1,12 @@
 package datos
 
-import repos.RepoUsuarios
-import domain.Usuario
 import domain.Pelicula
+import domain.Proyeccion
 import domain.Saga
+import domain.Usuario
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.junit.Before
-import domain.Proyeccion
+import reposHibernate.RepoUsuarios
 
 @Accessors
 class TestPadre {

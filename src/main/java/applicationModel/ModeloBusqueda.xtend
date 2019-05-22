@@ -1,19 +1,19 @@
 package applicationModel
 
+import RepoJedis.Carrito
 import domain.Funcion
 import domain.Proyeccion
+import domain.Saga
 import domain.Ticket
 import java.util.ArrayList
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.applicationContext.ApplicationContext
 import org.uqbar.commons.model.annotations.Dependencies
 import org.uqbar.commons.model.annotations.Observable
-import domain.Saga
-import repos.RepoUsuarios
+import reposHibernate.RepoUsuarios
 import reposMorphia.AbstractRepository
-import org.uqbar.commons.applicationContext.ApplicationContext
 import reposMorphia.RepoProyecciones
-import RepoJedis.Carrito
 
 @Accessors
 @Observable
@@ -64,6 +64,7 @@ class ModeloBusqueda extends BuscaSugiereModel {
 	override agregar() {
 		this.crearTicket
 		carrito.add(entrada)
+		Carrito.instance.salvarCarrito(entrada)
 		clearSeleccionados()
 	}
 
@@ -71,7 +72,6 @@ class ModeloBusqueda extends BuscaSugiereModel {
 		entrada = (new Ticket => [
 			funcion = funcionSeleccionada
 			pelicula = entidadSeleccionada
-			Carrito.instance.salvarCarrito(this.usuario, carrito)
 		])
 	}
 

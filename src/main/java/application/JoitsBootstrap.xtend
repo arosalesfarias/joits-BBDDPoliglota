@@ -8,9 +8,9 @@ import domain.Ticket
 import domain.Usuario
 import java.time.LocalDateTime
 import org.uqbar.arena.bootstrap.Bootstrap
-import repos.RepoUsuarios
-import reposMorphia.AbstractRepository
 import org.uqbar.commons.applicationContext.ApplicationContext
+import reposHibernate.RepoUsuarios
+import reposMorphia.AbstractRepository
 import reposMorphia.RepoProyecciones
 
 class JoitsBootstrap implements Bootstrap {

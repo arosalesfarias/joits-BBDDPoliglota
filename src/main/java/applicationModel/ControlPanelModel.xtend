@@ -3,7 +3,7 @@ package applicationModel
 import domain.Usuario
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Observable
-import repos.RepoUsuarios
+import reposHibernate.RepoUsuarios
 
 @Accessors
 @Observable

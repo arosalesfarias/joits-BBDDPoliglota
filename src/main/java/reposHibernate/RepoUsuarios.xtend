@@ -1,4 +1,4 @@
-package repos
+package reposHibernate
 
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors

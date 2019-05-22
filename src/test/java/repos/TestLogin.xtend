@@ -1,11 +1,10 @@
 package repos
 
-import org.junit.Before
-import org.junit.Test
+import applicationModel.Login
 import domain.Usuario
 import org.junit.After
-import applicationModel.Login
-import org.uqbar.commons.model.exceptions.UserException
+import org.junit.Before
+import reposHibernate.RepoUsuarios
 
 class TestLogin {
 	RepoUsuarios repo = RepoUsuarios.instance

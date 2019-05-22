@@ -1,9 +1,9 @@
 package applicationModel
 
-import repos.RepoUsuarios
+import domain.Usuario
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Observable
-import domain.Usuario
+import reposHibernate.RepoUsuarios
 
 @Observable
 @Accessors

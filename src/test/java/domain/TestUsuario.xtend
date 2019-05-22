@@ -1,9 +1,6 @@
 package domain
 
 import datos.TestPadre
-import org.junit.Test
-import repos.RepoUsuarios
-import org.junit.Assert
 
 class TestUsuario extends TestPadre {
 	def void agregoTodosLosUsuarios() {

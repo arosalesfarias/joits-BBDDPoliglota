@@ -9,7 +9,7 @@ import org.uqbar.commons.model.annotations.Dependencies
 import org.uqbar.commons.model.annotations.Observable
 import org.uqbar.commons.model.exceptions.UserException
 import org.uqbar.commons.model.utils.ObservableUtils
-import repos.RepoUsuarios
+import reposHibernate.RepoUsuarios
 
 @Observable
 @Accessors

@@ -1,13 +1,8 @@
 package RepoJedis
 
-import redis.clients.jedis.Jedis
-import redis.clients.jedis.JedisPool
-import redis.clients.jedis.JedisPoolConfig
-import redis.clients.jedis.exceptions.JedisConnectionException
-import org.uqbar.commons.model.exceptions.UserException
-import domain.Usuario
-import java.util.List
 import domain.Ticket
+import domain.Usuario
+import redis.clients.jedis.Jedis
 
 class Carrito {
 
@@ -22,8 +17,9 @@ class Carrito {
 		instance
 	}
 
-	def salvarCarrito(Usuario usuario, List<Ticket> carrito) {
-		jedis.set(usuario.id.toString, carrito.toString)
+	def salvarCarrito(Ticket ticket) {
+		jedis.lpush(ticket.id.toString, ticket.funcion.id.toString)
+		jedis.lpush(ticket.id.toString, ticket.pelicula.id.toString)
 	}
 
 	def recuperarCarrito(Usuario usuario) {
