@@ -7,8 +7,6 @@ import javax.persistence.Id
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Observable
 import javax.persistence.Transient
-import com.fasterxml.jackson.annotation.JsonIgnore
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import javax.persistence.Column
 
@@ -36,10 +34,9 @@ class Ticket {
 
 	@Transient
 	Proyeccion pelicula // que puede ser pelicula o saga
-	
 	@Column
 	String nombrePeli
-	
+
 	def float precio() {
 		pelicula.precioBase + funcion.precioSegunDia
 	}

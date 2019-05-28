@@ -31,7 +31,7 @@ class ModeloBusqueda extends BuscaSugiereModel {
 		super(RepoUsuarios.instance.usuarioLogueado)
 		inicializarLista
 		sugeridos = lista.take(3).toList
-		Carrito.instance.recuperarCarrito(RepoUsuarios.instance.usuarioLogueado)
+		carrito = Carrito.instance.recuperarCarrito(RepoUsuarios.instance.usuarioLogueado)
 	}
 
 	def inicializarLista() {

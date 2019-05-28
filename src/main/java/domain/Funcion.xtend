@@ -8,9 +8,7 @@ import org.mongodb.morphia.annotations.Entity
 import org.uqbar.commons.model.annotations.Observable
 import org.bson.types.ObjectId
 import org.mongodb.morphia.annotations.Id
-import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
-import com.google.gson.annotations.Expose
 
 @Accessors
 @Observable
@@ -18,7 +16,7 @@ import com.google.gson.annotations.Expose
 @JsonIgnoreProperties(value=#["changeSupport"])
 class Funcion {
 
-	new(int _id,LocalDateTime _hora, String _sala) {
+	new(int _id, LocalDateTime _hora, String _sala) {
 		idInterno = _id
 		hora = _hora
 		sala = _sala
@@ -26,13 +24,13 @@ class Funcion {
 
 	new() {
 	}
-	
+
 	@Id ObjectId id
-	
+
 	int idInterno
-	
+
 	LocalDateTime hora
-	
+
 	String sala
 
 	def boolean esFinDeSemana() { hora.dayOfWeek == DayOfWeek.SUNDAY || hora.dayOfWeek == DayOfWeek.SATURDAY }
