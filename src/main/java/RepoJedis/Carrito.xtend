@@ -32,6 +32,11 @@ class Carrito {
 		val Gson gson = new Gson()
 		jedis.sadd("user:" + user.id.toString, gson.toJson(ticket))
 	}
+	
+	def eliminarDeCarrito(Usuario user, Ticket ticket) {
+		val Gson gson = new Gson()
+		jedis.srem("user:" + user.id.toString, gson.toJson(ticket).toString)
+	}
 
 	def recuperarCarrito(Usuario usuario) {
 		return jedis.smembers("user:" + usuario.id.toString).map[json|recuperarTicket(json)].toList
@@ -47,6 +52,10 @@ class Carrito {
 		val func = proy.funciones.filter[f|f.idInterno === jobject.get("funcion").asJsonObject.get("idInterno").asInt].
 			head
 		return new Ticket(func, proy)
+	}
+	
+	def vaciarCarrito(domain.Usuario usuario) {
+		jedis.del("user:" + usuario.id.toString)
 	}
 
 }

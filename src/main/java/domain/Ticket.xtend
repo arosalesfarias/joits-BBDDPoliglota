@@ -9,6 +9,7 @@ import org.uqbar.commons.model.annotations.Observable
 import javax.persistence.Transient
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import javax.persistence.Column
+import javax.persistence.Converter
 
 @Entity
 @Accessors
@@ -32,6 +33,7 @@ class Ticket {
 	@Transient
 	Funcion funcion
 
+	// @Converter(converter=PeliculaConverter implements AtributeConverter<¨Pelicula,String>)
 	@Transient
 	Proyeccion pelicula // que puede ser pelicula o saga
 	@Column

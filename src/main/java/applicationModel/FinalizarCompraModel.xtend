@@ -10,6 +10,7 @@ import org.uqbar.commons.model.annotations.Observable
 import org.uqbar.commons.model.exceptions.UserException
 import org.uqbar.commons.model.utils.ObservableUtils
 import reposHibernate.RepoUsuarios
+import RepoJedis.Carrito
 
 @Observable
 @Accessors
@@ -39,11 +40,13 @@ class FinalizarCompraModel {
 	}
 
 	def sacarDelCarrito() {
+		Carrito.instance.eliminarDeCarrito(usuario, tiketSeleccionado)
 		carrito.remove(tiketSeleccionado)
 		this.actualizarListas
 	}
 
 	def void limpiarCarrito() {
+		Carrito.instance.vaciarCarrito(usuario)
 		carrito.clear
 		this.actualizarListas
 	}
