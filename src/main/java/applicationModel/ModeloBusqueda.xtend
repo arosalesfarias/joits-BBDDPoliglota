@@ -47,8 +47,9 @@ class ModeloBusqueda extends BuscaSugiereModel {
 	}
 
 	def clearSeleccionados() {
-		clearEntity
 		funcionSeleccionada = null
+		clearEntity
+		
 	}
 
 	@Dependencies("carrito")
