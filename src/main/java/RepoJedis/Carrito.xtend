@@ -3,6 +3,7 @@ package RepoJedis
 import domain.Ticket
 import domain.Usuario
 import redis.clients.jedis.Jedis
+import com.fasterxml.jackson.databind.ObjectMapper
 
 class Carrito {
 
@@ -17,12 +18,16 @@ class Carrito {
 		instance
 	}
 
-	def salvarCarrito(Ticket ticket) {
-		jedis.lpush(ticket.id.toString, ticket.funcion.id.toString)
-		jedis.lpush(ticket.id.toString, ticket.pelicula.id.toString)
+	def salvarCarrito(Usuario user, Ticket ticket) {
+		val ObjectMapper mapper = new ObjectMapper
+		jedis.sadd("user:" + user.id.toString, mapper.writeValueAsString(ticket))
+		println(mapper.writeValueAsString(ticket))
+//		val tkt = jedis.smembers("user:"+user.id.toString).head
+//		val ticketmapeado = mapper.readValue(tkt,typeof(Ticket))
+//		println(ticketmapeado)
 	}
 
 	def recuperarCarrito(Usuario usuario) {
-		jedis.get(usuario.id.toString)
+		jedis.get("user:" + usuario.id.toString)
 	}
 }

@@ -64,25 +64,13 @@ class TestTicket {
 
 		funcionSagaDomingo = new Funcion(LocalDateTime.of(2019, 03, 24, 18, 30), "Rivadavia")
 
-		entradaDomingo = new Ticket => [
-			pelicula = volverAlFuturo1
-			funcion = funcionDomingo
-		]
+		entradaDomingo = new Ticket(funcionDomingo, volverAlFuturo1)
 
-		entradaMiercoles = new Ticket => [
-			pelicula = volverAlFuturo2
-			funcion = funcionMiercoles
-		]
+		entradaMiercoles = new Ticket(funcionMiercoles, volverAlFuturo2)
 
-		entradaLunes = new Ticket => [
-			pelicula = volverAlFuturo3
-			funcion = funcionLunes
-		]
+		entradaLunes = new Ticket(funcionLunes, volverAlFuturo3)
 
-		entradaSagaDomingo = new Ticket => [
-			pelicula = sagaVolverAlFuturo
-			funcion = funcionSagaDomingo
-		]
+		entradaSagaDomingo = new Ticket(funcionSagaDomingo, sagaVolverAlFuturo)
 	}
 
 	@Test

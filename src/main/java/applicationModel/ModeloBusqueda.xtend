@@ -64,15 +64,12 @@ class ModeloBusqueda extends BuscaSugiereModel {
 	override agregar() {
 		this.crearTicket
 		carrito.add(entrada)
-		Carrito.instance.salvarCarrito(entrada)
+		Carrito.instance.salvarCarrito(usuario, entrada)
 		clearSeleccionados()
 	}
 
 	def crearTicket() {
-		entrada = (new Ticket => [
-			funcion = funcionSeleccionada
-			pelicula = entidadSeleccionada
-		])
+		entrada = new Ticket(funcionSeleccionada, entidadSeleccionada)
 	}
 
 	def void setFuncionSeleccionada(Funcion funcion) {

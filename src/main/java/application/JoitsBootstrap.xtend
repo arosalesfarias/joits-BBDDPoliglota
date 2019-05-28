@@ -126,55 +126,25 @@ class JoitsBootstrap implements Bootstrap {
 			funciones.addAll(funcionSagaFinde, funcionSagaLunes, funcionSagaMiercoles)
 		]
 		// creo los Tickets
-		val entradaAlberto1 = new Ticket => [
-			funcion = funcionVolver1Lunes
-			pelicula = volverAlFuturo1
-		]
+		val entradaAlberto1 = new Ticket(funcionVolver1Lunes, volverAlFuturo1)
 
-		val entradaAlberto2 = new Ticket => [
-			funcion = funcionVolver1Finde
-			pelicula = volverAlFuturo1
-		]
+		val entradaAlberto2 = new Ticket(funcionVolver1Finde, volverAlFuturo1)
 
-		val entradaAriel1 = new Ticket => [
-			funcion = funcionSupermanFinde
-			pelicula = superman
-		]
+		val entradaAriel1 = new Ticket(funcionSupermanFinde, superman)
 
-		val entradaAriel2 = new Ticket => [
-			funcion = funcionAvengers2Miercoles
-			pelicula = avengers2
-		]
+		val entradaAriel2 = new Ticket(funcionAvengers2Miercoles, avengers2)
 
-		val entradaDiego1 = new Ticket => [
-			funcion = funcionSagaFinde
-			pelicula = volverAlFuturo
-		]
+		val entradaDiego1 = new Ticket(funcionSagaFinde, volverAlFuturo)
 
-		val entradaDiego2 = new Ticket => [
-			funcion = funcionVolver1Miercoles
-			pelicula = volverAlFuturo1
-		]
+		val entradaDiego2 = new Ticket(funcionVolver1Miercoles, volverAlFuturo1)
 
-		val entradaChinwenwencha1 = new Ticket => [
-			funcion = funcionVolver2Miercoles
-			pelicula = volverAlFuturo1
-		]
+		val entradaChinwenwencha1 = new Ticket(funcionVolver2Miercoles, volverAlFuturo1)
 
-		val entradaChinwenwencha2 = new Ticket => [
-			funcion = funcionSagaLunes
-			pelicula = volverAlFuturo
-		]
+		val entradaChinwenwencha2 = new Ticket(funcionSagaLunes, volverAlFuturo)
 
-		val entradaMacri1 = new Ticket => [
-			funcion = funcionAvengers3Miercoles
-			pelicula = avengers3
-		]
+		val entradaMacri1 = new Ticket(funcionAvengers3Miercoles, avengers3)
 
-		val entradaMacri2 = new Ticket => [
-			funcion = funcionBatmanMiercoles
-			pelicula = batman
-		]
+		val entradaMacri2 = new Ticket(funcionBatmanMiercoles, batman)
 
 		var alezcano = new Usuario() => [
 			nombre = "Alberto"
