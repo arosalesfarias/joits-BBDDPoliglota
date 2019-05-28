@@ -29,18 +29,17 @@ class Ticket {
 
 	@Id
 	@GeneratedValue
-	@JsonIgnore Long id
+	Long id
 
 	@Transient
-	@JsonIgnore Funcion funcion
+	Funcion funcion
 
 	@Transient
-	@JsonIgnore Proyeccion pelicula // que puede ser pelicula o saga
+	Proyeccion pelicula // que puede ser pelicula o saga
 	
 	@Column
 	String nombrePeli
 	
-	@JsonProperty("precio")
 	def float precio() {
 		pelicula.precioBase + funcion.precioSegunDia
 	}

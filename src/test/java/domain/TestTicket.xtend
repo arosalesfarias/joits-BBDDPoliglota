@@ -56,13 +56,13 @@ class TestTicket {
 			peliculas.add(volverAlFuturo3)
 		]
 
-		funcionDomingo = new Funcion(LocalDateTime.of(2019, 03, 24, 18, 30), "Rivadavia")
+		funcionDomingo = new Funcion(1, LocalDateTime.of(2019, 03, 24, 18, 30), "Rivadavia")
 
-		funcionMiercoles = new Funcion(LocalDateTime.of(2019, 03, 13, 17, 30), "Rivadavia")
+		funcionMiercoles = new Funcion(2, LocalDateTime.of(2019, 03, 13, 17, 30), "Rivadavia")
 
-		funcionLunes = new Funcion(LocalDateTime.of(2019, 03, 25, 18, 30), "Rivadavia")
+		funcionLunes = new Funcion(3, LocalDateTime.of(2019, 03, 25, 18, 30), "Rivadavia")
 
-		funcionSagaDomingo = new Funcion(LocalDateTime.of(2019, 03, 24, 18, 30), "Rivadavia")
+		funcionSagaDomingo = new Funcion(4, LocalDateTime.of(2019, 03, 24, 18, 30), "Rivadavia")
 
 		entradaDomingo = new Ticket(funcionDomingo, volverAlFuturo1)
 
