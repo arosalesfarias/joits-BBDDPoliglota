@@ -33,7 +33,7 @@ class Carrito {
 		val Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation.create
 		jedis.sadd("user:" + user.id.toString, gson.toJson(ticket))
 	}
-	
+
 	def eliminarDeCarrito(Usuario user, Ticket ticket) {
 		val Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation.create
 		println(gson.toJson(ticket))
@@ -55,7 +55,7 @@ class Carrito {
 			head
 		return new Ticket(func, proy)
 	}
-	
+
 	def vaciarCarrito(domain.Usuario usuario) {
 		jedis.del("user:" + usuario.id.toString)
 	}
