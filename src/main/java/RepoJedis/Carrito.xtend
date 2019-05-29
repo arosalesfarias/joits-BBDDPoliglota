@@ -45,11 +45,14 @@ class Carrito {
 		val JsonParser parser = new JsonParser()
 		val JsonObject jobject = parser.parse(json).asJsonObject
 		val proy = repoProyecciones.searchByExample(new Saga() => [
-			titulo = jobject.get("pelicula").asJsonObject.get("titulo").asString
+			titulo = campoDeObjeto(jobject, "pelicula", "titulo").asString
 		]).head
-		val func = proy.funciones.filter[f|f.idInterno === jobject.get("funcion").asJsonObject.get("idInterno").asInt].
-			head
+		val func = proy.funciones.filter[f|f.idInterno === campoDeObjeto(jobject, "funcion", "idInterno").asInt].head
 		return new Ticket(func, proy)
+	}
+
+	def campoDeObjeto(JsonObject jobj, String object, String att) {
+		return jobj.get(object).asJsonObject.get(att)
 	}
 
 	def vaciarCarrito(domain.Usuario usuario) {
