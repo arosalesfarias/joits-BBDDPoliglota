@@ -62,6 +62,7 @@ class FinalizarCompraModel {
 	}
 
 	def actualizarListas() {
+		tiketSeleccionado = null
 		ObservableUtils.firePropertyChanged(this, "carrito")
 	}
 }
