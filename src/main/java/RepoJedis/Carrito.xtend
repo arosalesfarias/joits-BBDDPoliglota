@@ -12,6 +12,7 @@ import domain.Proyeccion
 import org.uqbar.commons.applicationContext.ApplicationContext
 import reposMorphia.RepoProyecciones
 import domain.Saga
+import com.google.gson.GsonBuilder
 
 class Carrito {
 
@@ -29,13 +30,14 @@ class Carrito {
 	}
 
 	def salvarCarrito(Usuario user, Ticket ticket) {
-		val Gson gson = new Gson()
+		val Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation.create
 		jedis.sadd("user:" + user.id.toString, gson.toJson(ticket))
 	}
 	
 	def eliminarDeCarrito(Usuario user, Ticket ticket) {
-		val Gson gson = new Gson()
-		jedis.srem("user:" + user.id.toString, gson.toJson(ticket).toString)
+		val Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation.create
+		println(gson.toJson(ticket))
+		jedis.srem("user:" + user.id.toString, gson.toJson(ticket))
 	}
 
 	def recuperarCarrito(Usuario usuario) {

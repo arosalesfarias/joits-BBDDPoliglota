@@ -41,6 +41,7 @@ class FinalizarCompraModel {
 
 	def sacarDelCarrito() {
 		Carrito.instance.eliminarDeCarrito(usuario, tiketSeleccionado)
+		println(tiketSeleccionado.pelicula)
 		carrito.remove(tiketSeleccionado)
 		this.actualizarListas
 	}

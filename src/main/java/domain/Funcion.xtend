@@ -8,12 +8,11 @@ import org.mongodb.morphia.annotations.Entity
 import org.uqbar.commons.model.annotations.Observable
 import org.bson.types.ObjectId
 import org.mongodb.morphia.annotations.Id
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import com.google.gson.annotations.Expose
 
 @Accessors
 @Observable
 @Entity(value="Funcion", noClassnameStored=true)
-@JsonIgnoreProperties(value=#["changeSupport"])
 class Funcion {
 
 	new(int _id, LocalDateTime _hora, String _sala) {
@@ -27,6 +26,7 @@ class Funcion {
 
 	@Id ObjectId id
 
+	@Expose
 	int idInterno
 
 	LocalDateTime hora

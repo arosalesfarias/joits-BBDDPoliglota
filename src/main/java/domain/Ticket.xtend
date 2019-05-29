@@ -7,14 +7,13 @@ import javax.persistence.Id
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Observable
 import javax.persistence.Transient
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import javax.persistence.Column
 import javax.persistence.Converter
+import com.google.gson.annotations.Expose
 
 @Entity
 @Accessors
 @Observable
-@JsonIgnoreProperties(value=#["changeSupport"])
 class Ticket {
 
 	new(Funcion _funcion, Proyeccion _peli) {
@@ -31,10 +30,12 @@ class Ticket {
 	Long id
 
 	@Transient
+	@Expose
 	Funcion funcion
 
 	// @Converter(converter=PeliculaConverter implements AtributeConverter<¨Pelicula,String>)
 	@Transient
+	@Expose
 	Proyeccion pelicula // que puede ser pelicula o saga
 	@Column
 	String nombrePeli
