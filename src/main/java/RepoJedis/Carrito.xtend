@@ -5,7 +5,6 @@ import domain.Usuario
 import redis.clients.jedis.Jedis
 import com.google.gson.Gson
 import com.google.gson.JsonParser
-import com.google.gson.JsonElement
 import com.google.gson.JsonObject
 import reposMorphia.AbstractRepository
 import domain.Proyeccion
@@ -17,6 +16,7 @@ import com.google.gson.GsonBuilder
 class Carrito {
 
 	Jedis jedis = new Jedis("localhost")
+	Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation.create
 
 	AbstractRepository<Proyeccion> repoProyecciones = ApplicationContext.instance.getSingleton(RepoProyecciones)
 
@@ -30,13 +30,10 @@ class Carrito {
 	}
 
 	def salvarCarrito(Usuario user, Ticket ticket) {
-		val Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation.create
 		jedis.sadd("user:" + user.id.toString, gson.toJson(ticket))
 	}
 
 	def eliminarDeCarrito(Usuario user, Ticket ticket) {
-		val Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation.create
-		println(gson.toJson(ticket))
 		jedis.srem("user:" + user.id.toString, gson.toJson(ticket))
 	}
 
@@ -46,8 +43,7 @@ class Carrito {
 
 	def recuperarTicket(String json) {
 		val JsonParser parser = new JsonParser()
-		val JsonElement jelem = parser.parse(json)
-		val JsonObject jobject = jelem.asJsonObject
+		val JsonObject jobject = parser.parse(json).asJsonObject
 		val proy = repoProyecciones.searchByExample(new Saga() => [
 			titulo = jobject.get("pelicula").asJsonObject.get("titulo").asString
 		]).head
