@@ -15,8 +15,7 @@ import com.google.gson.annotations.Expose
 @Entity(value="Funcion", noClassnameStored=true)
 class Funcion {
 
-	new(int _id, LocalDateTime _hora, String _sala) {
-		idInterno = _id
+	new(LocalDateTime _hora, String _sala) {
 		hora = _hora
 		sala = _sala
 	}
@@ -25,12 +24,11 @@ class Funcion {
 	}
 
 	@Id ObjectId id
-
+	
 	@Expose
-	int idInterno
-
 	LocalDateTime hora
-
+	
+	@Expose
 	String sala
 
 	def boolean esFinDeSemana() { hora.dayOfWeek == DayOfWeek.SUNDAY || hora.dayOfWeek == DayOfWeek.SATURDAY }

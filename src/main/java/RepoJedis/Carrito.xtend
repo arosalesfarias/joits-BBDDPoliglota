@@ -12,11 +12,17 @@ import org.uqbar.commons.applicationContext.ApplicationContext
 import reposMorphia.RepoProyecciones
 import domain.Saga
 import com.google.gson.GsonBuilder
+import java.time.LocalDateTime
+import domain.Funcion
+import domain.LocalDateTimeGsonConverter
 
 class Carrito {
 
 	Jedis jedis = new Jedis("localhost")
-	Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation.create
+	Gson gson = new GsonBuilder()
+	.registerTypeAdapter(typeof(LocalDateTime), new LocalDateTimeGsonConverter)
+	.excludeFieldsWithoutExposeAnnotation
+	.create
 
 	AbstractRepository<Proyeccion> repoProyecciones = ApplicationContext.instance.getSingleton(RepoProyecciones)
 
@@ -47,7 +53,8 @@ class Carrito {
 		val proy = repoProyecciones.searchByExample(new Saga() => [
 			titulo = campoDeObjeto(jobject, "pelicula", "titulo").asString
 		]).head
-		val func = proy.funciones.filter[f|f.idInterno === campoDeObjeto(jobject, "funcion", "idInterno").asInt].head
+		//val func = proy.funciones.filter[f|f.idInterno === campoDeObjeto(jobject, "funcion", "idInterno").asInt].head
+		val func = gson.fromJson(jobject.get("funcion").asJsonObject,typeof(Funcion))
 		return new Ticket(func, proy)
 	}
 
