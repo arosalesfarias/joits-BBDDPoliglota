@@ -6,10 +6,6 @@ import redis.clients.jedis.Jedis
 import com.google.gson.Gson
 import com.google.gson.JsonParser
 import com.google.gson.JsonObject
-import reposMorphia.AbstractRepository
-import domain.Proyeccion
-import org.uqbar.commons.applicationContext.ApplicationContext
-import reposMorphia.RepoProyecciones
 import domain.Saga
 import com.google.gson.GsonBuilder
 import java.time.LocalDateTime
