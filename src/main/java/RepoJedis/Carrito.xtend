@@ -15,14 +15,13 @@ import com.google.gson.GsonBuilder
 import java.time.LocalDateTime
 import domain.Funcion
 import domain.LocalDateTimeGsonConverter
+import domain.Pelicula
 
 class Carrito {
 
 	Jedis jedis = new Jedis("localhost")
 	Gson gson = new GsonBuilder().registerTypeAdapter(typeof(LocalDateTime), new LocalDateTimeGsonConverter).
 		excludeFieldsWithoutExposeAnnotation.create
-
-	AbstractRepository<Proyeccion> repoProyecciones = ApplicationContext.instance.getSingleton(RepoProyecciones)
 
 	static Carrito instance = null
 
@@ -34,10 +33,12 @@ class Carrito {
 	}
 
 	def salvarCarrito(Usuario user, Ticket ticket) {
+		println(ticketAJson(ticket))
 		jedis.sadd(keyCarrito(user), ticketAJson(ticket))
 	}
 
 	def eliminarDeCarrito(Usuario user, Ticket ticket) {
+		println(ticketAJson(ticket))
 		jedis.srem(keyCarrito(user), ticketAJson(ticket))
 	}
 
@@ -56,12 +57,17 @@ class Carrito {
 	def recuperarTicket(String json) {
 		val JsonParser parser = new JsonParser()
 		val JsonObject jobject = parser.parse(json).asJsonObject
-		val proy = repoProyecciones.searchByExample(new Saga() => [
-			titulo = campoDeObjeto(jobject, "pelicula", "titulo").asString
-		]).head
-		// val func = proy.funciones.filter[f|f.idInterno === campoDeObjeto(jobject, "funcion", "idInterno").asInt].head
+		val proy = proyeccionExacta(jobject)
 		val func = gson.fromJson(jobject.get("funcion").asJsonObject, typeof(Funcion))
 		return new Ticket(func, proy)
+	}
+
+	def proyeccionExacta(JsonObject jobject) {
+		if (jobject.get("pelicula").asJsonObject.has("peliculas")) {
+			return gson.fromJson(jobject.get("pelicula").asJsonObject, typeof(Saga))
+		} else {
+			return gson.fromJson(jobject.get("pelicula").asJsonObject, typeof(Pelicula))
+		}
 	}
 
 	def campoDeObjeto(JsonObject jobj, String object, String att) {
