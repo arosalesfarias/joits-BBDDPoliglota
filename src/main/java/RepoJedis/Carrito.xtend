@@ -64,10 +64,6 @@ class Carrito {
 		}
 	}
 
-	def campoDeObjeto(JsonObject jobj, String object, String att) {
-		return jobj.get(object).asJsonObject.get(att)
-	}
-
 	def vaciarCarrito(domain.Usuario usuario) {
 		jedis.del(keyCarrito(usuario))
 	}
