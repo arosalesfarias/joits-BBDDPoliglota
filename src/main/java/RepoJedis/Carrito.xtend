@@ -19,10 +19,8 @@ import domain.LocalDateTimeGsonConverter
 class Carrito {
 
 	Jedis jedis = new Jedis("localhost")
-	Gson gson = new GsonBuilder()
-	.registerTypeAdapter(typeof(LocalDateTime), new LocalDateTimeGsonConverter)
-	.excludeFieldsWithoutExposeAnnotation
-	.create
+	Gson gson = new GsonBuilder().registerTypeAdapter(typeof(LocalDateTime), new LocalDateTimeGsonConverter).
+		excludeFieldsWithoutExposeAnnotation.create
 
 	AbstractRepository<Proyeccion> repoProyecciones = ApplicationContext.instance.getSingleton(RepoProyecciones)
 
@@ -36,19 +34,23 @@ class Carrito {
 	}
 
 	def salvarCarrito(Usuario user, Ticket ticket) {
-		jedis.sadd("user:" + user.id.toString, ticketAJson(ticket))
+		jedis.sadd(keyCarrito(user), ticketAJson(ticket))
 	}
 
 	def eliminarDeCarrito(Usuario user, Ticket ticket) {
-		jedis.srem("user:" + user.id.toString, ticketAJson(ticket))
+		jedis.srem(keyCarrito(user), ticketAJson(ticket))
 	}
-	
-	def ticketAJson(Ticket ticket){
+
+	def keyCarrito(Usuario user) {
+		"user:" + user.id.toString
+	}
+
+	def ticketAJson(Ticket ticket) {
 		gson.toJson(ticket)
 	}
 
 	def recuperarCarrito(Usuario usuario) {
-		return jedis.smembers("user:" + usuario.id.toString).map[json|recuperarTicket(json)].toList
+		return jedis.smembers(keyCarrito(usuario)).map[json|recuperarTicket(json)].toList
 	}
 
 	def recuperarTicket(String json) {
@@ -57,8 +59,8 @@ class Carrito {
 		val proy = repoProyecciones.searchByExample(new Saga() => [
 			titulo = campoDeObjeto(jobject, "pelicula", "titulo").asString
 		]).head
-		//val func = proy.funciones.filter[f|f.idInterno === campoDeObjeto(jobject, "funcion", "idInterno").asInt].head
-		val func = gson.fromJson(jobject.get("funcion").asJsonObject,typeof(Funcion))
+		// val func = proy.funciones.filter[f|f.idInterno === campoDeObjeto(jobject, "funcion", "idInterno").asInt].head
+		val func = gson.fromJson(jobject.get("funcion").asJsonObject, typeof(Funcion))
 		return new Ticket(func, proy)
 	}
 
@@ -67,7 +69,7 @@ class Carrito {
 	}
 
 	def vaciarCarrito(domain.Usuario usuario) {
-		jedis.del("user:" + usuario.id.toString)
+		jedis.del(keyCarrito(usuario))
 	}
 
 }
