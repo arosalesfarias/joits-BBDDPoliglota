@@ -36,11 +36,15 @@ class Carrito {
 	}
 
 	def salvarCarrito(Usuario user, Ticket ticket) {
-		jedis.sadd("user:" + user.id.toString, gson.toJson(ticket))
+		jedis.sadd("user:" + user.id.toString, ticketAJson(ticket))
 	}
 
 	def eliminarDeCarrito(Usuario user, Ticket ticket) {
-		jedis.srem("user:" + user.id.toString, gson.toJson(ticket))
+		jedis.srem("user:" + user.id.toString, ticketAJson(ticket))
+	}
+	
+	def ticketAJson(Ticket ticket){
+		gson.toJson(ticket)
 	}
 
 	def recuperarCarrito(Usuario usuario) {
