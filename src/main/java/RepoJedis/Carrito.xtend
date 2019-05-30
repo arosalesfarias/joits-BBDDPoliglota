@@ -29,12 +29,10 @@ class Carrito {
 	}
 
 	def salvarCarrito(Usuario user, Ticket ticket) {
-		println(ticketAJson(ticket))
 		jedis.sadd(keyCarrito(user), ticketAJson(ticket))
 	}
 
 	def eliminarDeCarrito(Usuario user, Ticket ticket) {
-		println(ticketAJson(ticket))
 		jedis.srem(keyCarrito(user), ticketAJson(ticket))
 	}
 
