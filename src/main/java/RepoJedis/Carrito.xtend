@@ -18,6 +18,8 @@ class Carrito {
 	Jedis jedis = new Jedis("localhost")
 	Gson gson = new GsonBuilder().registerTypeAdapter(typeof(LocalDateTime), new LocalDateTimeGsonConverter).
 		excludeFieldsWithoutExposeAnnotation.create
+		
+	final int TimeToLive = 60 //seconds
 
 	static Carrito instance = null
 
@@ -29,10 +31,16 @@ class Carrito {
 	}
 
 	def salvarCarrito(Usuario user, Ticket ticket) {
+		darTiempo(user)
 		jedis.sadd(keyCarrito(user), ticketAJson(ticket))
+	}
+	
+	def darTiempo(Usuario usuario) {
+		jedis.expire(keyCarrito(usuario),TimeToLive)
 	}
 
 	def eliminarDeCarrito(Usuario user, Ticket ticket) {
+		darTiempo(user)
 		jedis.srem(keyCarrito(user), ticketAJson(ticket))
 	}
 
@@ -45,6 +53,7 @@ class Carrito {
 	}
 
 	def recuperarCarrito(Usuario usuario) {
+		darTiempo(usuario)
 		return jedis.smembers(keyCarrito(usuario)).map[json|recuperarTicket(json)].toList
 	}
 
