@@ -6,14 +6,17 @@ import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.mongodb.morphia.annotations.Entity
 import org.mongodb.morphia.annotations.Embedded
+import com.google.gson.annotations.Expose
 
 @Accessors
 @Entity(value="Proyecciones")
 class Saga extends Proyeccion {
-	
+
 	@Embedded
+	@Expose
 	List<Pelicula> peliculas = new ArrayList<Pelicula>
 
+	@Expose
 	float nivelClasico
 
 	override precioBase() {
