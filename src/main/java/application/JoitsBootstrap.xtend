@@ -12,10 +12,14 @@ import org.uqbar.commons.applicationContext.ApplicationContext
 import reposHibernate.RepoUsuarios
 import reposMorphia.AbstractRepository
 import reposMorphia.RepoProyecciones
+import reposNeo4j.AbstractRepoNeo4J
+import reposNeo4j.RepoPeliculas
 
 class JoitsBootstrap implements Bootstrap {
 
 	AbstractRepository<Proyeccion> repoProyecciones = ApplicationContext.instance.getSingleton(typeof(RepoProyecciones))
+
+	AbstractRepoNeo4J<Proyeccion> repoPelis = RepoPeliculas.instance
 
 //	AbstractRepository<Funcion> repoFunciones = ApplicationContext.instance.getSingleton(typeof(RepoFunciones))
 	override run() {
@@ -216,6 +220,10 @@ class JoitsBootstrap implements Bootstrap {
 		crearUsuarios(arosales)
 		crearUsuarios(elgato)
 		crearUsuarios(chinwenwencha)
+
+		// esto para neo4j
+		newArrayList(batman, superman, avengers1, avengers2, avengers3, volverAlFuturo1, volverAlFuturo2,
+			volverAlFuturo3, volverAlFuturo).forEach[repoPelis.crear(it)]
 	}
 
 	def void crearUsuarios(Usuario usuario) {
