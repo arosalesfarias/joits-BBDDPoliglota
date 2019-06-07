@@ -13,8 +13,13 @@ import javax.persistence.ManyToMany
 import javax.persistence.OneToMany
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
+import org.neo4j.ogm.annotation.NodeEntity
+import org.neo4j.ogm.annotation.Property
+import org.neo4j.ogm.annotation.Relationship
+import org.neo4j.ogm.annotation.Transient
 
 @Entity
+@NodeEntity
 @TransactionalAndObservable
 @Accessors
 class Usuario {
@@ -23,7 +28,11 @@ class Usuario {
 	@GeneratedValue
 	Long id
 
+	@org.neo4j.ogm.annotation.Id 
+	@org.neo4j.ogm.annotation.GeneratedValue Long ide
+
 	@Column(length=50)
+	@Property
 	String nombre
 
 	@Column(length=50)
@@ -36,15 +45,19 @@ class Usuario {
 	float saldo
 
 	@Column(length=25)
+	@Property
 	String usuario
 
 	@Column(length=25)
 	String login
 
 	@ManyToMany(fetch=FetchType.LAZY)
+	@Relationship(type = "EsAmigoDe")
 	Set<Usuario> amigos = newHashSet
 
 	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	//@Relationship(type="Tiene", direction = "INCOMING")
+	@Transient
 	Set<Ticket> tickets = new HashSet<Ticket>
 
 	override String toString() {

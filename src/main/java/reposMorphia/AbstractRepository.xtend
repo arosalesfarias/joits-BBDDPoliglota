@@ -15,7 +15,7 @@ abstract class AbstractRepository<T> {
 
 	new() {
 		if (ds === null) {
-			val mongo = new MongoClient("localhost", 28001)
+			val mongo = new MongoClient("localhost", 27017)
 			new Morphia => [
 				map(typeof(Funcion))
 				ds = createDatastore(mongo, "Joyts") // preguntar como cambiar si quiero usar otro que no sea test

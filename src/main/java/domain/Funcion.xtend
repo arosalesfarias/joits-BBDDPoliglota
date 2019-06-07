@@ -1,14 +1,14 @@
 package domain
 
+import com.google.gson.annotations.Expose
 import exceptions.BusinessException
 import java.time.DayOfWeek
 import java.time.LocalDateTime
+import org.bson.types.ObjectId
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.mongodb.morphia.annotations.Entity
 import org.uqbar.commons.model.annotations.Observable
-import org.bson.types.ObjectId
 import org.mongodb.morphia.annotations.Id
-import com.google.gson.annotations.Expose
 
 @Accessors
 @Observable

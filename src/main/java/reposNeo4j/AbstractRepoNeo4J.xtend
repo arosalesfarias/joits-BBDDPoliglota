@@ -7,8 +7,10 @@ import org.neo4j.ogm.session.SessionFactory
 @Accessors
 abstract class AbstractRepoNeo4J<T> {
 
-	static Configuration configuration = new Configuration.Builder().uri("bolt://localhost").credentials("neo4j",
-		"root").build()
+	static Configuration configuration = new Configuration.Builder()
+	.uri("bolt://localhost")
+	.credentials("neo4j","root")
+	.build()
 
 	public static SessionFactory sessionFactory = new SessionFactory(configuration, "domain")
 

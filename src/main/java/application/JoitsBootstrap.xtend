@@ -14,12 +14,15 @@ import reposMorphia.AbstractRepository
 import reposMorphia.RepoProyecciones
 import reposNeo4j.AbstractRepoNeo4J
 import reposNeo4j.RepoPeliculas
+import reposNeo4j.RepositorioUsuarios
 
 class JoitsBootstrap implements Bootstrap {
 
 	AbstractRepository<Proyeccion> repoProyecciones = ApplicationContext.instance.getSingleton(typeof(RepoProyecciones))
 
-	AbstractRepoNeo4J<Proyeccion> repoPelis = RepoPeliculas.instance
+	AbstractRepoNeo4J<Proyeccion> repoPelis = ApplicationContext.instance.getSingleton(typeof(RepoPeliculas))
+	
+	AbstractRepoNeo4J<Usuario> repoClientes = ApplicationContext.instance.getSingleton(typeof(RepositorioUsuarios))
 
 //	AbstractRepository<Funcion> repoFunciones = ApplicationContext.instance.getSingleton(typeof(RepoFunciones))
 	override run() {
@@ -224,6 +227,8 @@ class JoitsBootstrap implements Bootstrap {
 		// esto para neo4j
 		newArrayList(batman, superman, avengers1, avengers2, avengers3, volverAlFuturo1, volverAlFuturo2,
 			volverAlFuturo3, volverAlFuturo).forEach[repoPelis.crear(it)]
+			
+		newArrayList(alezcano, dsalamida, arosales, elgato, chinwenwencha).forEach[repoClientes.crear(it)]
 	}
 
 	def void crearUsuarios(Usuario usuario) {
