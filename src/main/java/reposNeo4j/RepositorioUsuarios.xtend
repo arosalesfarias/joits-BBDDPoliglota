@@ -13,4 +13,7 @@ class RepositorioUsuarios extends AbstractRepoNeo4J<Usuario> {
 		instance
 	}
 	
+	override getEntityType() {
+		Usuario
+	}
 }

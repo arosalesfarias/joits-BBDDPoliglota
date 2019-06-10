@@ -11,6 +11,7 @@ import org.uqbar.commons.model.exceptions.UserException
 import org.uqbar.commons.model.utils.ObservableUtils
 import reposHibernate.RepoUsuarios
 import RepoJedis.Carrito
+import reposNeo4j.RepositorioUsuarios
 
 @Observable
 @Accessors
@@ -58,6 +59,7 @@ class FinalizarCompraModel {
 			usuario.comprarTicket(ticket)
 		]
 		RepoUsuarios.instance.update(usuario)
+		RepositorioUsuarios.instance.crear(usuario)
 		limpiarCarrito()
 	}
 

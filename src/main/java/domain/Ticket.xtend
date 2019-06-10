@@ -1,21 +1,21 @@
 package domain
 
+import com.google.gson.annotations.Expose
 import exceptions.BusinessException
+import javax.persistence.Convert
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
-import org.eclipse.xtend.lib.annotations.Accessors
-import org.uqbar.commons.model.annotations.Observable
 import javax.persistence.Transient
-import com.google.gson.annotations.Expose
-import javax.persistence.Convert
-import org.neo4j.ogm.annotation.RelationshipEntity
+import org.eclipse.xtend.lib.annotations.Accessors
+import org.neo4j.ogm.annotation.NodeEntity
+import org.uqbar.commons.model.annotations.Observable
 import org.neo4j.ogm.annotation.Relationship
 
 @Entity
-@RelationshipEntity(type="Tiene")
 @Accessors
 @Observable
+@NodeEntity
 class Ticket {
 
 	new(Funcion _funcion, Proyeccion _peli) {
@@ -40,7 +40,7 @@ class Ticket {
 
 	@Expose
 	@Convert(converter=ProyeccionConverter)
-//	@Relationship(type= "Pertenece", direction = "INCOMING")
+	@Relationship(type="TIENE")
 	Proyeccion pelicula // que puede ser pelicula o saga
 
 	def float precio() {

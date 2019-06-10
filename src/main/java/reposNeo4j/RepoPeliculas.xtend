@@ -12,5 +12,13 @@ class RepoPeliculas extends AbstractRepoNeo4J<Proyeccion> {
 		}
 		instance
 	}
+	
+	override getEntityType() {
+		Proyeccion
+	}
+	
+	def pelisNoVistas(){
+	
+	}
 
 }
