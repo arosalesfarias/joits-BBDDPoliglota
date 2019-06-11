@@ -59,7 +59,7 @@ class FinalizarCompraModel {
 			usuario.comprarTicket(ticket)
 		]
 		RepoUsuarios.instance.update(usuario)
-		RepositorioUsuarios.instance.crear(usuario)
+		RepositorioUsuarios.instance.actualizar(usuario)
 		limpiarCarrito()
 	}
 

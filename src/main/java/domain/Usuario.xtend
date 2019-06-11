@@ -18,17 +18,18 @@ import org.neo4j.ogm.annotation.Relationship
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
 
 @Entity
-@NodeEntity
+@NodeEntity(label="Usuario")
 @TransactionalAndObservable
 @Accessors
 class Usuario {
+	
+	@org.neo4j.ogm.annotation.Id
+	@org.neo4j.ogm.annotation.GeneratedValue
+	Long clave
 
 	@Id
 	@GeneratedValue
 	Long id
-
-	@org.neo4j.ogm.annotation.Id
-	@org.neo4j.ogm.annotation.GeneratedValue Long ide
 
 	@Column(length=50)
 	@Property
@@ -55,7 +56,7 @@ class Usuario {
 	Set<Usuario> amigos = newHashSet
 
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	@Relationship(type="TIENE")
+	@Relationship(type="COMPRO")
 	Set<Ticket> tickets = new HashSet<Ticket>
 
 	override String toString() {
@@ -85,6 +86,7 @@ class Usuario {
 	}
 
 	def void comprarTicket(Ticket ticket) {
+		ticket.usuario = this
 		pagarTicket(ticket)
 		tickets.add(ticket)
 	}

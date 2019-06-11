@@ -12,7 +12,11 @@ class RepositorioUsuarios extends AbstractRepoNeo4J<Usuario> {
 		}
 		instance
 	}
-	
+
+	override Usuario getById(Usuario usuario) {
+		session.load(typeof(Usuario), usuario.clave, BUSQUEDA_ELEMENTO_RELACIONES)
+	}
+
 	override getEntityType() {
 		Usuario
 	}

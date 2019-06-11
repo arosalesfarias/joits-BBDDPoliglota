@@ -12,13 +12,13 @@ class RepoPeliculas extends AbstractRepoNeo4J<Proyeccion> {
 		}
 		instance
 	}
-	
+
+	override Proyeccion getById(Proyeccion proyeccion) {
+		session.load(typeof(Proyeccion), proyeccion.clave,BUSQUEDA_ELEMENTO_RELACIONES)
+	}
+
 	override getEntityType() {
 		Proyeccion
-	}
-	
-	def pelisNoVistas(){
-	
 	}
 
 }

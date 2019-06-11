@@ -72,6 +72,7 @@ class ModeloBusqueda extends BuscaSugiereModel {
 
 	def crearTicket() {
 		entrada = new Ticket(funcionSeleccionada, entidadSeleccionada)
+		entrada.usuario = this.usuario
 	}
 
 	def void setFuncionSeleccionada(Funcion funcion) {

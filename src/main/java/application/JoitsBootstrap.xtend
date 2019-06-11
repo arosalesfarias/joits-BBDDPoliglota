@@ -21,7 +21,7 @@ class JoitsBootstrap implements Bootstrap {
 	AbstractRepository<Proyeccion> repoProyecciones = ApplicationContext.instance.getSingleton(typeof(RepoProyecciones))
 
 	AbstractRepoNeo4J<Proyeccion> repoPelis = ApplicationContext.instance.getSingleton(typeof(RepoPeliculas))
-	
+
 	AbstractRepoNeo4J<Usuario> repoClientes = ApplicationContext.instance.getSingleton(typeof(RepositorioUsuarios))
 
 //	AbstractRepository<Funcion> repoFunciones = ApplicationContext.instance.getSingleton(typeof(RepoFunciones))
@@ -157,7 +157,7 @@ class JoitsBootstrap implements Bootstrap {
 			nombre = "Alberto"
 			apellido = "Lezcano"
 			edad = 26
-			saldo = 1000
+			saldo = 2000
 			usuario = "alezcano"
 			login = "1234"
 		]
@@ -174,7 +174,7 @@ class JoitsBootstrap implements Bootstrap {
 			nombre = "Ariel"
 			apellido = "Rosales"
 			edad = 8
-			saldo = 12
+			saldo = 1200
 			usuario = "arosales"
 			login = "3333"
 		]
@@ -182,7 +182,7 @@ class JoitsBootstrap implements Bootstrap {
 			nombre = "El"
 			apellido = "Chinwenwencha"
 			edad = 26
-			saldo = 5
+			saldo = 500
 			usuario = "chinwenwencha"
 			login = "1234"
 		]
@@ -195,15 +195,21 @@ class JoitsBootstrap implements Bootstrap {
 			login = "1234"
 		]
 		// agrego las entradas a los usuarios
-		alezcano.tickets.addAll(entradaAlberto1, entradaAlberto2)
-		arosales.tickets.addAll(entradaAriel1, entradaAriel2)
-		dsalamida.tickets.addAll(entradaDiego1, entradaDiego2)
-		elgato.tickets.addAll(entradaMacri1, entradaMacri2)
-		chinwenwencha.tickets.addAll(entradaChinwenwencha1, entradaChinwenwencha2)
+		alezcano.comprarTicket(entradaAlberto1)
+		alezcano.comprarTicket(entradaAlberto2)
+		arosales.comprarTicket(entradaAriel1)
+		arosales.comprarTicket(entradaAriel2)
+		dsalamida.comprarTicket(entradaDiego1)
+		dsalamida.comprarTicket(entradaDiego2)
+		elgato.comprarTicket(entradaMacri1)
+		elgato.comprarTicket(entradaMacri2)
+		chinwenwencha.comprarTicket(entradaChinwenwencha1)
+		chinwenwencha.comprarTicket(entradaChinwenwencha2)
 
 		// Creo las pelis y sagas
-		newArrayList(batman, superman, avengers1, avengers2, avengers3, volverAlFuturo1, volverAlFuturo2,
-			volverAlFuturo3, volverAlFuturo).forEach[repoProyecciones.createIfNotExists(it)]
+		val listaPelis = #[batman, superman, avengers1, avengers2, avengers3, volverAlFuturo1, volverAlFuturo2,
+			volverAlFuturo3, volverAlFuturo]
+		listaPelis.forEach[repoProyecciones.createIfNotExists(it)]
 
 		// RepoUsuarios
 		crearUsuarios(alezcano)
@@ -224,11 +230,12 @@ class JoitsBootstrap implements Bootstrap {
 		crearUsuarios(elgato)
 		crearUsuarios(chinwenwencha)
 
-		// esto para neo4j
-		newArrayList(batman, superman, avengers1, avengers2, avengers3, volverAlFuturo1, volverAlFuturo2,
-			volverAlFuturo3, volverAlFuturo).forEach[repoPelis.crear(it)]
-			
-		newArrayList(alezcano, dsalamida, arosales, elgato, chinwenwencha).forEach[repoClientes.crear(it)]
+		// creo peliculas en neo4j
+		listaPelis.forEach[repoPelis.crear(it)]
+
+		// creo usuarios en neo4j
+		val listaUsuarios = #[alezcano, dsalamida, arosales, elgato, chinwenwencha]
+		listaUsuarios.forEach[repoClientes.crear(it)]
 	}
 
 	def void crearUsuarios(Usuario usuario) {

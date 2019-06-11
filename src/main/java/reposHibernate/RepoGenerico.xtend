@@ -22,22 +22,6 @@ abstract class RepoGenerico<T> {
 
 	def void actualizarDatos(T t, T t2)
 
-//	def void update(T objectViejo, T objectNuevo) {
-//		objectNuevo.validateCreate
-//		this.actualizarDatos(objectViejo, objectNuevo)
-//	}
-//
-//	def void delete(T object) {
-//		elementos.remove(object)
-//	}
-//
-//	def T searchById(int id) {
-//		elementos.findFirst[elem|elem.id == id]
-//	}
-//
-//	def boolean existeId(T object) {
-//		elementos.exists[elemento|elemento.id == object.id]
-//	}
 	def match(Object expectedValue, Object realValue) {
 		if (expectedValue === null) {
 			return true

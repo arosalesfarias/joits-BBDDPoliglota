@@ -8,14 +8,15 @@ import javax.persistence.GeneratedValue
 import javax.persistence.Id
 import javax.persistence.Transient
 import org.eclipse.xtend.lib.annotations.Accessors
-import org.neo4j.ogm.annotation.NodeEntity
+import org.neo4j.ogm.annotation.EndNode
+import org.neo4j.ogm.annotation.RelationshipEntity
+import org.neo4j.ogm.annotation.StartNode
 import org.uqbar.commons.model.annotations.Observable
-import org.neo4j.ogm.annotation.Relationship
 
 @Entity
 @Accessors
 @Observable
-@NodeEntity
+@RelationshipEntity(type="COMPRO")
 class Ticket {
 
 	new(Funcion _funcion, Proyeccion _peli) {
@@ -29,9 +30,13 @@ class Ticket {
 	@Id
 	@GeneratedValue
 	Long id
+	
+	@org.neo4j.ogm.annotation.Id
+	@org.neo4j.ogm.annotation.GeneratedValue Long clave
 
-	@org.neo4j.ogm.annotation.Id 
-	@org.neo4j.ogm.annotation.GeneratedValue Long ide
+	@Transient
+	@StartNode
+	Usuario usuario
 
 	@Transient
 	@Expose
@@ -40,7 +45,7 @@ class Ticket {
 
 	@Expose
 	@Convert(converter=ProyeccionConverter)
-	@Relationship(type="TIENE")
+	@EndNode
 	Proyeccion pelicula // que puede ser pelicula o saga
 
 	def float precio() {
