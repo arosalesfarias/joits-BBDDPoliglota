@@ -8,5 +8,5 @@ match (u: Usuario) - [:COMPRO] -> (pelicula :Proyeccion) with pelicula, count(pe
 
 Punto 3 - opcion 2
 
-match (u: Usuario) - [:COMPRO] -> (pelicula :Proyeccion) with pelicula, count(pelicula) as conteo return pelicula.titulo, conteo order by conteo desc limit 1
+match (u: Usuario) - [:COMPRO] -> (pelicula :Proyeccion) return pelicula.titulo, count(pelicula) as conteo order by conteo desc limit 1
 
