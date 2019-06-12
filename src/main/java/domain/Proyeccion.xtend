@@ -12,7 +12,6 @@ import org.neo4j.ogm.annotation.Property
 import org.mongodb.morphia.annotations.Id
 import org.neo4j.ogm.annotation.Transient
 
-//import org.mongodb.morphia.annotations.Id
 @Observable
 @Accessors
 @NodeEntity(label="Proyeccion")

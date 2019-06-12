@@ -56,15 +56,6 @@ class JoitsBootstrap implements Bootstrap {
 		val funcionAvengers2Miercoles = new Funcion(LocalDateTime.of(2019, 03, 06, 13, 30), "17")
 		val funcionAvengers3Miercoles = new Funcion(LocalDateTime.of(2019, 03, 06, 13, 30), "12")
 
-		/*newArrayList(funcionBatmanFinde, funcionSupermanFinde, funcionSagaFinde, funcionVolver1Finde,
-		 * 	funcionVolver2Finde, funcionVolver3Finde, funcionAvengers1Finde, funcionAvengers2Finde,
-		 * 	funcionAvengers3Finde, funcionBatmanLunes, funcionSupermanLunes, funcionSagaLunes, funcionVolver1Lunes,
-		 * 	funcionVolver2Lunes, funcionVolver3Lunes, funcionAvengers1Lunes, funcionAvengers2Lunes,
-		 * 	funcionAvengers3Lunes, funcionBatmanMiercoles, funcionSupermanMiercoles, funcionSagaMiercoles,
-		 * 	funcionVolver1Miercoles, funcionVolver2Miercoles, funcionVolver3Miercoles, funcionAvengers1Miercoles,
-		 * 	funcionAvengers2Miercoles, funcionAvengers3Miercoles).forEach [
-		 * 	repoFunciones.createIfNotExists(it)
-		 ]*/
 		// Pelis y Sagas
 		val batman = new Pelicula() => [
 			titulo = "Batman asciende"
@@ -220,7 +211,7 @@ class JoitsBootstrap implements Bootstrap {
 
 		// amigos
 		alezcano.amigos.addAll(dsalamida, arosales)
-		dsalamida.amigos.addAll(alezcano, arosales)
+		dsalamida.amigos.addAll(alezcano, arosales, elgato)
 		arosales.amigos.addAll(alezcano)
 
 		// Update con entradas y amigos

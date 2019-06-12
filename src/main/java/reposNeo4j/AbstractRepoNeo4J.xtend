@@ -28,11 +28,8 @@ abstract class AbstractRepoNeo4J<T> {
 	}
 
 	def void actualizar(T t) {
-		var result = getById(t)
-		if (result === null) {
-			session.save(t)
-		}
-		crear(result)
+		session.delete(t)
+		session.save(t)
 	}
-
+	
 }
