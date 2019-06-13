@@ -2,31 +2,18 @@ package application
 
 import domain.Funcion
 import domain.Pelicula
-import domain.Proyeccion
 import domain.Saga
 import domain.Ticket
 import domain.Usuario
 import java.time.LocalDateTime
 import org.uqbar.arena.bootstrap.Bootstrap
-import org.uqbar.commons.applicationContext.ApplicationContext
-import reposHibernate.RepoUsuarios
-import reposMorphia.AbstractRepository
-import reposMorphia.RepoProyecciones
-import reposNeo4j.AbstractRepoNeo4J
-import reposNeo4j.RepoPeliculas
-import reposNeo4j.RepositorioUsuarios
+import builderRepositorio.BuilderRepo
 
 class JoitsBootstrap implements Bootstrap {
 
-	AbstractRepository<Proyeccion> repoProyecciones = ApplicationContext.instance.getSingleton(typeof(RepoProyecciones))
-
-	AbstractRepoNeo4J<Proyeccion> repoPelis = ApplicationContext.instance.getSingleton(typeof(RepoPeliculas))
-
-	AbstractRepoNeo4J<Usuario> repoClientes = ApplicationContext.instance.getSingleton(typeof(RepositorioUsuarios))
-
-//	AbstractRepository<Funcion> repoFunciones = ApplicationContext.instance.getSingleton(typeof(RepoFunciones))
+	BuilderRepo constructor = new BuilderRepo
+	
 	override run() {
-
 		// Funciones (27)
 		val funcionBatmanFinde = new Funcion(LocalDateTime.of(2019, 03, 03, 13, 30), "5")
 		val funcionSupermanFinde = new Funcion(LocalDateTime.of(2019, 03, 03, 13, 30), "8")
@@ -200,14 +187,14 @@ class JoitsBootstrap implements Bootstrap {
 		// Creo las pelis y sagas
 		val listaPelis = #[batman, superman, avengers1, avengers2, avengers3, volverAlFuturo1, volverAlFuturo2,
 			volverAlFuturo3, volverAlFuturo]
-		listaPelis.forEach[repoProyecciones.createIfNotExists(it)]
+		listaPelis.forEach[constructor.persistirPeliculas(it)]
 
 		// RepoUsuarios
-		crearUsuarios(alezcano)
-		crearUsuarios(dsalamida)
-		crearUsuarios(arosales)
-		crearUsuarios(chinwenwencha)
-		crearUsuarios(elgato)
+		constructor.persistirUsuario(alezcano)
+		constructor.persistirUsuario(dsalamida)
+		constructor.persistirUsuario(arosales)
+		constructor.persistirUsuario(chinwenwencha)
+		constructor.persistirUsuario(elgato)
 
 		// amigos
 		alezcano.amigos.addAll(dsalamida, arosales)
@@ -215,31 +202,18 @@ class JoitsBootstrap implements Bootstrap {
 		arosales.amigos.addAll(alezcano)
 
 		// Update con entradas y amigos
-		crearUsuarios(alezcano)
-		crearUsuarios(dsalamida)
-		crearUsuarios(arosales)
-		crearUsuarios(elgato)
-		crearUsuarios(chinwenwencha)
+		constructor.persistirUsuario(alezcano)
+		constructor.persistirUsuario(dsalamida)
+		constructor.persistirUsuario(arosales)
+		constructor.persistirUsuario(elgato)
+		constructor.persistirUsuario(chinwenwencha)
 
 		// creo peliculas en neo4j
-		listaPelis.forEach[repoPelis.crear(it)]
+		listaPelis.forEach[constructor.persistirProyeccionNeo4J(it)]
 
 		// creo usuarios en neo4j
 		val listaUsuarios = #[alezcano, dsalamida, arosales, elgato, chinwenwencha]
-		listaUsuarios.forEach[repoClientes.crear(it)]
-	}
-
-	def void crearUsuarios(Usuario usuario) {
-		val repoUsuarios = RepoUsuarios.instance
-		val listaUsuarios = repoUsuarios.searchByExample(usuario)
-		if (listaUsuarios.isEmpty) {
-			repoUsuarios.create(usuario)
-			println("Usuario " + usuario.usuario + " creado")
-		} else {
-			val usuarioBD = listaUsuarios.head
-			usuario.id = usuarioBD.id
-			repoUsuarios.update(usuario)
-		}
+		listaUsuarios.forEach[constructor.persistirUsuarioNeo4J(it)]
 	}
 
 	override isPending() {

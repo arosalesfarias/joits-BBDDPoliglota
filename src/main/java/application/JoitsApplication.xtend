@@ -1,11 +1,11 @@
 package application
 
 import org.uqbar.arena.Application
-import ui.LoginWindow
-import reposMorphia.RepoProyecciones
 import org.uqbar.commons.applicationContext.ApplicationContext
+import reposMorphia.RepoProyecciones
 import reposNeo4j.RepoPeliculas
 import reposNeo4j.RepositorioUsuarios
+import ui.LoginWindow
 
 class JoitsApplication extends Application {
 
@@ -18,10 +18,12 @@ class JoitsApplication extends Application {
 	}
 
 	static def void main(String[] args) {
+		
+		// me falta cambiar esto, tendria que ir (new BuilderRepo).inicializar, funcionaba pero ahora se rompio!!
 		ApplicationContext.instance.configureSingleton(typeof(RepoProyecciones), new RepoProyecciones)
 		ApplicationContext.instance.configureSingleton(typeof(RepoPeliculas), new RepoPeliculas)
 		ApplicationContext.instance.configureSingleton(typeof(RepositorioUsuarios), new RepositorioUsuarios)
-		// ApplicationContext.instance.configureSingleton(typeof(RepoFunciones), new RepoFunciones)
+
 		new JoitsApplication(new JoitsBootstrap).start()
 	}
 
