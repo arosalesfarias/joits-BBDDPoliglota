@@ -14,7 +14,6 @@ import org.uqbar.commons.model.annotations.Observable
 import reposHibernate.RepoUsuarios
 import reposMorphia.AbstractRepository
 import reposMorphia.RepoProyecciones
-import reposNeo4j.AbstractRepoNeo4J
 import reposNeo4j.RepoPeliculas
 
 @Accessors
@@ -28,13 +27,16 @@ class ModeloBusqueda extends BuscaSugiereModel {
 	List<Proyeccion> sugeridos
 	Proyeccion entidadSeleccionada
 	AbstractRepository<Proyeccion> repoProyecciones = ApplicationContext.instance.getSingleton(RepoProyecciones)
-//	AbstractRepoNeo4J<Proyeccion> repoPelis = ApplicationContext.instance.getSingleton(typeof(RepoPeliculas))
 
 	new() {
 		super(RepoUsuarios.instance.usuarioLogueado)
 		inicializarLista
-		sugeridos = (RepoPeliculas.instance.getRecomendados(usuario)).take(5).toList
+		sugeridos = pelisSugeridas
 		carrito = Carrito.instance.recuperarCarrito(RepoUsuarios.instance.usuarioLogueado)
+	}
+
+	def pelisSugeridas() {
+		(RepoPeliculas.instance.getRecomendados(usuario)).take(5).toList
 	}
 
 	def inicializarLista() {

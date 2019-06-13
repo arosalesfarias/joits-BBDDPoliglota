@@ -27,9 +27,5 @@ abstract class AbstractRepoNeo4J<T> {
 		session.save(t, 1)
 	}
 
-	def void actualizar(T t) {
-		session.delete(t)
-		session.save(t)
-	}
 
 }
