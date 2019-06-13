@@ -1,7 +1,9 @@
 package reposNeo4j
 
 import domain.Usuario
+import org.eclipse.xtend.lib.annotations.Accessors
 
+@Accessors
 class RepositorioUsuarios extends AbstractRepoNeo4J<Usuario> {
 
 	static RepositorioUsuarios instance

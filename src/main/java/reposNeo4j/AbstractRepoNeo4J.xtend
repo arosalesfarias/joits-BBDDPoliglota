@@ -31,5 +31,5 @@ abstract class AbstractRepoNeo4J<T> {
 		session.delete(t)
 		session.save(t)
 	}
-	
+
 }
