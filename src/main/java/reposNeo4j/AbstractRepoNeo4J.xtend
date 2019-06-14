@@ -27,5 +27,4 @@ abstract class AbstractRepoNeo4J<T> {
 		session.save(t, 1)
 	}
 
-
 }

@@ -19,7 +19,7 @@ def static RepositorioUsuarios getInstance() {
 }
 
 override Usuario getById(Usuario usuario) {
-	session.load(typeof(Usuario), usuario.clave, BUSQUEDA_ELEMENTO_RELACIONES)
+	session.load(typeof(Usuario), usuario.id, BUSQUEDA_ELEMENTO_RELACIONES)
 }
 
 def List<Usuario> getRecomendados(Usuario usuario) {

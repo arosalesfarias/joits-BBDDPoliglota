@@ -7,7 +7,6 @@ import javax.persistence.CascadeType
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.FetchType
-import javax.persistence.GeneratedValue
 import javax.persistence.Id
 import javax.persistence.ManyToMany
 import javax.persistence.OneToMany
@@ -16,6 +15,7 @@ import org.neo4j.ogm.annotation.NodeEntity
 import org.neo4j.ogm.annotation.Property
 import org.neo4j.ogm.annotation.Relationship
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
+import org.neo4j.ogm.annotation.GeneratedValue
 
 @Entity
 @NodeEntity(label="Usuario")
@@ -23,11 +23,8 @@ import org.uqbar.commons.model.annotations.TransactionalAndObservable
 @Accessors
 class Usuario {
 	
-	@org.neo4j.ogm.annotation.Id
-	@org.neo4j.ogm.annotation.GeneratedValue
-	Long clave
-
 	@Id
+	@org.neo4j.ogm.annotation.Id
 	@GeneratedValue
 	Long id
 

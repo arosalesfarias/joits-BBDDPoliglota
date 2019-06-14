@@ -12,7 +12,7 @@ import builderRepositorio.BuilderRepo
 class JoitsBootstrap implements Bootstrap {
 
 	BuilderRepo constructor = new BuilderRepo
-	
+
 	override run() {
 		// Funciones (27)
 		val funcionBatmanFinde = new Funcion(LocalDateTime.of(2019, 03, 03, 13, 30), "5")
@@ -187,6 +187,14 @@ class JoitsBootstrap implements Bootstrap {
 		// Creo las pelis y sagas
 		val listaPelis = #[batman, superman, avengers1, avengers2, avengers3, volverAlFuturo1, volverAlFuturo2,
 			volverAlFuturo3, volverAlFuturo]
+
+		// creo peliculas en neo4j
+		listaPelis.forEach[constructor.persistirProyeccionNeo4J(it)]
+
+		// creo usuarios en neo4j
+		val listaUsuarios = #[alezcano, dsalamida, arosales, elgato, chinwenwencha]
+		listaUsuarios.forEach[constructor.persistirUsuarioNeo4J(it)]
+
 		listaPelis.forEach[constructor.persistirPeliculas(it)]
 
 		// RepoUsuarios
@@ -207,13 +215,10 @@ class JoitsBootstrap implements Bootstrap {
 		constructor.persistirUsuario(arosales)
 		constructor.persistirUsuario(elgato)
 		constructor.persistirUsuario(chinwenwencha)
-
-		// creo peliculas en neo4j
-		listaPelis.forEach[constructor.persistirProyeccionNeo4J(it)]
-
-		// creo usuarios en neo4j
-		val listaUsuarios = #[alezcano, dsalamida, arosales, elgato, chinwenwencha]
+		
 		listaUsuarios.forEach[constructor.persistirUsuarioNeo4J(it)]
+		
+
 	}
 
 	override isPending() {
