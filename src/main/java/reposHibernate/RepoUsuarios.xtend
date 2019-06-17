@@ -10,7 +10,7 @@ import javax.persistence.criteria.Root
 import javax.persistence.criteria.Predicate
 
 @Accessors
-class RepoUsuarios extends RepoGenerico<Usuario> {
+class RepoUsuarios extends AbstractRepoHibernate<Usuario> {
 
 	Usuario usuarioLogueado
 

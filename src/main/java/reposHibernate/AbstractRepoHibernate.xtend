@@ -12,7 +12,7 @@ import org.uqbar.commons.model.annotations.TransactionalAndObservable
 
 @Accessors
 @TransactionalAndObservable
-abstract class RepoGenerico<T> {
+abstract class AbstractRepoHibernate<T> {
 
 	List<T> elementos = newArrayList()
 
