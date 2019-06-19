@@ -104,4 +104,19 @@ class RepoUsuarios extends AbstractRepoHibernate<Usuario> {
 			entityManager.close
 		}
 	}
+
+	def Usuario createIfNotExists(Usuario usuario) {
+		val repoUsuarios = RepoUsuarios.instance
+		val listaUsuarios = repoUsuarios.searchByExample(usuario)
+		if (listaUsuarios.isEmpty) {
+			repoUsuarios.create(usuario)
+			println("Usuario " + usuario.usuario + " creado")
+			return usuario
+		} else {
+			val usuarioBD = listaUsuarios.head
+			usuario.id = usuarioBD.id
+			repoUsuarios.update(usuario)
+			return usuario
+		}
+	}
 }

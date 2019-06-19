@@ -184,40 +184,35 @@ class JoitsBootstrap implements Bootstrap {
 		chinwenwencha.comprarTicket(entradaChinwenwencha1)
 		chinwenwencha.comprarTicket(entradaChinwenwencha2)
 
-		// Creo las pelis y sagas
+		// Creo lista de pelis y sagas
 		val listaPelis = #[batman, superman, avengers1, avengers2, avengers3, volverAlFuturo1, volverAlFuturo2,
 			volverAlFuturo3, volverAlFuturo]
 
-		// creo peliculas en neo4j
-		listaPelis.forEach[constructor.persistirProyeccionNeo4J(it)]
-
-		// creo usuarios en neo4j
+		// Creo lista de usuarios
 		val listaUsuarios = #[alezcano, dsalamida, arosales, elgato, chinwenwencha]
-		listaUsuarios.forEach[constructor.persistirUsuarioNeo4J(it)]
 
-		listaPelis.forEach[constructor.persistirPeliculas(it)]
+		// persisto peliculas en neo4j
+		listaPelis.forEach[p|constructor.persistirProyeccionNeo4J(p)]
 
-		// RepoUsuarios
-		constructor.persistirUsuario(alezcano)
-		constructor.persistirUsuario(dsalamida)
-		constructor.persistirUsuario(arosales)
-		constructor.persistirUsuario(chinwenwencha)
-		constructor.persistirUsuario(elgato)
+		// persistir pelis en mongo
+		listaPelis.forEach[p|constructor.persistirPelicula(p)]
+
+		// persisto usuarios en neo4J
+		listaUsuarios.forEach[u|constructor.persistirUsuarioNeo4J(u)]
+
+		// persisto usuarios en Hibernate
+		listaUsuarios.forEach[u|constructor.persistirUsuario(u)]
 
 		// amigos
 		alezcano.amigos.addAll(dsalamida, arosales)
 		dsalamida.amigos.addAll(alezcano, arosales, elgato)
 		arosales.amigos.addAll(alezcano)
 
-		// Update con entradas y amigos
-		constructor.persistirUsuario(alezcano)
-		constructor.persistirUsuario(dsalamida)
-		constructor.persistirUsuario(arosales)
-		constructor.persistirUsuario(elgato)
-		constructor.persistirUsuario(chinwenwencha)
-		
-		listaUsuarios.forEach[constructor.persistirUsuarioNeo4J(it)]
-		
+		// actualizo usuarios en Hibernate
+		listaUsuarios.forEach[u|constructor.actualizarUsuario(u)]
+
+		// actualizo usuarios en grafo
+		listaUsuarios.forEach[u|constructor.actualizarUsuarioNeo4J(u)]
 
 	}
 

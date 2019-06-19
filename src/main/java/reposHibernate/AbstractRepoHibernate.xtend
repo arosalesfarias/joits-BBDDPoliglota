@@ -124,7 +124,7 @@ abstract class AbstractRepoHibernate<T> {
 		}
 	}
 
-	def update(T t) {
+	def void update(T t) {
 		val entityManager = this.entityManager
 		try {
 			entityManager => [
@@ -148,4 +148,6 @@ abstract class AbstractRepoHibernate<T> {
 	def String stringBusqueda(String str) {
 		"%" + str + "%"
 	}
+
+	def void delete(T t) {}
 }

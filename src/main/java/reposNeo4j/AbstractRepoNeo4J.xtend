@@ -23,8 +23,16 @@ abstract class AbstractRepoNeo4J<T> {
 
 	abstract def T getById(T t)
 
-	def void crear(T t) {
+	def T createIfNotExists(T t) {
 		session.save(t, 1)
+		return t
 	}
 
+	def void delete(T t) {
+		session.delete(t)
+	}
+
+	def void update(T t) {
+		this.createIfNotExists(t)
+	}
 }

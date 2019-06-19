@@ -1,5 +1,6 @@
 package applicationModel
 
+import RepoJedis.Carrito
 import domain.Ticket
 import domain.Usuario
 import java.util.ArrayList
@@ -10,7 +11,6 @@ import org.uqbar.commons.model.annotations.Observable
 import org.uqbar.commons.model.exceptions.UserException
 import org.uqbar.commons.model.utils.ObservableUtils
 import reposHibernate.RepoUsuarios
-import RepoJedis.Carrito
 import reposNeo4j.RepositorioUsuarios
 
 @Observable
@@ -58,6 +58,7 @@ class FinalizarCompraModel {
 		carrito.forEach [ ticket |
 			usuario.comprarTicket(ticket)
 		]
+		RepositorioUsuarios.instance.update(usuario)
 		RepoUsuarios.instance.update(usuario)
 		limpiarCarrito()
 	}
