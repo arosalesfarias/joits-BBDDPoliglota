@@ -4,13 +4,13 @@ import com.google.gson.annotations.Expose
 import exceptions.BusinessException
 import javax.persistence.Convert
 import javax.persistence.Entity
-import javax.persistence.GeneratedValue
 import javax.persistence.Id
 import javax.persistence.Transient
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.neo4j.ogm.annotation.EndNode
 import org.neo4j.ogm.annotation.RelationshipEntity
 import org.neo4j.ogm.annotation.StartNode
+import org.neo4j.ogm.annotation.GeneratedValue
 import org.uqbar.commons.model.annotations.Observable
 
 @Entity
@@ -28,11 +28,9 @@ class Ticket {
 	}
 
 	@Id
+	@org.neo4j.ogm.annotation.Id
 	@GeneratedValue
 	Long id
-	
-	@org.neo4j.ogm.annotation.Id
-	@org.neo4j.ogm.annotation.GeneratedValue Long clave
 
 	@Transient
 	@StartNode
