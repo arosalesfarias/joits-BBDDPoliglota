@@ -110,6 +110,7 @@ class JoitsBootstrap implements Bootstrap {
 			peliculas.addAll(volverAlFuturo1, volverAlFuturo2, volverAlFuturo3)
 			funciones.addAll(funcionSagaFinde, funcionSagaLunes, funcionSagaMiercoles)
 		]
+
 		// creo los Tickets
 		val entradaAlberto1 = new Ticket(funcionVolver1Lunes, volverAlFuturo1)
 
@@ -131,6 +132,7 @@ class JoitsBootstrap implements Bootstrap {
 
 		val entradaMacri2 = new Ticket(funcionBatmanMiercoles, batman)
 
+		// Creo usuarios
 		var alezcano = new Usuario() => [
 			nombre = "Alberto"
 			apellido = "Lezcano"
@@ -172,17 +174,6 @@ class JoitsBootstrap implements Bootstrap {
 			usuario = "elgato"
 			login = "1234"
 		]
-		// agrego las entradas a los usuarios
-		alezcano.comprarTicket(entradaAlberto1)
-		alezcano.comprarTicket(entradaAlberto2)
-		arosales.comprarTicket(entradaAriel1)
-		arosales.comprarTicket(entradaAriel2)
-		dsalamida.comprarTicket(entradaDiego1)
-		dsalamida.comprarTicket(entradaDiego2)
-		elgato.comprarTicket(entradaMacri1)
-		elgato.comprarTicket(entradaMacri2)
-		chinwenwencha.comprarTicket(entradaChinwenwencha1)
-		chinwenwencha.comprarTicket(entradaChinwenwencha2)
 
 		// Creo lista de pelis y sagas
 		val listaPelis = #[batman, superman, avengers1, avengers2, avengers3, volverAlFuturo1, volverAlFuturo2,
@@ -203,17 +194,28 @@ class JoitsBootstrap implements Bootstrap {
 		// persisto usuarios en Hibernate
 		listaUsuarios.forEach[u|constructor.persistirUsuario(u)]
 
+		// agrego las entradas a los usuarios
+		alezcano.comprarTicket(entradaAlberto1)
+		alezcano.comprarTicket(entradaAlberto2)
+		arosales.comprarTicket(entradaAriel1)
+		arosales.comprarTicket(entradaAriel2)
+		dsalamida.comprarTicket(entradaDiego1)
+		dsalamida.comprarTicket(entradaDiego2)
+		elgato.comprarTicket(entradaMacri1)
+		elgato.comprarTicket(entradaMacri2)
+		chinwenwencha.comprarTicket(entradaChinwenwencha1)
+		chinwenwencha.comprarTicket(entradaChinwenwencha2)
+
 		// amigos
 		alezcano.amigos.addAll(dsalamida, arosales)
 		dsalamida.amigos.addAll(alezcano, arosales, elgato)
 		arosales.amigos.addAll(alezcano)
 
-		// actualizo usuarios en Hibernate
-		listaUsuarios.forEach[u|constructor.actualizarUsuario(u)]
-
 		// actualizo usuarios en grafo
 		listaUsuarios.forEach[u|constructor.actualizarUsuarioNeo4J(u)]
 
+		// actualizo usuarios en Hibernate
+		//listaUsuarios.forEach[u|constructor.actualizarUsuario(u)]
 	}
 
 	override isPending() {
