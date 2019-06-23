@@ -1,19 +1,42 @@
 package application
 
+import builderRepositorio.RepoManager
 import domain.Funcion
 import domain.Pelicula
+import domain.Proyeccion
 import domain.Saga
 import domain.Ticket
 import domain.Usuario
 import java.time.LocalDateTime
 import org.uqbar.arena.bootstrap.Bootstrap
-import builderRepositorio.BuilderRepo
+import org.uqbar.commons.applicationContext.ApplicationContext
+import reposMorphia.AbstractRepository
+import reposMorphia.RepoProyecciones
+import reposNeo4j.AbstractRepoNeo4J
+import reposNeo4j.RepoFuncionesNeo4J
+import reposNeo4j.RepoPeliculas
+import reposNeo4j.RepositorioUsuarios
+import reposHibernate.RepoUsuarios
+import reposHibernate.AbstractRepoHibernate
 
 class JoitsBootstrap implements Bootstrap {
 
-	BuilderRepo constructor = new BuilderRepo
+	AbstractRepoHibernate<Usuario> repoUsuarios = ApplicationContext.instance.getSingleton(typeof(RepoUsuarios))
+
+	AbstractRepository<Proyeccion> repoProyecciones = ApplicationContext.instance.getSingleton(typeof(RepoProyecciones))
+
+	AbstractRepoNeo4J<Proyeccion> repoPelis = ApplicationContext.instance.getSingleton(typeof(RepoPeliculas))
+
+	AbstractRepoNeo4J<Usuario> repoClientes = ApplicationContext.instance.getSingleton(typeof(RepositorioUsuarios))
+
+	AbstractRepoNeo4J<Funcion> repoFunciones = ApplicationContext.instance.getSingleton(typeof(RepoFuncionesNeo4J))
+
+	RepoManager repoManager = new RepoManager
 
 	override run() {
+
+		repoManager.repositoriosUsuarios.addAll(repoClientes, repoUsuarios)
+		repoManager.repositoriosPeliculas.addAll(repoPelis, repoProyecciones)
 
 		// Creo usuarios
 		var alezcano = new Usuario() => [
@@ -203,19 +226,13 @@ class JoitsBootstrap implements Bootstrap {
 		val listaUsuarios = #[alezcano, dsalamida, arosales, elgato, chinwenwencha]
 
 		// persisto funciones
-		listaFunciones.forEach[f|constructor.persistirFuncion(f)]
+		listaFunciones.forEach[f|repoFunciones.createIfNotExists(f)]
 
-		// persisto peliculas en neo4j
-		listaPelis.forEach[p|constructor.persistirProyeccionNeo4J(p)]
+		// persisto usuarios
+		listaUsuarios.forEach[u|repoManager.persistirUsuario(u)]
 
-		// persistir pelis en mongo
-		listaPelis.forEach[p|constructor.persistirPelicula(p)]
-
-		// persisto usuarios en neo4J
-		listaUsuarios.forEach[u|constructor.persistirUsuarioNeo4J(u)]
-
-		// persisto usuarios en Hibernate
-		listaUsuarios.forEach[u|constructor.persistirUsuario(u)]
+		// persisto peliculas
+		listaPelis.forEach[p|repoManager.persistirProyeccion(p)]
 
 		// agrego las entradas a los usuarios
 		alezcano.tickets.addAll(entradaAlberto1, entradaAlberto2)
@@ -229,11 +246,12 @@ class JoitsBootstrap implements Bootstrap {
 		dsalamida.amigos.addAll(alezcano, arosales, elgato)
 		arosales.amigos.addAll(alezcano)
 
-		// actualizo usuarios en grafo
-		listaUsuarios.forEach[u|constructor.actualizarUsuarioNeo4J(u)]
+		// falta solucionar el error al actualizar el repo de hibernate por eso hago este paso extra
+		repoManager.repositoriosUsuarios.remove(repoUsuarios)
 
-	// actualizo usuarios en Hibernate
-	// listaUsuarios.forEach[u|constructor.actualizarUsuario(u)]
+		// actualizo usuarios en grafo
+		listaUsuarios.forEach[u|repoManager.actualizarUsuario(u)]
+
 	}
 
 	override isPending() {

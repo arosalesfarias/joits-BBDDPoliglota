@@ -23,7 +23,7 @@ class RepoUsuarios extends AbstractRepoHibernate<Usuario> {
 		repoUsuarios
 	}
 
-	private new() {
+	new() {
 	}
 
 	override List<Usuario> search(String buscar) {
@@ -105,7 +105,7 @@ class RepoUsuarios extends AbstractRepoHibernate<Usuario> {
 		}
 	}
 
-	def Usuario createIfNotExists(Usuario usuario) {
+	override createIfNotExists(Usuario usuario) {
 		val repoUsuarios = RepoUsuarios.instance
 		val listaUsuarios = repoUsuarios.searchByExample(usuario)
 		if (listaUsuarios.isEmpty) {

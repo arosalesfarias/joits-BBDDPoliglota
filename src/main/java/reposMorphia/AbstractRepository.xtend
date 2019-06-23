@@ -1,15 +1,16 @@
 package reposMorphia
 
+import builderRepositorio.RepoGenerico
 import com.mongodb.MongoClient
+import domain.Funcion
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.mongodb.morphia.Datastore
 import org.mongodb.morphia.Morphia
 import org.mongodb.morphia.query.UpdateOperations
-import domain.Funcion
 
 @Accessors
-abstract class AbstractRepository<T> {
+abstract class AbstractRepository<T> implements RepoGenerico<T>{
 
 	static protected Datastore ds
 
@@ -37,7 +38,7 @@ abstract class AbstractRepository<T> {
 	}
 
 	// esto nose si lo usamos
-	def T createIfNotExists(T t) {
+	override createIfNotExists(T t) {
 		val entidadAModificar = getByExample(t)
 		if (entidadAModificar !== null) {
 			return entidadAModificar
@@ -45,7 +46,7 @@ abstract class AbstractRepository<T> {
 		create(t)
 	}
 
-	def void update(T t) {
+	override update(T t) {
 		ds.update(t, this.defineUpdateOperations(t))
 	}
 
@@ -60,7 +61,7 @@ abstract class AbstractRepository<T> {
 		}
 	}
 
-	def void delete(T t) {
+	override delete(T t) {
 		ds.delete(t)
 	}
 

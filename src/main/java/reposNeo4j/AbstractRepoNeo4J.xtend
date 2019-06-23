@@ -3,9 +3,10 @@ package reposNeo4j
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.neo4j.ogm.config.Configuration
 import org.neo4j.ogm.session.SessionFactory
+import builderRepositorio.RepoGenerico
 
 @Accessors
-abstract class AbstractRepoNeo4J<T> {
+abstract class AbstractRepoNeo4J<T> implements RepoGenerico<T> {
 
 	public static int BUSQUEDA_ELEMENTO = 0
 	public static int BUSQUEDA_ELEMENTO_RELACIONES = 1
@@ -23,16 +24,17 @@ abstract class AbstractRepoNeo4J<T> {
 
 	abstract def T getById(T t)
 
-	def T createIfNotExists(T t) {
+	override createIfNotExists(T t) {
 		session.save(t, BUSQUEDA_ELEMENTO_RELACIONES)
 		return t
 	}
 
-	def void delete(T t) {
+	override delete(T t) {
 		session.delete(t)
+		return t
 	}
 
-	def void update(T t) {
+	override update(T t) {
 		this.createIfNotExists(t)
 	}
 }

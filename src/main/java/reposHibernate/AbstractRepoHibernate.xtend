@@ -1,5 +1,6 @@
 package reposHibernate
 
+import builderRepositorio.RepoGenerico
 import java.util.List
 import javax.persistence.EntityManagerFactory
 import javax.persistence.Persistence
@@ -12,7 +13,7 @@ import org.uqbar.commons.model.annotations.TransactionalAndObservable
 
 @Accessors
 @TransactionalAndObservable
-abstract class AbstractRepoHibernate<T> {
+abstract class AbstractRepoHibernate<T> implements RepoGenerico<T> {
 
 	List<T> elementos = newArrayList()
 
@@ -124,7 +125,7 @@ abstract class AbstractRepoHibernate<T> {
 		}
 	}
 
-	def void update(T t) {
+	override update(T t) {
 		val entityManager = this.entityManager
 		try {
 			entityManager => [
@@ -149,5 +150,5 @@ abstract class AbstractRepoHibernate<T> {
 		"%" + str + "%"
 	}
 
-	def void delete(T t) {}
+	override delete(T t) {}
 }
