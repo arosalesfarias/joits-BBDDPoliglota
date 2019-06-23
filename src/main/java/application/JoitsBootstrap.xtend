@@ -14,7 +14,51 @@ class JoitsBootstrap implements Bootstrap {
 	BuilderRepo constructor = new BuilderRepo
 
 	override run() {
-		// Funciones (27)
+
+		// Creo usuarios
+		var alezcano = new Usuario() => [
+			nombre = "Alberto"
+			apellido = "Lezcano"
+			edad = 26
+			saldo = 2000
+			usuario = "alezcano"
+			login = "1234"
+		]
+
+		var dsalamida = new Usuario() => [
+			nombre = "Diego"
+			apellido = "Salamida"
+			edad = 32
+			saldo = 2500
+			usuario = "dsalamida"
+			login = "dsalamida"
+		]
+		var arosales = new Usuario() => [
+			nombre = "Ariel"
+			apellido = "Rosales"
+			edad = 8
+			saldo = 1200
+			usuario = "arosales"
+			login = "3333"
+		]
+		var chinwenwencha = new Usuario() => [
+			nombre = "El"
+			apellido = "Chinwenwencha"
+			edad = 26
+			saldo = 500
+			usuario = "chinwenwencha"
+			login = "1234"
+		]
+		var elgato = new Usuario() => [
+			nombre = "Mauiricio"
+			apellido = "Macri"
+			edad = 50
+			saldo = 999999999
+			usuario = "elgato"
+			login = "1234"
+		]
+
+		// Creo a las funciones (27)
 		val funcionBatmanFinde = new Funcion(LocalDateTime.of(2019, 03, 03, 13, 30), "5")
 		val funcionSupermanFinde = new Funcion(LocalDateTime.of(2019, 03, 03, 13, 30), "8")
 		val funcionSagaFinde = new Funcion(LocalDateTime.of(2019, 03, 03, 13, 30), "2")
@@ -113,67 +157,43 @@ class JoitsBootstrap implements Bootstrap {
 
 		// creo los Tickets
 		val entradaAlberto1 = new Ticket(funcionVolver1Lunes, volverAlFuturo1)
+		entradaAlberto1.usuario = alezcano
 
 		val entradaAlberto2 = new Ticket(funcionVolver1Finde, volverAlFuturo1)
+		entradaAlberto2.usuario = alezcano
 
 		val entradaAriel1 = new Ticket(funcionSupermanFinde, superman)
+		entradaAriel1.usuario = arosales
 
 		val entradaAriel2 = new Ticket(funcionAvengers2Miercoles, avengers2)
+		entradaAriel2.usuario = arosales
 
 		val entradaDiego1 = new Ticket(funcionSagaFinde, volverAlFuturo)
+		entradaDiego1.usuario = dsalamida
 
 		val entradaDiego2 = new Ticket(funcionVolver1Miercoles, volverAlFuturo1)
+		entradaDiego2.usuario = dsalamida
 
 		val entradaChinwenwencha1 = new Ticket(funcionVolver2Miercoles, volverAlFuturo1)
+		entradaChinwenwencha1.usuario = chinwenwencha
 
 		val entradaChinwenwencha2 = new Ticket(funcionSagaLunes, volverAlFuturo)
+		entradaChinwenwencha2.usuario = chinwenwencha
 
 		val entradaMacri1 = new Ticket(funcionAvengers3Miercoles, avengers3)
+		entradaMacri1.usuario = elgato
 
 		val entradaMacri2 = new Ticket(funcionBatmanMiercoles, batman)
+		entradaMacri2.usuario = elgato
 
-		// Creo usuarios
-		var alezcano = new Usuario() => [
-			nombre = "Alberto"
-			apellido = "Lezcano"
-			edad = 26
-			saldo = 2000
-			usuario = "alezcano"
-			login = "1234"
-		]
-
-		var dsalamida = new Usuario() => [
-			nombre = "Diego"
-			apellido = "Salamida"
-			edad = 32
-			saldo = 2500
-			usuario = "dsalamida"
-			login = "dsalamida"
-		]
-		var arosales = new Usuario() => [
-			nombre = "Ariel"
-			apellido = "Rosales"
-			edad = 8
-			saldo = 1200
-			usuario = "arosales"
-			login = "3333"
-		]
-		var chinwenwencha = new Usuario() => [
-			nombre = "El"
-			apellido = "Chinwenwencha"
-			edad = 26
-			saldo = 500
-			usuario = "chinwenwencha"
-			login = "1234"
-		]
-		var elgato = new Usuario() => [
-			nombre = "Mauiricio"
-			apellido = "Macri"
-			edad = 50
-			saldo = 999999999
-			usuario = "elgato"
-			login = "1234"
-		]
+		// Creo lista de funciones
+		val listaFunciones = #[funcionBatmanFinde, funcionBatmanLunes, funcionBatmanMiercoles, funcionSupermanFinde,
+			funcionSupermanLunes, funcionSupermanMiercoles, funcionAvengers1Finde, funcionAvengers1Lunes,
+			funcionAvengers1Miercoles, funcionAvengers2Finde, funcionAvengers2Lunes, funcionAvengers2Miercoles,
+			funcionAvengers3Finde, funcionAvengers3Lunes, funcionAvengers3Miercoles, funcionVolver1Finde,
+			funcionVolver1Lunes, funcionVolver1Miercoles, funcionVolver2Finde, funcionVolver2Lunes,
+			funcionVolver2Miercoles, funcionVolver3Finde, funcionVolver3Lunes, funcionVolver3Miercoles,
+			funcionSagaFinde, funcionSagaLunes, funcionSagaMiercoles]
 
 		// Creo lista de pelis y sagas
 		val listaPelis = #[batman, superman, avengers1, avengers2, avengers3, volverAlFuturo1, volverAlFuturo2,
@@ -181,6 +201,9 @@ class JoitsBootstrap implements Bootstrap {
 
 		// Creo lista de usuarios
 		val listaUsuarios = #[alezcano, dsalamida, arosales, elgato, chinwenwencha]
+
+		// persisto funciones
+		listaFunciones.forEach[f|constructor.persistirFuncion(f)]
 
 		// persisto peliculas en neo4j
 		listaPelis.forEach[p|constructor.persistirProyeccionNeo4J(p)]
@@ -195,16 +218,11 @@ class JoitsBootstrap implements Bootstrap {
 		listaUsuarios.forEach[u|constructor.persistirUsuario(u)]
 
 		// agrego las entradas a los usuarios
-		alezcano.comprarTicket(entradaAlberto1)
-		alezcano.comprarTicket(entradaAlberto2)
-		arosales.comprarTicket(entradaAriel1)
-		arosales.comprarTicket(entradaAriel2)
-		dsalamida.comprarTicket(entradaDiego1)
-		dsalamida.comprarTicket(entradaDiego2)
-		elgato.comprarTicket(entradaMacri1)
-		elgato.comprarTicket(entradaMacri2)
-		chinwenwencha.comprarTicket(entradaChinwenwencha1)
-		chinwenwencha.comprarTicket(entradaChinwenwencha2)
+		alezcano.tickets.addAll(entradaAlberto1, entradaAlberto2)
+		arosales.tickets.addAll(entradaAriel1, entradaAriel2)
+		dsalamida.tickets.addAll(entradaDiego1, entradaDiego2)
+		elgato.tickets.addAll(entradaMacri1, entradaMacri2)
+		chinwenwencha.tickets.addAll(entradaChinwenwencha1, entradaChinwenwencha2)
 
 		// amigos
 		alezcano.amigos.addAll(dsalamida, arosales)
@@ -214,8 +232,8 @@ class JoitsBootstrap implements Bootstrap {
 		// actualizo usuarios en grafo
 		listaUsuarios.forEach[u|constructor.actualizarUsuarioNeo4J(u)]
 
-		// actualizo usuarios en Hibernate
-		//listaUsuarios.forEach[u|constructor.actualizarUsuario(u)]
+	// actualizo usuarios en Hibernate
+	// listaUsuarios.forEach[u|constructor.actualizarUsuario(u)]
 	}
 
 	override isPending() {

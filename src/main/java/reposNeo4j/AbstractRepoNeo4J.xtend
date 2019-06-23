@@ -24,7 +24,7 @@ abstract class AbstractRepoNeo4J<T> {
 	abstract def T getById(T t)
 
 	def T createIfNotExists(T t) {
-		session.save(t, 1)
+		session.save(t, BUSQUEDA_ELEMENTO_RELACIONES)
 		return t
 	}
 

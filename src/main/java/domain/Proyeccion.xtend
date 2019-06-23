@@ -9,8 +9,8 @@ import org.mongodb.morphia.annotations.Id
 import org.neo4j.ogm.annotation.GeneratedValue
 import org.neo4j.ogm.annotation.NodeEntity
 import org.neo4j.ogm.annotation.Property
-import org.neo4j.ogm.annotation.Transient
 import org.uqbar.commons.model.annotations.Observable
+import org.neo4j.ogm.annotation.Relationship
 
 @Observable
 @Accessors
@@ -34,7 +34,7 @@ abstract class Proyeccion {
 	String genero
 
 	@Embedded
-	@Transient
+	@Relationship(type="PERTENECE")
 	Set<Funcion> funciones
 
 	new() {

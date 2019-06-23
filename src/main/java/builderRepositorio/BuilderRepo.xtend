@@ -1,5 +1,6 @@
 package builderRepositorio
 
+import domain.Funcion
 import domain.Proyeccion
 import domain.Usuario
 import org.eclipse.xtend.lib.annotations.Accessors
@@ -10,6 +11,7 @@ import reposMorphia.RepoProyecciones
 import reposNeo4j.AbstractRepoNeo4J
 import reposNeo4j.RepoPeliculas
 import reposNeo4j.RepositorioUsuarios
+import reposNeo4j.RepoFuncionesNeo4J
 
 @Accessors
 class BuilderRepo {
@@ -19,6 +21,8 @@ class BuilderRepo {
 	AbstractRepoNeo4J<Proyeccion> repoPelis = ApplicationContext.instance.getSingleton(typeof(RepoPeliculas))
 
 	AbstractRepoNeo4J<Usuario> repoClientes = ApplicationContext.instance.getSingleton(typeof(RepositorioUsuarios))
+
+	AbstractRepoNeo4J<Funcion> repoFunciones = ApplicationContext.instance.getSingleton(typeof(RepoFuncionesNeo4J))
 
 	def void persistirPelicula(Proyeccion proyeccion) {
 		repoProyecciones.createIfNotExists(proyeccion)
@@ -43,4 +47,9 @@ class BuilderRepo {
 	def void actualizarUsuarioNeo4J(Usuario usuario) {
 		repoClientes.update(usuario)
 	}
+
+	def persistirFuncion(Funcion funcion) {
+		repoFunciones.createIfNotExists(funcion)
+	}
+
 }

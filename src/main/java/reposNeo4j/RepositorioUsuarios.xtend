@@ -25,7 +25,7 @@ override Usuario getById(Usuario usuario) {
 def List<Usuario> getRecomendados(Usuario usuario) {
 		var String consulta = "match (u :Usuario {usuario: '"+usuario.usuario+"'}) - [:COMPRO] -> () <- [:COMPRO] - (otro :Usuario) where not ((u :Usuario {usuario: '"+usuario.usuario+"'}) - [:EsAmigoDe] -> (otro)) and (otro.nombre <> u.nombre) return distinct otro"
 		var Map<String, Object> params = new HashMap()
-		params.put("usuario", usuario.usuario)
+		params.put("usuario", usuario)
 		val resul = session.query(typeof(Usuario), consulta, params)
 		return resul.toList
 	}

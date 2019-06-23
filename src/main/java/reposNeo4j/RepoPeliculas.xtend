@@ -32,7 +32,7 @@ class RepoPeliculas extends AbstractRepoNeo4J<Proyeccion> {
 			"'}) - [:EsAmigoDe] -> () - [:COMPRO] -> (pelicula:Proyeccion) where not (u :Usuario {usuario: '" +
 			usuario.usuario + "'}) - [:COMPRO] -> (pelicula) return pelicula"
 		var Map<String, Object> params = new HashMap()
-		params.put("usuario", usuario.usuario)
+		params.put("usuario", usuario)
 		val resul = session.query(typeof(Proyeccion), consulta, params)
 		return resul.toList
 	}

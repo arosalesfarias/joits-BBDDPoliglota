@@ -4,14 +4,16 @@ import com.google.gson.annotations.Expose
 import exceptions.BusinessException
 import java.time.DayOfWeek
 import java.time.LocalDateTime
-import org.bson.types.ObjectId
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.mongodb.morphia.annotations.Entity
 import org.uqbar.commons.model.annotations.Observable
 import org.mongodb.morphia.annotations.Id
+import org.neo4j.ogm.annotation.GeneratedValue
+import org.neo4j.ogm.annotation.NodeEntity
 
 @Accessors
 @Observable
+@NodeEntity(label="Funcion")
 @Entity(value="Funcion", noClassnameStored=true)
 class Funcion {
 
@@ -23,11 +25,14 @@ class Funcion {
 	new() {
 	}
 
-	@Id ObjectId id
-	
+	@Id
+	@org.neo4j.ogm.annotation.Id
+	@GeneratedValue
+	Long id
+
 	@Expose
 	LocalDateTime hora
-	
+
 	@Expose
 	String sala
 
