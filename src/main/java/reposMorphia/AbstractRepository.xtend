@@ -10,7 +10,7 @@ import org.mongodb.morphia.Morphia
 import org.mongodb.morphia.query.UpdateOperations
 
 @Accessors
-abstract class AbstractRepository<T> implements RepoGenerico<T>{
+abstract class AbstractRepository<T> implements RepoGenerico<T> {
 
 	static protected Datastore ds
 
@@ -66,5 +66,7 @@ abstract class AbstractRepository<T> implements RepoGenerico<T>{
 	}
 
 	abstract def Class<T> getEntityType()
+
+	abstract def T searchById(T t)
 
 }

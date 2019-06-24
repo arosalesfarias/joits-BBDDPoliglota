@@ -12,6 +12,7 @@ import org.uqbar.commons.model.exceptions.UserException
 import org.uqbar.commons.model.utils.ObservableUtils
 import reposHibernate.RepoUsuarios
 import reposNeo4j.RepositorioUsuarios
+import builderRepositorio.RepoManager
 
 @Observable
 @Accessors
@@ -19,10 +20,12 @@ class FinalizarCompraModel {
 	List<Ticket> carrito = new ArrayList<Ticket>
 	Usuario usuario
 	Ticket tiketSeleccionado
+	RepoManager repoManger = new RepoManager
 
 	new(Usuario usu, List<Ticket> carri) {
 		usuario = usu
 		carrito = carri
+		repoManger.repositoriosUsuarios.addAll(RepositorioUsuarios.instance, RepoUsuarios.instance)
 	}
 
 	@Dependencies("carrito")
@@ -58,8 +61,7 @@ class FinalizarCompraModel {
 		carrito.forEach [ ticket |
 			usuario.comprarTicket(ticket)
 		]
-		RepositorioUsuarios.instance.update(usuario)
-		RepoUsuarios.instance.update(usuario)
+		repoManger.actualizarUsuario(usuario)
 		limpiarCarrito()
 	}
 

@@ -3,40 +3,24 @@ package application
 import builderRepositorio.RepoManager
 import domain.Funcion
 import domain.Pelicula
-import domain.Proyeccion
 import domain.Saga
 import domain.Ticket
 import domain.Usuario
 import java.time.LocalDateTime
 import org.uqbar.arena.bootstrap.Bootstrap
-import org.uqbar.commons.applicationContext.ApplicationContext
-import reposMorphia.AbstractRepository
+import reposHibernate.RepoUsuarios
 import reposMorphia.RepoProyecciones
-import reposNeo4j.AbstractRepoNeo4J
-import reposNeo4j.RepoFuncionesNeo4J
 import reposNeo4j.RepoPeliculas
 import reposNeo4j.RepositorioUsuarios
-import reposHibernate.RepoUsuarios
-import reposHibernate.AbstractRepoHibernate
 
 class JoitsBootstrap implements Bootstrap {
-
-	AbstractRepoHibernate<Usuario> repoUsuarios = ApplicationContext.instance.getSingleton(typeof(RepoUsuarios))
-
-	AbstractRepository<Proyeccion> repoProyecciones = ApplicationContext.instance.getSingleton(typeof(RepoProyecciones))
-
-	AbstractRepoNeo4J<Proyeccion> repoPelis = ApplicationContext.instance.getSingleton(typeof(RepoPeliculas))
-
-	AbstractRepoNeo4J<Usuario> repoClientes = ApplicationContext.instance.getSingleton(typeof(RepositorioUsuarios))
-
-	AbstractRepoNeo4J<Funcion> repoFunciones = ApplicationContext.instance.getSingleton(typeof(RepoFuncionesNeo4J))
 
 	RepoManager repoManager = new RepoManager
 
 	override run() {
 
-		repoManager.repositoriosUsuarios.addAll(repoClientes, repoUsuarios)
-		repoManager.repositoriosPeliculas.addAll(repoPelis, repoProyecciones)
+		repoManager.repositoriosUsuarios.addAll(RepositorioUsuarios.instance, RepoUsuarios.instance)
+		repoManager.repositoriosPeliculas.addAll(RepoPeliculas.instance, RepoProyecciones.instance)
 
 		// Creo usuarios
 		var alezcano = new Usuario() => [
@@ -209,24 +193,12 @@ class JoitsBootstrap implements Bootstrap {
 		val entradaMacri2 = new Ticket(funcionBatmanMiercoles, batman)
 		entradaMacri2.usuario = elgato
 
-		// Creo lista de funciones
-		val listaFunciones = #[funcionBatmanFinde, funcionBatmanLunes, funcionBatmanMiercoles, funcionSupermanFinde,
-			funcionSupermanLunes, funcionSupermanMiercoles, funcionAvengers1Finde, funcionAvengers1Lunes,
-			funcionAvengers1Miercoles, funcionAvengers2Finde, funcionAvengers2Lunes, funcionAvengers2Miercoles,
-			funcionAvengers3Finde, funcionAvengers3Lunes, funcionAvengers3Miercoles, funcionVolver1Finde,
-			funcionVolver1Lunes, funcionVolver1Miercoles, funcionVolver2Finde, funcionVolver2Lunes,
-			funcionVolver2Miercoles, funcionVolver3Finde, funcionVolver3Lunes, funcionVolver3Miercoles,
-			funcionSagaFinde, funcionSagaLunes, funcionSagaMiercoles]
-
 		// Creo lista de pelis y sagas
 		val listaPelis = #[batman, superman, avengers1, avengers2, avengers3, volverAlFuturo1, volverAlFuturo2,
 			volverAlFuturo3, volverAlFuturo]
 
 		// Creo lista de usuarios
 		val listaUsuarios = #[alezcano, dsalamida, arosales, elgato, chinwenwencha]
-
-		// persisto funciones
-		listaFunciones.forEach[f|repoFunciones.createIfNotExists(f)]
 
 		// persisto usuarios
 		listaUsuarios.forEach[u|repoManager.persistirUsuario(u)]
@@ -245,9 +217,6 @@ class JoitsBootstrap implements Bootstrap {
 		alezcano.amigos.addAll(dsalamida, arosales)
 		dsalamida.amigos.addAll(alezcano, arosales, elgato)
 		arosales.amigos.addAll(alezcano)
-
-		// falta solucionar el error al actualizar el repo de hibernate por eso hago este paso extra
-		repoManager.repositoriosUsuarios.remove(repoUsuarios)
 
 		// actualizo usuarios en grafo
 		listaUsuarios.forEach[u|repoManager.actualizarUsuario(u)]

@@ -86,6 +86,10 @@ class ModeloBusqueda extends BuscaSugiereModel {
 		precio = valorDeLaEntrada
 	}
 
+	def void setEntidadSeleccionada(Proyeccion proyeccion) {
+		entidadSeleccionada = repoProyecciones.searchById(proyeccion)
+	}
+
 	@Dependencies("entidadSeleccionada")
 	def getHayUnoSeleccionado() {
 		entidadSeleccionada !== null
@@ -103,4 +107,5 @@ class ModeloBusqueda extends BuscaSugiereModel {
 	override void clearEntity() {
 		entidadSeleccionada = null
 	}
+
 }

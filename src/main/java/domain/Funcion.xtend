@@ -6,14 +6,11 @@ import java.time.DayOfWeek
 import java.time.LocalDateTime
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.mongodb.morphia.annotations.Entity
-import org.uqbar.commons.model.annotations.Observable
 import org.mongodb.morphia.annotations.Id
-import org.neo4j.ogm.annotation.GeneratedValue
-import org.neo4j.ogm.annotation.NodeEntity
+import org.uqbar.commons.model.annotations.Observable
 
 @Accessors
 @Observable
-@NodeEntity(label="Funcion")
 @Entity(value="Funcion", noClassnameStored=true)
 class Funcion {
 
@@ -26,8 +23,6 @@ class Funcion {
 	}
 
 	@Id
-	@org.neo4j.ogm.annotation.Id
-	@GeneratedValue
 	Long id
 
 	@Expose

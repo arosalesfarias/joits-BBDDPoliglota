@@ -1,20 +1,20 @@
 package ui
 
 import applicationModel.BusquedaAmigos
+import domain.Usuario
+import java.awt.Color
+import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.Button
+import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Panel
+import org.uqbar.arena.widgets.TextBox
+import org.uqbar.arena.widgets.tables.Column
+import org.uqbar.arena.widgets.tables.Table
+import org.uqbar.arena.windows.Dialog
+import org.uqbar.arena.windows.Window
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import org.uqbar.arena.windows.Window
-import domain.Usuario
-import org.uqbar.arena.layout.HorizontalLayout
-import org.uqbar.arena.widgets.Label
-import java.awt.Color
-import org.uqbar.arena.widgets.TextBox
-import org.uqbar.arena.windows.Dialog
-import org.uqbar.arena.widgets.tables.Table
-import org.uqbar.arena.widgets.tables.Column
 
 class BusquedaAmigosWindow extends Window<BusquedaAmigos> {
 	new(WindowOwner parent, Usuario usuario) {
