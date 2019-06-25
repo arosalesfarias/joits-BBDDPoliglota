@@ -1,6 +1,5 @@
 package application
 
-import builderRepositorio.RepoManager
 import domain.Funcion
 import domain.Pelicula
 import domain.Saga
@@ -8,19 +7,11 @@ import domain.Ticket
 import domain.Usuario
 import java.time.LocalDateTime
 import org.uqbar.arena.bootstrap.Bootstrap
-import reposHibernate.RepoUsuarios
-import reposMorphia.RepoProyecciones
-import reposNeo4j.RepoPeliculas
-import reposNeo4j.RepositorioUsuarios
+import builderRepositorio.RepoManager
 
 class JoitsBootstrap implements Bootstrap {
 
-	RepoManager repoManager = new RepoManager
-
 	override run() {
-
-		repoManager.repositoriosUsuarios.addAll(RepositorioUsuarios.instance, RepoUsuarios.instance)
-		repoManager.repositoriosPeliculas.addAll(RepoPeliculas.instance, RepoProyecciones.instance)
 
 		// Creo usuarios
 		var alezcano = new Usuario() => [
@@ -201,10 +192,10 @@ class JoitsBootstrap implements Bootstrap {
 		val listaUsuarios = #[alezcano, dsalamida, arosales, elgato, chinwenwencha]
 
 		// persisto usuarios
-		listaUsuarios.forEach[u|repoManager.persistirUsuario(u)]
+		listaUsuarios.forEach[u|RepoManager.instance.persistirUsuario(u)]
 
 		// persisto peliculas
-		listaPelis.forEach[p|repoManager.persistirProyeccion(p)]
+		listaPelis.forEach[p|RepoManager.instance.persistirProyeccion(p)]
 
 		// agrego las entradas a los usuarios
 		alezcano.tickets.addAll(entradaAlberto1, entradaAlberto2)
@@ -219,7 +210,7 @@ class JoitsBootstrap implements Bootstrap {
 		arosales.amigos.addAll(alezcano)
 
 		// actualizo usuarios en grafo
-		listaUsuarios.forEach[u|repoManager.actualizarUsuario(u)]
+		listaUsuarios.forEach[u|RepoManager.instance.actualizarUsuario(u)]
 
 	}
 
