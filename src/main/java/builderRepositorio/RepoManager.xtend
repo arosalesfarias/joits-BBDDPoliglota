@@ -9,9 +9,21 @@ import reposNeo4j.RepositorioUsuarios
 import reposHibernate.RepoUsuarios
 import reposNeo4j.RepoPeliculas
 import reposMorphia.RepoProyecciones
+import reposHibernate.AbstractRepoHibernate
+import org.uqbar.commons.applicationContext.ApplicationContext
+import reposNeo4j.AbstractRepoNeo4J
+import reposMorphia.AbstractRepository
 
 @Accessors
 class RepoManager {
+
+	AbstractRepoNeo4J<Usuario> repoUsariosNeo4J = ApplicationContext.instance.getSingleton(RepositorioUsuarios)
+
+	AbstractRepoHibernate<Usuario> repoUsuariosHibernate = ApplicationContext.instance.getSingleton(RepoUsuarios)
+
+	AbstractRepoNeo4J<Proyeccion> repoProyeccionesNeo4j = ApplicationContext.instance.getSingleton(RepoPeliculas)
+
+	AbstractRepository<Proyeccion> repoProyeccionesMorphia = ApplicationContext.instance.getSingleton(RepoProyecciones)
 
 	List<RepoGenerico<Proyeccion>> repositoriosPeliculas = new ArrayList
 
@@ -28,8 +40,8 @@ class RepoManager {
 	}
 
 	def void inicializar() {
-		repositoriosUsuarios.addAll(RepositorioUsuarios.instance, RepoUsuarios.instance)
-		repositoriosPeliculas.addAll(RepoPeliculas.instance, RepoProyecciones.instance)
+		repositoriosUsuarios.addAll(repoUsariosNeo4J) // agregar el repo de usuarios de hibernate una vez solucionado el error
+		repositoriosPeliculas.addAll(repoProyeccionesNeo4j, repoProyeccionesMorphia)
 	}
 
 	def void persistirUsuario(Usuario usuario) {

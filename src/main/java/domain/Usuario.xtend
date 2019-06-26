@@ -22,7 +22,7 @@ import org.neo4j.ogm.annotation.GeneratedValue
 @TransactionalAndObservable
 @Accessors
 class Usuario {
-	
+
 	@Id
 	@org.neo4j.ogm.annotation.Id
 	@GeneratedValue

@@ -8,6 +8,7 @@ import domain.Usuario
 import java.time.LocalDateTime
 import org.uqbar.arena.bootstrap.Bootstrap
 import builderRepositorio.RepoManager
+import reposHibernate.RepoUsuarios
 
 class JoitsBootstrap implements Bootstrap {
 
@@ -196,6 +197,9 @@ class JoitsBootstrap implements Bootstrap {
 
 		// persisto peliculas
 		listaPelis.forEach[p|RepoManager.instance.persistirProyeccion(p)]
+
+		// esto esta agregado para que funcione la app
+		listaUsuarios.forEach[u|RepoManager.instance.repoUsuariosHibernate.createIfNotExists(u)]
 
 		// agrego las entradas a los usuarios
 		alezcano.tickets.addAll(entradaAlberto1, entradaAlberto2)
