@@ -21,6 +21,7 @@ abstract class BuscaSugiereModel {
 		valorBusqueda = ""
 	}
 	def getUser(){
+		println(usuario.id)
 		usuario = RepoUsuarios.instance.searchById(usuario.id)
 	}
 	def void agregar()

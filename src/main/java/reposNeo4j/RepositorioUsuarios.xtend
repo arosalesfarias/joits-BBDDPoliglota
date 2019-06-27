@@ -5,6 +5,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.List
 import java.util.Map
 import java.util.HashMap
+import java.util.Collections
 
 @Accessors
 class RepositorioUsuarios extends AbstractRepoNeo4J<Usuario> {
@@ -26,9 +27,9 @@ class RepositorioUsuarios extends AbstractRepoNeo4J<Usuario> {
 		var String consulta = "match (u :Usuario {usuario: '" + usuario.usuario +
 			"'}) - [:COMPRO] -> () <- [:COMPRO] - (otro :Usuario) where not ((u :Usuario {usuario: '" +
 			usuario.usuario + "'}) - [:EsAmigoDe] -> (otro)) and (otro.nombre <> u.nombre) return distinct otro"
-		var Map<String, Object> params = new HashMap()
-		params.put("usuario", usuario)
-		val resul = session.query(typeof(Usuario), consulta, params)
+//		var Map<String, Object> params = new HashMap()
+//		params.put("usuario", usuario)
+		val resul = session.query(typeof(Usuario), consulta, Collections.EMPTY_MAP)
 		return resul.toList
 	}
 
