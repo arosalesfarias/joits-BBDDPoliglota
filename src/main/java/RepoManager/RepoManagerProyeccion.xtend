@@ -9,13 +9,14 @@ import reposMorphia.AbstractRepository
 import reposMorphia.RepoProyecciones
 import reposNeo4j.AbstractRepoNeo4J
 import reposNeo4j.RepoPeliculas
+import domain.Usuario
 
 @Accessors
 class RepoManagerProyeccion {
 
-	AbstractRepoNeo4J<Proyeccion> repoProyeccionesNeo4j = ApplicationContext.instance.getSingleton(RepoPeliculas)
+	RepoPeliculas repoProyeccionesNeo4j = RepoPeliculas.instance
 
-	AbstractRepository<Proyeccion> repoProyeccionesMorphia = ApplicationContext.instance.getSingleton(RepoProyecciones)
+	RepoProyecciones repoProyeccionesMorphia = RepoProyecciones.instance
 
 	List<RepoGenerico<Proyeccion>> repositoriosPeliculas = new ArrayList
 
@@ -35,6 +36,10 @@ class RepoManagerProyeccion {
 
 	def void persistirProyeccion(Proyeccion proyeccion) {
 		repositoriosPeliculas.forEach[repo|repo.createIfNotExists(proyeccion)]
+	}
+	
+	def pelisSugeridas(Usuario usuario) {
+		(repoProyeccionesNeo4j.getRecomendados(usuario)).take(5).toList
 	}
 
 }

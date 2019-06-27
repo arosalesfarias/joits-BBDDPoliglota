@@ -106,16 +106,15 @@ class RepoUsuarios extends AbstractRepoHibernate<Usuario> {
 	}
 
 	override createIfNotExists(Usuario usuario) {
-		val repoUsuarios = RepoUsuarios.instance
-		val listaUsuarios = repoUsuarios.searchByExample(usuario)
+		val listaUsuarios = searchByExample(usuario)
 		if (listaUsuarios.isEmpty) {
-			repoUsuarios.create(usuario)
+			create(usuario)
 			println("Usuario " + usuario.usuario + " creado")
 			return usuario
 		} else {
 			val usuarioBD = listaUsuarios.head
 			usuario.id = usuarioBD.id
-			repoUsuarios.update(usuario)
+			update(usuario)
 			return usuario
 		}
 	}

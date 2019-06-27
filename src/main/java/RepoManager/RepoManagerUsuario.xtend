@@ -3,17 +3,15 @@ package RepoManager
 import domain.Usuario
 import java.util.ArrayList
 import java.util.List
-import org.uqbar.commons.applicationContext.ApplicationContext
-import reposHibernate.AbstractRepoHibernate
 import reposHibernate.RepoUsuarios
 import reposNeo4j.AbstractRepoNeo4J
 import reposNeo4j.RepositorioUsuarios
 
 class RepoManagerUsuario {
 
-	AbstractRepoNeo4J<Usuario> repoUsariosNeo4J = ApplicationContext.instance.getSingleton(RepositorioUsuarios)
+	RepositorioUsuarios repoUsariosNeo4J = RepositorioUsuarios.instance
 
-	AbstractRepoHibernate<Usuario> repoUsuariosHibernate = ApplicationContext.instance.getSingleton(RepoUsuarios)
+	RepoUsuarios repoUsuariosHibernate = RepoUsuarios.instance
 
 	List<RepoGenerico<Usuario>> repositoriosUsuarios = new ArrayList
 
@@ -40,4 +38,12 @@ class RepoManagerUsuario {
 		val usuaActualizado = repoUsariosNeo4J.searchById(usuario.id)
 		repoUsuariosHibernate.update(usuaActualizado)
 	}
+	
+	def login(Usuario usuario) {
+		repoUsuariosHibernate.coincide(usuario)
+	}
+	def usuarioLogueado(){
+		repoUsuariosHibernate.usuarioLogueado
+	}
+	
 }

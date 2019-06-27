@@ -15,6 +15,8 @@ import reposHibernate.RepoUsuarios
 import reposMorphia.AbstractRepository
 import reposMorphia.RepoProyecciones
 import reposNeo4j.RepoPeliculas
+import RepoManager.RepoManagerUsuario
+import RepoManager.RepoManagerProyeccion
 
 @Accessors
 @Observable
@@ -24,19 +26,20 @@ class ModeloBusqueda extends BuscaSugiereModel {
 	Ticket entrada
 	float precio = 0
 	List<Proyeccion> lista
-	List<Proyeccion> sugeridos
+	List<Proyeccion> sugeridos = newArrayList
 	Proyeccion entidadSeleccionada
 	AbstractRepository<Proyeccion> repoProyecciones = ApplicationContext.instance.getSingleton(RepoProyecciones)
 
 	new() {
-		super(RepoUsuarios.instance.usuarioLogueado)
+		super(RepoManagerUsuario.instance.usuarioLogueado)
 		inicializarLista
-		sugeridos = pelisSugeridas
-		carrito = Carrito.instance.recuperarCarrito(RepoUsuarios.instance.usuarioLogueado)
+		pelisSugeridas
+		carrito = Carrito.instance.recuperarCarrito(RepoManagerUsuario.instance.usuarioLogueado)
 	}
 
 	def pelisSugeridas() {
-		(RepoPeliculas.instance.getRecomendados(usuario)).take(5).toList
+		sugeridos = RepoManagerProyeccion.instance.pelisSugeridas(usuario)
+		//(RepoPeliculas.instance.getRecomendados(usuario)).take(5).toList
 	}
 
 	def inicializarLista() {
