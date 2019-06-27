@@ -1,6 +1,6 @@
 package reposMorphia
 
-import builderRepositorio.RepoGenerico
+import RepoManager.RepoGenerico
 import com.mongodb.MongoClient
 import domain.Funcion
 import java.util.List

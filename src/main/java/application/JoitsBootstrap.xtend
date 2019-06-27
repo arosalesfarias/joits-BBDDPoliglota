@@ -7,8 +7,8 @@ import domain.Ticket
 import domain.Usuario
 import java.time.LocalDateTime
 import org.uqbar.arena.bootstrap.Bootstrap
-import builderRepositorio.RepoManager
-import reposHibernate.RepoUsuarios
+import RepoManager.RepoManagerProyeccion
+import RepoManager.RepoManagerUsuario
 
 class JoitsBootstrap implements Bootstrap {
 
@@ -19,7 +19,7 @@ class JoitsBootstrap implements Bootstrap {
 			nombre = "Alberto"
 			apellido = "Lezcano"
 			edad = 26
-			saldo = 2000
+			saldo = 1000
 			usuario = "alezcano"
 			login = "1234"
 		]
@@ -36,7 +36,7 @@ class JoitsBootstrap implements Bootstrap {
 			nombre = "Ariel"
 			apellido = "Rosales"
 			edad = 8
-			saldo = 1200
+			saldo = 12
 			usuario = "arosales"
 			login = "3333"
 		]
@@ -44,7 +44,7 @@ class JoitsBootstrap implements Bootstrap {
 			nombre = "El"
 			apellido = "Chinwenwencha"
 			edad = 26
-			saldo = 500
+			saldo = 50
 			usuario = "chinwenwencha"
 			login = "1234"
 		]
@@ -193,13 +193,10 @@ class JoitsBootstrap implements Bootstrap {
 		val listaUsuarios = #[alezcano, dsalamida, arosales, elgato, chinwenwencha]
 
 		// persisto usuarios
-		listaUsuarios.forEach[u|RepoManager.instance.persistirUsuario(u)]
+		listaUsuarios.forEach[u|RepoManagerUsuario.instance.persistirUsuario(u)]
 
 		// persisto peliculas
-		listaPelis.forEach[p|RepoManager.instance.persistirProyeccion(p)]
-
-		// esto esta agregado para que funcione la app
-		listaUsuarios.forEach[u|RepoManager.instance.repoUsuariosHibernate.createIfNotExists(u)]
+		listaPelis.forEach[p|RepoManagerProyeccion.instance.persistirProyeccion(p)]
 
 		// agrego las entradas a los usuarios
 		alezcano.tickets.addAll(entradaAlberto1, entradaAlberto2)
@@ -214,7 +211,7 @@ class JoitsBootstrap implements Bootstrap {
 		arosales.amigos.addAll(alezcano)
 
 		// actualizo usuarios en grafo
-		listaUsuarios.forEach[u|RepoManager.instance.actualizarUsuario(u)]
+		listaUsuarios.forEach[u|RepoManagerUsuario.instance.actualizarUsuario(u)]
 
 	}
 

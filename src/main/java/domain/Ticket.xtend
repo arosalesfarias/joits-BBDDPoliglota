@@ -29,7 +29,7 @@ class Ticket {
 
 	@Id
 	@org.neo4j.ogm.annotation.Id
-	@GeneratedValue
+	@GeneratedValue // esto es de neo4J
 	Long id
 
 	@Transient

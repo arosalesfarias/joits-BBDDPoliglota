@@ -19,8 +19,8 @@ class RepoPeliculas extends AbstractRepoNeo4J<Proyeccion> {
 		instance
 	}
 
-	override Proyeccion getById(Proyeccion proyeccion) {
-		session.load(typeof(Proyeccion), proyeccion.id, BUSQUEDA_ELEMENTO_RELACIONES)
+	override Proyeccion searchById(Long id) {
+		session.load(typeof(Proyeccion), id, BUSQUEDA_ELEMENTO_RELACIONES)
 	}
 
 	override getEntityType() {

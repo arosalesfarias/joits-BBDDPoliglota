@@ -1,4 +1,4 @@
-package builderRepositorio
+package RepoManager
 
 interface RepoGenerico<T> {
 

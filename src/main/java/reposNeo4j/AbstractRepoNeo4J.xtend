@@ -1,9 +1,9 @@
 package reposNeo4j
 
+import RepoManager.RepoGenerico
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.neo4j.ogm.config.Configuration
 import org.neo4j.ogm.session.SessionFactory
-import builderRepositorio.RepoGenerico
 
 @Accessors
 abstract class AbstractRepoNeo4J<T> implements RepoGenerico<T> {
@@ -22,7 +22,7 @@ abstract class AbstractRepoNeo4J<T> implements RepoGenerico<T> {
 
 	abstract def Class<T> getEntityType()
 
-	abstract def T getById(T t)
+	abstract def T searchById(Long id)
 
 	override createIfNotExists(T t) {
 		session.save(t, BUSQUEDA_ELEMENTO_RELACIONES)
